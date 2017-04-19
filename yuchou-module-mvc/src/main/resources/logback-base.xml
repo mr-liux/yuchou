@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<included>
+	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+	<include
+		resource="org/springframework/boot/logging/logback/console-appender.xml" />
+
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<FileNamePattern>
+				${LOG_HOME:-logs}/${APP_NAME}/info/%d{yyyy-MM}/%d{dd}.%i.log
+			</FileNamePattern>
+			<maxFileSize>100MB</maxFileSize>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="GATE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<FileNamePattern>
+				${LOG_HOME:-logs}/${APP_NAME}/gate/%d{yyyy-MM}/%d{dd}.%i.log
+			</FileNamePattern>
+			<maxFileSize>100MB</maxFileSize>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="EX"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<FileNamePattern>
+				${LOG_HOME:-logs}/${APP_NAME}/ex/%d{yyyy-MM}/%d{dd}.%i.log
+			</FileNamePattern>
+			<maxFileSize>100MB</maxFileSize>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="exlog" level="INFO" additivity="false">
+		<springProfile name="dev">
+			<appender-ref ref="CONSOLE" />
+		</springProfile>
+		<appender-ref ref="EX" />
+	</logger>
+
+	<logger name="gatelog" level="INFO" additivity="false">
+		<springProfile name="dev">
+			<appender-ref ref="CONSOLE" />
+		</springProfile>
+		<appender-ref ref="GATE" />
+	</logger>
+
+	<springProfile name="dev">
+		<logger name="com.sto" level="DEBUG" additivity="false">
+			<appender-ref ref="CONSOLE" />
+			<appender-ref ref="FILE" />
+		</logger>
+	</springProfile>
+
+	<springProfile name="test,pro">
+		<logger name="com.sto" level="INFO" additivity="false">
+			<appender-ref ref="FILE" />
+		</logger>
+	</springProfile>
+
+	<logger name="org.springframework" level="INFO" />
+
+	<root level="INFO">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="FILE" />
+	</root>
+</included>
