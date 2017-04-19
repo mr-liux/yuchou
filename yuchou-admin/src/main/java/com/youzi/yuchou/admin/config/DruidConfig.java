@@ -15,6 +15,7 @@ public class DruidConfig {
 	@Value("${druid.loginUsername:admin}")
 	private String loginUsername;
 
+
 	@Value("${druid.loginPassword:admin}")
 	private String loginPassword;
 
