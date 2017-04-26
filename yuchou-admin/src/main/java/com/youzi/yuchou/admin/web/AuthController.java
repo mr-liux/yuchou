@@ -32,6 +32,7 @@ public class AuthController extends BaseController {
 		return buildDefaultSuccessed("通过权限验证");
 	}
 
+	
 	/**
 	 * 权限验证示例 -- 需要A资源权限
 	 * 

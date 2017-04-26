@@ -49,6 +49,7 @@ public class UserController extends BaseController {
 	@GetMapping("/user")
 	public RestResponse<PageInfo<TbUser>> findById(PageSearchForm searchForm) {
 		PageInfo<TbUser> page = userService.findAll(searchForm);
+		
 		return buildSuccessed(page);
 	}
 

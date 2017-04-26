@@ -1,9 +1,14 @@
 package com.youzi.yuchou.module.mvc.web;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.youzi.yuchou.module.mvc.dto.RestResponse;
 
 public abstract class BaseController {
-
+	
+	protected Logger logger = LoggerFactory.getLogger(getClass());
+	
 	protected <T> RestResponse<T> buildSuccessed(T data) {
 		return RestResponse.buildSuccessed(data);
 	}

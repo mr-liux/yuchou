@@ -13,10 +13,11 @@ import com.github.pagehelper.PageInfo;
 import com.youzi.yuchou.module.model.mapper.TbUserMapper;
 import com.youzi.yuchou.module.model.model.TbUser;
 import com.youzi.yuchou.module.mvc.form.PageSearchForm;
+import com.youzi.yuchou.module.mvc.service.BaseService;
 
 @Service
 @Transactional
-public class UserService {
+public class UserService extends BaseService{
 
 	@Autowired
 	private TbUserMapper userMapper;
@@ -82,6 +83,7 @@ public class UserService {
 	public PageInfo<TbUser> findAll(int pageNum, int pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
 		List<TbUser> list = userMapper.findAll();
+		logger.info("分页查询示例二");
 		return new PageInfo<TbUser>(list);
 	}
 
