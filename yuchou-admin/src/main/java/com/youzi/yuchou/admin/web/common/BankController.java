@@ -1,4 +1,4 @@
-package com.youzi.yuchou.admin.web.com;
+package com.youzi.yuchou.admin.web.common;
 
 import org.springframework.web.bind.annotation.RestController;
 

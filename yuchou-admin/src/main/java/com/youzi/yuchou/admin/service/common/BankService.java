@@ -1,5 +1,5 @@
 
-package com.youzi.yuchou.admin.service.com;
+package com.youzi.yuchou.admin.service.common;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
