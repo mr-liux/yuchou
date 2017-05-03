@@ -48,12 +48,12 @@ public class OrderSalerService extends BaseService {
 	 * @author 背包
 	 * @param bank
 	 */
-	@Cacheable(value = "findByIdOrderSaler", key = "order_saler"+"#id", unless = "#result == null")
+	@Cacheable(value = "findByIdOrderSaler", key = "#id", unless = "#result == null")
 	public RestResponse<Object> findById(Integer id) {
 		RestResponse<Object> page = new RestResponse<Object>();
 		OrderSaler orderSaler = orderSalerMapper.selectByPrimaryKey(id);
 		page.setCode(0);
-		page.setData(orderSaler);
+		page.setData(orderSaler); 
 		return page;
 	}
 	@Cacheable(value = "findByIdOrderSaler", key = "#id", unless = "#result == null")
