@@ -19,6 +19,7 @@
 		<module>yuchou-admin</module>
 		<module>yuchou-module-redis</module>
 		<module>yuchou-portal</module>
+		<module>yuchou-wechat</module>
 	</modules>
 
 	<properties>
