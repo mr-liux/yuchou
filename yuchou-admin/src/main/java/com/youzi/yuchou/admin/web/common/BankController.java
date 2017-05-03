@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.youzi.yuchou.admin.service.common.BankService;
@@ -22,13 +21,13 @@ public class BankController extends BaseController {
 
 	@Autowired
 	BankService bankService;
-	
+
 	@PostMapping("/bank")
 	public RestResponse<String> add(@RequestBody Bank bank){
 		bankService.add(bank);
 		return buildDefaultSuccessed("新增成功");
 	}
-	
+
 	@DeleteMapping("/bank/{id}")
 	public RestResponse<String> delete(@PathVariable Integer id) {
 		bankService.delete(id);
