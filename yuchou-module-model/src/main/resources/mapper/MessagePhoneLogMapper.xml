@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.youzi.yuchou.module.model.mapper.MessagePhoneLogMapper">
+  <resultMap id="BaseResultMap" type="com.youzi.yuchou.module.model.model.MessagePhoneLog">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="phone" jdbcType="CHAR" property="phone" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="code" jdbcType="CHAR" property="code" />
+    <result column="results" jdbcType="INTEGER" property="results" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="user_ky" jdbcType="INTEGER" property="userKy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uid, type, phone, content, code, results, add_time, user_ky
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from message_phone_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from message_phone_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.youzi.yuchou.module.model.model.MessagePhoneLog">
+    insert into message_phone_log (id, uid, type, 
+      phone, content, code, results, 
+      add_time, user_ky)
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{phone,jdbcType=CHAR}, #{content,jdbcType=VARCHAR}, #{code,jdbcType=CHAR}, #{results,jdbcType=INTEGER}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{userKy,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.youzi.yuchou.module.model.model.MessagePhoneLog">
+    insert into message_phone_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="results != null">
+        results,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="userKy != null">
+        user_ky,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=CHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=CHAR},
+      </if>
+      <if test="results != null">
+        #{results,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userKy != null">
+        #{userKy,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youzi.yuchou.module.model.model.MessagePhoneLog">
+    update message_phone_log
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=CHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=CHAR},
+      </if>
+      <if test="results != null">
+        results = #{results,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userKy != null">
+        user_ky = #{userKy,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youzi.yuchou.module.model.model.MessagePhoneLog">
+    update message_phone_log
+    set uid = #{uid,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=CHAR},
+      content = #{content,jdbcType=VARCHAR},
+      code = #{code,jdbcType=CHAR},
+      results = #{results,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      user_ky = #{userKy,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

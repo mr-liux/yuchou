@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.youzi.yuchou.module.model.mapper.MemberFundsMapper">
+  <resultMap id="BaseResultMap" type="com.youzi.yuchou.module.model.model.MemberFunds">
+    <id column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="balance" jdbcType="DECIMAL" property="balance" />
+    <result column="freeze" jdbcType="DECIMAL" property="freeze" />
+    <result column="discount" jdbcType="DECIMAL" property="discount" />
+    <result column="reserve1" jdbcType="DECIMAL" property="reserve1" />
+    <result column="reserve2" jdbcType="DECIMAL" property="reserve2" />
+    <result column="reserve3" jdbcType="DECIMAL" property="reserve3" />
+    <result column="reserve4" jdbcType="DECIMAL" property="reserve4" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    uid, balance, freeze, discount, reserve1, reserve2, reserve3, reserve4
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from member_funds
+    where uid = #{uid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from member_funds
+    where uid = #{uid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.youzi.yuchou.module.model.model.MemberFunds">
+    insert into member_funds (uid, balance, freeze, 
+      discount, reserve1, reserve2, 
+      reserve3, reserve4)
+    values (#{uid,jdbcType=INTEGER}, #{balance,jdbcType=DECIMAL}, #{freeze,jdbcType=DECIMAL}, 
+      #{discount,jdbcType=DECIMAL}, #{reserve1,jdbcType=DECIMAL}, #{reserve2,jdbcType=DECIMAL}, 
+      #{reserve3,jdbcType=DECIMAL}, #{reserve4,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.youzi.yuchou.module.model.model.MemberFunds">
+    insert into member_funds
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="freeze != null">
+        freeze,
+      </if>
+      <if test="discount != null">
+        discount,
+      </if>
+      <if test="reserve1 != null">
+        reserve1,
+      </if>
+      <if test="reserve2 != null">
+        reserve2,
+      </if>
+      <if test="reserve3 != null">
+        reserve3,
+      </if>
+      <if test="reserve4 != null">
+        reserve4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="freeze != null">
+        #{freeze,jdbcType=DECIMAL},
+      </if>
+      <if test="discount != null">
+        #{discount,jdbcType=DECIMAL},
+      </if>
+      <if test="reserve1 != null">
+        #{reserve1,jdbcType=DECIMAL},
+      </if>
+      <if test="reserve2 != null">
+        #{reserve2,jdbcType=DECIMAL},
+      </if>
+      <if test="reserve3 != null">
+        #{reserve3,jdbcType=DECIMAL},
+      </if>
+      <if test="reserve4 != null">
+        #{reserve4,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youzi.yuchou.module.model.model.MemberFunds">
+    update member_funds
+    <set>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="freeze != null">
+        freeze = #{freeze,jdbcType=DECIMAL},
+      </if>
+      <if test="discount != null">
+        discount = #{discount,jdbcType=DECIMAL},
+      </if>
+      <if test="reserve1 != null">
+        reserve1 = #{reserve1,jdbcType=DECIMAL},
+      </if>
+      <if test="reserve2 != null">
+        reserve2 = #{reserve2,jdbcType=DECIMAL},
+      </if>
+      <if test="reserve3 != null">
+        reserve3 = #{reserve3,jdbcType=DECIMAL},
+      </if>
+      <if test="reserve4 != null">
+        reserve4 = #{reserve4,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youzi.yuchou.module.model.model.MemberFunds">
+    update member_funds
+    set balance = #{balance,jdbcType=DECIMAL},
+      freeze = #{freeze,jdbcType=DECIMAL},
+      discount = #{discount,jdbcType=DECIMAL},
+      reserve1 = #{reserve1,jdbcType=DECIMAL},
+      reserve2 = #{reserve2,jdbcType=DECIMAL},
+      reserve3 = #{reserve3,jdbcType=DECIMAL},
+      reserve4 = #{reserve4,jdbcType=DECIMAL}
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+</mapper>

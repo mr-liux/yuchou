@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.youzi.yuchou.module.model.mapper.GoodsStockLogMapper">
+  <resultMap id="BaseResultMap" type="com.youzi.yuchou.module.model.model.GoodsStockLog">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="sid" jdbcType="INTEGER" property="sid" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="sz" jdbcType="INTEGER" property="sz" />
+    <result column="goods_spec_detail_price_id" jdbcType="INTEGER" property="goodsSpecDetailPriceId" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="gid" jdbcType="INTEGER" property="gid" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="amount_count" jdbcType="INTEGER" property="amountCount" />
+    <result column="balance_count" jdbcType="INTEGER" property="balanceCount" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="reserve1" jdbcType="INTEGER" property="reserve1" />
+    <result column="reserve2" jdbcType="VARCHAR" property="reserve2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, sid, type, sz, goods_spec_detail_price_id, uid, gid, order_id, amount_count, 
+    balance_count, remark, add_time, reserve1, reserve2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_stock_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from goods_stock_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.youzi.yuchou.module.model.model.GoodsStockLog">
+    insert into goods_stock_log (id, sid, type, 
+      sz, goods_spec_detail_price_id, uid, 
+      gid, order_id, amount_count, 
+      balance_count, remark, add_time, 
+      reserve1, reserve2)
+    values (#{id,jdbcType=INTEGER}, #{sid,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{sz,jdbcType=INTEGER}, #{goodsSpecDetailPriceId,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, 
+      #{gid,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{amountCount,jdbcType=INTEGER}, 
+      #{balanceCount,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{reserve1,jdbcType=INTEGER}, #{reserve2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.youzi.yuchou.module.model.model.GoodsStockLog">
+    insert into goods_stock_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="sid != null">
+        sid,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="sz != null">
+        sz,
+      </if>
+      <if test="goodsSpecDetailPriceId != null">
+        goods_spec_detail_price_id,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="gid != null">
+        gid,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="amountCount != null">
+        amount_count,
+      </if>
+      <if test="balanceCount != null">
+        balance_count,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="reserve1 != null">
+        reserve1,
+      </if>
+      <if test="reserve2 != null">
+        reserve2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sid != null">
+        #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="sz != null">
+        #{sz,jdbcType=INTEGER},
+      </if>
+      <if test="goodsSpecDetailPriceId != null">
+        #{goodsSpecDetailPriceId,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="gid != null">
+        #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="amountCount != null">
+        #{amountCount,jdbcType=INTEGER},
+      </if>
+      <if test="balanceCount != null">
+        #{balanceCount,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reserve1 != null">
+        #{reserve1,jdbcType=INTEGER},
+      </if>
+      <if test="reserve2 != null">
+        #{reserve2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youzi.yuchou.module.model.model.GoodsStockLog">
+    update goods_stock_log
+    <set>
+      <if test="sid != null">
+        sid = #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="sz != null">
+        sz = #{sz,jdbcType=INTEGER},
+      </if>
+      <if test="goodsSpecDetailPriceId != null">
+        goods_spec_detail_price_id = #{goodsSpecDetailPriceId,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="gid != null">
+        gid = #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="amountCount != null">
+        amount_count = #{amountCount,jdbcType=INTEGER},
+      </if>
+      <if test="balanceCount != null">
+        balance_count = #{balanceCount,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reserve1 != null">
+        reserve1 = #{reserve1,jdbcType=INTEGER},
+      </if>
+      <if test="reserve2 != null">
+        reserve2 = #{reserve2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youzi.yuchou.module.model.model.GoodsStockLog">
+    update goods_stock_log
+    set sid = #{sid,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      sz = #{sz,jdbcType=INTEGER},
+      goods_spec_detail_price_id = #{goodsSpecDetailPriceId,jdbcType=INTEGER},
+      uid = #{uid,jdbcType=INTEGER},
+      gid = #{gid,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      amount_count = #{amountCount,jdbcType=INTEGER},
+      balance_count = #{balanceCount,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      reserve1 = #{reserve1,jdbcType=INTEGER},
+      reserve2 = #{reserve2,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

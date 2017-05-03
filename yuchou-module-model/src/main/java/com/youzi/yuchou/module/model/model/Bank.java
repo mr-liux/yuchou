@@ -11,7 +11,7 @@ public class Bank {
 
     private String classes;
 
-    private String banknum;
+    private String bankNum;
 
     private Integer sort;
 
@@ -55,12 +55,12 @@ public class Bank {
         this.classes = classes == null ? null : classes.trim();
     }
 
-    public String getBanknum() {
-        return banknum;
+    public String getBankNum() {
+        return bankNum;
     }
 
-    public void setBanknum(String banknum) {
-        this.banknum = banknum == null ? null : banknum.trim();
+    public void setBankNum(String bankNum) {
+        this.bankNum = bankNum == null ? null : bankNum.trim();
     }
 
     public Integer getSort() {

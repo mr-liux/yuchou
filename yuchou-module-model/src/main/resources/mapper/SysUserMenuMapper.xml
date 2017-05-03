@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.youzi.yuchou.module.model.mapper.SysUserMenuMapper">
+  <resultMap id="BaseResultMap" type="com.youzi.yuchou.module.model.model.SysUserMenu">
+    <id column="grant_ky" jdbcType="INTEGER" property="grantKy" />
+    <result column="user_ky" jdbcType="INTEGER" property="userKy" />
+    <result column="menu_ky" jdbcType="INTEGER" property="menuKy" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="upd_time" jdbcType="TIMESTAMP" property="updTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    grant_ky, user_ky, menu_ky, status, add_time, upd_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user_menu
+    where grant_ky = #{grantKy,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_user_menu
+    where grant_ky = #{grantKy,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.youzi.yuchou.module.model.model.SysUserMenu">
+    insert into sys_user_menu (grant_ky, user_ky, menu_ky, 
+      status, add_time, upd_time
+      )
+    values (#{grantKy,jdbcType=INTEGER}, #{userKy,jdbcType=INTEGER}, #{menuKy,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{addTime,jdbcType=TIMESTAMP}, #{updTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.youzi.yuchou.module.model.model.SysUserMenu">
+    insert into sys_user_menu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="grantKy != null">
+        grant_ky,
+      </if>
+      <if test="userKy != null">
+        user_ky,
+      </if>
+      <if test="menuKy != null">
+        menu_ky,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="updTime != null">
+        upd_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="grantKy != null">
+        #{grantKy,jdbcType=INTEGER},
+      </if>
+      <if test="userKy != null">
+        #{userKy,jdbcType=INTEGER},
+      </if>
+      <if test="menuKy != null">
+        #{menuKy,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updTime != null">
+        #{updTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youzi.yuchou.module.model.model.SysUserMenu">
+    update sys_user_menu
+    <set>
+      <if test="userKy != null">
+        user_ky = #{userKy,jdbcType=INTEGER},
+      </if>
+      <if test="menuKy != null">
+        menu_ky = #{menuKy,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updTime != null">
+        upd_time = #{updTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where grant_ky = #{grantKy,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youzi.yuchou.module.model.model.SysUserMenu">
+    update sys_user_menu
+    set user_ky = #{userKy,jdbcType=INTEGER},
+      menu_ky = #{menuKy,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      upd_time = #{updTime,jdbcType=TIMESTAMP}
+    where grant_ky = #{grantKy,jdbcType=INTEGER}
+  </update>
+</mapper>

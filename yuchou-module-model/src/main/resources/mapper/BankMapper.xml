@@ -7,11 +7,59 @@
     <result column="code" jdbcType="VARCHAR" property="code" />
     <result column="type" jdbcType="INTEGER" property="type" />
     <result column="classes" jdbcType="VARCHAR" property="classes" />
-    <result column="bankNum" jdbcType="VARCHAR" property="banknum" />
+    <result column="bank_num" jdbcType="VARCHAR" property="bankNum" />
     <result column="sort" jdbcType="INTEGER" property="sort" />
   </resultMap>
+  
+  <select id="query" resultMap="BaseResultMap" >
+    SELECT
+    <include refid="Base_Column_List" />
+     FROM bank a  
+     <include refid="T_CMS_AD_QUERY" />
+     <if test="orderByClause != null" >
+     	 ORDER BY ${orderByClause} ${sort}
+    </if>
+     <if test="offset != null and offset >= 0 ">  
+               LIMIT  #{offset},
+           </if>    
+            <if test="pageSize != null and pageSize > 0 and offset >= 0">                
+                 #{pageSize}                           
+            </if>
+  </select>
+  
+  <select id="count" resultType="int" >
+    SELECT count(*) FROM bank a 
+      <include refid="T_CMS_AD_QUERY" />
+  </select>
+  
+  <select id="querylimit" resultMap="BaseResultMap" >
+    SELECT
+    <include refid="Base_Column_List" />
+     FROM bank a  
+     <if test="orderByClause != null" >
+     	 ORDER BY ${orderByClause} ${sort}
+    </if>
+     <if test="limit != null" >
+     	 LIMIT ${limit}
+    </if>
+  </select>
+  
+  <sql id="T_CMS_AD_QUERY" >
+    <trim prefix="WHERE" prefixOverrides="AND " >
+      <if test="keyWord != null and '' != keyWord" >
+        AND (
+        	(a.TITLE like '%' || #{keyWord} || '%') 
+        )	
+      </if>
+    </trim>
+  </sql>
+  
+  
+  
+  
+  
   <sql id="Base_Column_List">
-    id, name, code, type, classes, bankNum, sort
+    id, name, code, type, classes, bank_num, sort
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -25,10 +73,10 @@
   </delete>
   <insert id="insert" parameterType="com.youzi.yuchou.module.model.model.Bank">
     insert into bank (id, name, code, 
-      type, classes, bankNum, 
+      type, classes, bank_num, 
       sort)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
-      #{type,jdbcType=INTEGER}, #{classes,jdbcType=VARCHAR}, #{banknum,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{classes,jdbcType=VARCHAR}, #{bankNum,jdbcType=VARCHAR}, 
       #{sort,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.youzi.yuchou.module.model.model.Bank">
@@ -49,8 +97,8 @@
       <if test="classes != null">
         classes,
       </if>
-      <if test="banknum != null">
-        bankNum,
+      <if test="bankNum != null">
+        bank_num,
       </if>
       <if test="sort != null">
         sort,
@@ -72,8 +120,8 @@
       <if test="classes != null">
         #{classes,jdbcType=VARCHAR},
       </if>
-      <if test="banknum != null">
-        #{banknum,jdbcType=VARCHAR},
+      <if test="bankNum != null">
+        #{bankNum,jdbcType=VARCHAR},
       </if>
       <if test="sort != null">
         #{sort,jdbcType=INTEGER},
@@ -95,8 +143,8 @@
       <if test="classes != null">
         classes = #{classes,jdbcType=VARCHAR},
       </if>
-      <if test="banknum != null">
-        bankNum = #{banknum,jdbcType=VARCHAR},
+      <if test="bankNum != null">
+        bank_num = #{bankNum,jdbcType=VARCHAR},
       </if>
       <if test="sort != null">
         sort = #{sort,jdbcType=INTEGER},
@@ -110,7 +158,7 @@
       code = #{code,jdbcType=VARCHAR},
       type = #{type,jdbcType=INTEGER},
       classes = #{classes,jdbcType=VARCHAR},
-      bankNum = #{banknum,jdbcType=VARCHAR},
+      bank_num = #{bankNum,jdbcType=VARCHAR},
       sort = #{sort,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>

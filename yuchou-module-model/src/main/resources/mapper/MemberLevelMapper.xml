@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.youzi.yuchou.module.model.mapper.MemberLevelMapper">
+  <resultMap id="BaseResultMap" type="com.youzi.yuchou.module.model.model.MemberLevel">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="mlevel" jdbcType="INTEGER" property="mlevel" />
+    <result column="slevel" jdbcType="INTEGER" property="slevel" />
+    <result column="saler_level" jdbcType="INTEGER" property="salerLevel" />
+    <result column="commission_id" jdbcType="INTEGER" property="commissionId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="reserve1" jdbcType="VARCHAR" property="reserve1" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uid, mlevel, slevel, saler_level, commission_id, status, reserve1
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from member_level
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from member_level
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.youzi.yuchou.module.model.model.MemberLevel">
+    insert into member_level (id, uid, mlevel, 
+      slevel, saler_level, commission_id, 
+      status, reserve1)
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{mlevel,jdbcType=INTEGER}, 
+      #{slevel,jdbcType=INTEGER}, #{salerLevel,jdbcType=INTEGER}, #{commissionId,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{reserve1,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.youzi.yuchou.module.model.model.MemberLevel">
+    insert into member_level
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="mlevel != null">
+        mlevel,
+      </if>
+      <if test="slevel != null">
+        slevel,
+      </if>
+      <if test="salerLevel != null">
+        saler_level,
+      </if>
+      <if test="commissionId != null">
+        commission_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="reserve1 != null">
+        reserve1,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="mlevel != null">
+        #{mlevel,jdbcType=INTEGER},
+      </if>
+      <if test="slevel != null">
+        #{slevel,jdbcType=INTEGER},
+      </if>
+      <if test="salerLevel != null">
+        #{salerLevel,jdbcType=INTEGER},
+      </if>
+      <if test="commissionId != null">
+        #{commissionId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="reserve1 != null">
+        #{reserve1,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youzi.yuchou.module.model.model.MemberLevel">
+    update member_level
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="mlevel != null">
+        mlevel = #{mlevel,jdbcType=INTEGER},
+      </if>
+      <if test="slevel != null">
+        slevel = #{slevel,jdbcType=INTEGER},
+      </if>
+      <if test="salerLevel != null">
+        saler_level = #{salerLevel,jdbcType=INTEGER},
+      </if>
+      <if test="commissionId != null">
+        commission_id = #{commissionId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="reserve1 != null">
+        reserve1 = #{reserve1,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youzi.yuchou.module.model.model.MemberLevel">
+    update member_level
+    set uid = #{uid,jdbcType=INTEGER},
+      mlevel = #{mlevel,jdbcType=INTEGER},
+      slevel = #{slevel,jdbcType=INTEGER},
+      saler_level = #{salerLevel,jdbcType=INTEGER},
+      commission_id = #{commissionId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      reserve1 = #{reserve1,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

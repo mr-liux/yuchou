@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.youzi.yuchou.module.model.mapper.MemberMapper">
+  <resultMap id="BaseResultMap" type="com.youzi.yuchou.module.model.model.Member">
+    <id column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="username" jdbcType="CHAR" property="username" />
+    <result column="password" jdbcType="CHAR" property="password" />
+    <result column="tpassword" jdbcType="CHAR" property="tpassword" />
+    <result column="reg_date" jdbcType="TIMESTAMP" property="regDate" />
+    <result column="reg_ip" jdbcType="CHAR" property="regIp" />
+    <result column="reg_from" jdbcType="INTEGER" property="regFrom" />
+    <result column="cert_phone" jdbcType="INTEGER" property="certPhone" />
+    <result column="cert_email" jdbcType="INTEGER" property="certEmail" />
+    <result column="cert_identity" jdbcType="INTEGER" property="certIdentity" />
+    <result column="certlogin" jdbcType="INTEGER" property="certlogin" />
+    <result column="salt" jdbcType="VARCHAR" property="salt" />
+    <result column="uid_type" jdbcType="INTEGER" property="uidType" />
+    <result column="by_codes" jdbcType="CHAR" property="byCodes" />
+    <result column="bind_time" jdbcType="TIMESTAMP" property="bindTime" />
+    <result column="vipend_time" jdbcType="TIMESTAMP" property="vipendTime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="reserve1" jdbcType="INTEGER" property="reserve1" />
+    <result column="reserve2" jdbcType="VARCHAR" property="reserve2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    uid, username, password, tpassword, reg_date, reg_ip, reg_from, cert_phone, cert_email, 
+    cert_identity, certlogin, salt, uid_type, by_codes, bind_time, vipend_time, status, 
+    reserve1, reserve2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from member
+    where uid = #{uid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from member
+    where uid = #{uid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.youzi.yuchou.module.model.model.Member">
+    insert into member (uid, username, password, 
+      tpassword, reg_date, reg_ip, 
+      reg_from, cert_phone, cert_email, 
+      cert_identity, certlogin, salt, 
+      uid_type, by_codes, bind_time, 
+      vipend_time, status, reserve1, 
+      reserve2)
+    values (#{uid,jdbcType=INTEGER}, #{username,jdbcType=CHAR}, #{password,jdbcType=CHAR}, 
+      #{tpassword,jdbcType=CHAR}, #{regDate,jdbcType=TIMESTAMP}, #{regIp,jdbcType=CHAR}, 
+      #{regFrom,jdbcType=INTEGER}, #{certPhone,jdbcType=INTEGER}, #{certEmail,jdbcType=INTEGER}, 
+      #{certIdentity,jdbcType=INTEGER}, #{certlogin,jdbcType=INTEGER}, #{salt,jdbcType=VARCHAR}, 
+      #{uidType,jdbcType=INTEGER}, #{byCodes,jdbcType=CHAR}, #{bindTime,jdbcType=TIMESTAMP}, 
+      #{vipendTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{reserve1,jdbcType=INTEGER}, 
+      #{reserve2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.youzi.yuchou.module.model.model.Member">
+    insert into member
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="tpassword != null">
+        tpassword,
+      </if>
+      <if test="regDate != null">
+        reg_date,
+      </if>
+      <if test="regIp != null">
+        reg_ip,
+      </if>
+      <if test="regFrom != null">
+        reg_from,
+      </if>
+      <if test="certPhone != null">
+        cert_phone,
+      </if>
+      <if test="certEmail != null">
+        cert_email,
+      </if>
+      <if test="certIdentity != null">
+        cert_identity,
+      </if>
+      <if test="certlogin != null">
+        certlogin,
+      </if>
+      <if test="salt != null">
+        salt,
+      </if>
+      <if test="uidType != null">
+        uid_type,
+      </if>
+      <if test="byCodes != null">
+        by_codes,
+      </if>
+      <if test="bindTime != null">
+        bind_time,
+      </if>
+      <if test="vipendTime != null">
+        vipend_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="reserve1 != null">
+        reserve1,
+      </if>
+      <if test="reserve2 != null">
+        reserve2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=CHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=CHAR},
+      </if>
+      <if test="tpassword != null">
+        #{tpassword,jdbcType=CHAR},
+      </if>
+      <if test="regDate != null">
+        #{regDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regIp != null">
+        #{regIp,jdbcType=CHAR},
+      </if>
+      <if test="regFrom != null">
+        #{regFrom,jdbcType=INTEGER},
+      </if>
+      <if test="certPhone != null">
+        #{certPhone,jdbcType=INTEGER},
+      </if>
+      <if test="certEmail != null">
+        #{certEmail,jdbcType=INTEGER},
+      </if>
+      <if test="certIdentity != null">
+        #{certIdentity,jdbcType=INTEGER},
+      </if>
+      <if test="certlogin != null">
+        #{certlogin,jdbcType=INTEGER},
+      </if>
+      <if test="salt != null">
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="uidType != null">
+        #{uidType,jdbcType=INTEGER},
+      </if>
+      <if test="byCodes != null">
+        #{byCodes,jdbcType=CHAR},
+      </if>
+      <if test="bindTime != null">
+        #{bindTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vipendTime != null">
+        #{vipendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="reserve1 != null">
+        #{reserve1,jdbcType=INTEGER},
+      </if>
+      <if test="reserve2 != null">
+        #{reserve2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youzi.yuchou.module.model.model.Member">
+    update member
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=CHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=CHAR},
+      </if>
+      <if test="tpassword != null">
+        tpassword = #{tpassword,jdbcType=CHAR},
+      </if>
+      <if test="regDate != null">
+        reg_date = #{regDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regIp != null">
+        reg_ip = #{regIp,jdbcType=CHAR},
+      </if>
+      <if test="regFrom != null">
+        reg_from = #{regFrom,jdbcType=INTEGER},
+      </if>
+      <if test="certPhone != null">
+        cert_phone = #{certPhone,jdbcType=INTEGER},
+      </if>
+      <if test="certEmail != null">
+        cert_email = #{certEmail,jdbcType=INTEGER},
+      </if>
+      <if test="certIdentity != null">
+        cert_identity = #{certIdentity,jdbcType=INTEGER},
+      </if>
+      <if test="certlogin != null">
+        certlogin = #{certlogin,jdbcType=INTEGER},
+      </if>
+      <if test="salt != null">
+        salt = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="uidType != null">
+        uid_type = #{uidType,jdbcType=INTEGER},
+      </if>
+      <if test="byCodes != null">
+        by_codes = #{byCodes,jdbcType=CHAR},
+      </if>
+      <if test="bindTime != null">
+        bind_time = #{bindTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vipendTime != null">
+        vipend_time = #{vipendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="reserve1 != null">
+        reserve1 = #{reserve1,jdbcType=INTEGER},
+      </if>
+      <if test="reserve2 != null">
+        reserve2 = #{reserve2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youzi.yuchou.module.model.model.Member">
+    update member
+    set username = #{username,jdbcType=CHAR},
+      password = #{password,jdbcType=CHAR},
+      tpassword = #{tpassword,jdbcType=CHAR},
+      reg_date = #{regDate,jdbcType=TIMESTAMP},
+      reg_ip = #{regIp,jdbcType=CHAR},
+      reg_from = #{regFrom,jdbcType=INTEGER},
+      cert_phone = #{certPhone,jdbcType=INTEGER},
+      cert_email = #{certEmail,jdbcType=INTEGER},
+      cert_identity = #{certIdentity,jdbcType=INTEGER},
+      certlogin = #{certlogin,jdbcType=INTEGER},
+      salt = #{salt,jdbcType=VARCHAR},
+      uid_type = #{uidType,jdbcType=INTEGER},
+      by_codes = #{byCodes,jdbcType=CHAR},
+      bind_time = #{bindTime,jdbcType=TIMESTAMP},
+      vipend_time = #{vipendTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      reserve1 = #{reserve1,jdbcType=INTEGER},
+      reserve2 = #{reserve2,jdbcType=VARCHAR}
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+</mapper>

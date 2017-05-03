@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.youzi.yuchou.module.model.mapper.GoodsSpecDetailMapper">
+  <resultMap id="BaseResultMap" type="com.youzi.yuchou.module.model.model.GoodsSpecDetail">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="goods_specId" jdbcType="INTEGER" property="goodsSpecid" />
+    <result column="gid" jdbcType="INTEGER" property="gid" />
+    <result column="spec_id" jdbcType="INTEGER" property="specId" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="reserve1" jdbcType="INTEGER" property="reserve1" />
+    <result column="reserve2" jdbcType="VARCHAR" property="reserve2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, goods_specId, gid, spec_id, content, add_time, sort, reserve1, reserve2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_spec_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from goods_spec_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.youzi.yuchou.module.model.model.GoodsSpecDetail">
+    insert into goods_spec_detail (id, goods_specId, gid, 
+      spec_id, content, add_time, 
+      sort, reserve1, reserve2
+      )
+    values (#{id,jdbcType=INTEGER}, #{goodsSpecid,jdbcType=INTEGER}, #{gid,jdbcType=INTEGER}, 
+      #{specId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{sort,jdbcType=INTEGER}, #{reserve1,jdbcType=INTEGER}, #{reserve2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.youzi.yuchou.module.model.model.GoodsSpecDetail">
+    insert into goods_spec_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="goodsSpecid != null">
+        goods_specId,
+      </if>
+      <if test="gid != null">
+        gid,
+      </if>
+      <if test="specId != null">
+        spec_id,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="reserve1 != null">
+        reserve1,
+      </if>
+      <if test="reserve2 != null">
+        reserve2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="goodsSpecid != null">
+        #{goodsSpecid,jdbcType=INTEGER},
+      </if>
+      <if test="gid != null">
+        #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="specId != null">
+        #{specId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="reserve1 != null">
+        #{reserve1,jdbcType=INTEGER},
+      </if>
+      <if test="reserve2 != null">
+        #{reserve2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youzi.yuchou.module.model.model.GoodsSpecDetail">
+    update goods_spec_detail
+    <set>
+      <if test="goodsSpecid != null">
+        goods_specId = #{goodsSpecid,jdbcType=INTEGER},
+      </if>
+      <if test="gid != null">
+        gid = #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="specId != null">
+        spec_id = #{specId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="reserve1 != null">
+        reserve1 = #{reserve1,jdbcType=INTEGER},
+      </if>
+      <if test="reserve2 != null">
+        reserve2 = #{reserve2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youzi.yuchou.module.model.model.GoodsSpecDetail">
+    update goods_spec_detail
+    set goods_specId = #{goodsSpecid,jdbcType=INTEGER},
+      gid = #{gid,jdbcType=INTEGER},
+      spec_id = #{specId,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      sort = #{sort,jdbcType=INTEGER},
+      reserve1 = #{reserve1,jdbcType=INTEGER},
+      reserve2 = #{reserve2,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

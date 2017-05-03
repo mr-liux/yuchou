@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.youzi.yuchou.module.model.mapper.GoodsParameterDescribeMapper">
+  <resultMap id="BaseResultMap" type="com.youzi.yuchou.module.model.model.GoodsParameterDescribe">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="gid" jdbcType="INTEGER" property="gid" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="upd_time" jdbcType="TIMESTAMP" property="updTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.youzi.yuchou.module.model.model.GoodsParameterDescribeWithBLOBs">
+    <result column="goods_description" jdbcType="LONGVARCHAR" property="goodsDescription" />
+    <result column="goods_description_mobile" jdbcType="LONGVARCHAR" property="goodsDescriptionMobile" />
+    <result column="goods_parameter" jdbcType="LONGVARCHAR" property="goodsParameter" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, gid, add_time, upd_time
+  </sql>
+  <sql id="Blob_Column_List">
+    goods_description, goods_description_mobile, goods_parameter
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods_parameter_describe
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from goods_parameter_describe
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.youzi.yuchou.module.model.model.GoodsParameterDescribeWithBLOBs">
+    insert into goods_parameter_describe (id, gid, add_time, 
+      upd_time, goods_description, goods_description_mobile, 
+      goods_parameter)
+    values (#{id,jdbcType=INTEGER}, #{gid,jdbcType=INTEGER}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{updTime,jdbcType=TIMESTAMP}, #{goodsDescription,jdbcType=LONGVARCHAR}, #{goodsDescriptionMobile,jdbcType=LONGVARCHAR}, 
+      #{goodsParameter,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.youzi.yuchou.module.model.model.GoodsParameterDescribeWithBLOBs">
+    insert into goods_parameter_describe
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="gid != null">
+        gid,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="updTime != null">
+        upd_time,
+      </if>
+      <if test="goodsDescription != null">
+        goods_description,
+      </if>
+      <if test="goodsDescriptionMobile != null">
+        goods_description_mobile,
+      </if>
+      <if test="goodsParameter != null">
+        goods_parameter,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="gid != null">
+        #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updTime != null">
+        #{updTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsDescription != null">
+        #{goodsDescription,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="goodsDescriptionMobile != null">
+        #{goodsDescriptionMobile,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="goodsParameter != null">
+        #{goodsParameter,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youzi.yuchou.module.model.model.GoodsParameterDescribeWithBLOBs">
+    update goods_parameter_describe
+    <set>
+      <if test="gid != null">
+        gid = #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updTime != null">
+        upd_time = #{updTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsDescription != null">
+        goods_description = #{goodsDescription,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="goodsDescriptionMobile != null">
+        goods_description_mobile = #{goodsDescriptionMobile,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="goodsParameter != null">
+        goods_parameter = #{goodsParameter,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.youzi.yuchou.module.model.model.GoodsParameterDescribeWithBLOBs">
+    update goods_parameter_describe
+    set gid = #{gid,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      upd_time = #{updTime,jdbcType=TIMESTAMP},
+      goods_description = #{goodsDescription,jdbcType=LONGVARCHAR},
+      goods_description_mobile = #{goodsDescriptionMobile,jdbcType=LONGVARCHAR},
+      goods_parameter = #{goodsParameter,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youzi.yuchou.module.model.model.GoodsParameterDescribe">
+    update goods_parameter_describe
+    set gid = #{gid,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      upd_time = #{updTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

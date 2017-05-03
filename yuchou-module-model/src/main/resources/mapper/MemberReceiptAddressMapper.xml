@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.youzi.yuchou.module.model.mapper.MemberReceiptAddressMapper">
+  <resultMap id="BaseResultMap" type="com.youzi.yuchou.module.model.model.MemberReceiptAddress">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="prov_id" jdbcType="INTEGER" property="provId" />
+    <result column="city_id" jdbcType="INTEGER" property="cityId" />
+    <result column="area_id" jdbcType="INTEGER" property="areaId" />
+    <result column="street_id" jdbcType="INTEGER" property="streetId" />
+    <result column="detail_address" jdbcType="VARCHAR" property="detailAddress" />
+    <result column="full_address" jdbcType="VARCHAR" property="fullAddress" />
+    <result column="name" jdbcType="CHAR" property="name" />
+    <result column="mobile_phone" jdbcType="CHAR" property="mobilePhone" />
+    <result column="ele_phone" jdbcType="CHAR" property="elePhone" />
+    <result column="postcode" jdbcType="CHAR" property="postcode" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="upd_time" jdbcType="TIMESTAMP" property="updTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uid, prov_id, city_id, area_id, street_id, detail_address, full_address, name, 
+    mobile_phone, ele_phone, postcode, status, add_time, upd_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from member_receipt_address
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from member_receipt_address
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.youzi.yuchou.module.model.model.MemberReceiptAddress">
+    insert into member_receipt_address (id, uid, prov_id, 
+      city_id, area_id, street_id, 
+      detail_address, full_address, name, 
+      mobile_phone, ele_phone, postcode, 
+      status, add_time, upd_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{provId,jdbcType=INTEGER}, 
+      #{cityId,jdbcType=INTEGER}, #{areaId,jdbcType=INTEGER}, #{streetId,jdbcType=INTEGER}, 
+      #{detailAddress,jdbcType=VARCHAR}, #{fullAddress,jdbcType=VARCHAR}, #{name,jdbcType=CHAR}, 
+      #{mobilePhone,jdbcType=CHAR}, #{elePhone,jdbcType=CHAR}, #{postcode,jdbcType=CHAR}, 
+      #{status,jdbcType=INTEGER}, #{addTime,jdbcType=TIMESTAMP}, #{updTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.youzi.yuchou.module.model.model.MemberReceiptAddress">
+    insert into member_receipt_address
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="provId != null">
+        prov_id,
+      </if>
+      <if test="cityId != null">
+        city_id,
+      </if>
+      <if test="areaId != null">
+        area_id,
+      </if>
+      <if test="streetId != null">
+        street_id,
+      </if>
+      <if test="detailAddress != null">
+        detail_address,
+      </if>
+      <if test="fullAddress != null">
+        full_address,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="mobilePhone != null">
+        mobile_phone,
+      </if>
+      <if test="elePhone != null">
+        ele_phone,
+      </if>
+      <if test="postcode != null">
+        postcode,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="updTime != null">
+        upd_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="provId != null">
+        #{provId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null">
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null">
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="streetId != null">
+        #{streetId,jdbcType=INTEGER},
+      </if>
+      <if test="detailAddress != null">
+        #{detailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="fullAddress != null">
+        #{fullAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="mobilePhone != null">
+        #{mobilePhone,jdbcType=CHAR},
+      </if>
+      <if test="elePhone != null">
+        #{elePhone,jdbcType=CHAR},
+      </if>
+      <if test="postcode != null">
+        #{postcode,jdbcType=CHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updTime != null">
+        #{updTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youzi.yuchou.module.model.model.MemberReceiptAddress">
+    update member_receipt_address
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="provId != null">
+        prov_id = #{provId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null">
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null">
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="streetId != null">
+        street_id = #{streetId,jdbcType=INTEGER},
+      </if>
+      <if test="detailAddress != null">
+        detail_address = #{detailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="fullAddress != null">
+        full_address = #{fullAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=CHAR},
+      </if>
+      <if test="mobilePhone != null">
+        mobile_phone = #{mobilePhone,jdbcType=CHAR},
+      </if>
+      <if test="elePhone != null">
+        ele_phone = #{elePhone,jdbcType=CHAR},
+      </if>
+      <if test="postcode != null">
+        postcode = #{postcode,jdbcType=CHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updTime != null">
+        upd_time = #{updTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youzi.yuchou.module.model.model.MemberReceiptAddress">
+    update member_receipt_address
+    set uid = #{uid,jdbcType=INTEGER},
+      prov_id = #{provId,jdbcType=INTEGER},
+      city_id = #{cityId,jdbcType=INTEGER},
+      area_id = #{areaId,jdbcType=INTEGER},
+      street_id = #{streetId,jdbcType=INTEGER},
+      detail_address = #{detailAddress,jdbcType=VARCHAR},
+      full_address = #{fullAddress,jdbcType=VARCHAR},
+      name = #{name,jdbcType=CHAR},
+      mobile_phone = #{mobilePhone,jdbcType=CHAR},
+      ele_phone = #{elePhone,jdbcType=CHAR},
+      postcode = #{postcode,jdbcType=CHAR},
+      status = #{status,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      upd_time = #{updTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
