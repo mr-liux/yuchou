@@ -23,7 +23,7 @@ public class BankController extends BaseController {
 	@Autowired
 	BankService bankService;
 	
-//	@PostMapping("/bank")
+	@PostMapping("/bank")
 	public RestResponse<String> add(@RequestBody Bank bank){
 		bankService.add(bank);
 		return buildDefaultSuccessed("新增成功");
