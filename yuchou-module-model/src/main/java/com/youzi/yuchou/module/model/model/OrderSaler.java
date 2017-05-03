@@ -1,15 +1,16 @@
 package com.youzi.yuchou.module.model.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonValue;
 import com.youzi.yuchou.module.model.enums.CommonStatusEnum;
 
-public class OrderSaler {
-    private Integer id;
+public class OrderSaler implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+
+	private Integer id;
 
     private Integer orderId;
 

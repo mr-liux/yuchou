@@ -1,9 +1,13 @@
 package com.youzi.yuchou.module.model.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class GoodsCommentReply {
-    private Integer id;
+public class GoodsCommentReply implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private Integer id;
 
     private Integer uid;
 

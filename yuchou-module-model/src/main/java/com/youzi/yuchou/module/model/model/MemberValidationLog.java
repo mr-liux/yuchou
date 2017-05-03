@@ -1,9 +1,13 @@
 package com.youzi.yuchou.module.model.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class MemberValidationLog {
-    private Integer id;
+public class MemberValidationLog implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private Integer id;
 
     private Integer pid;
 

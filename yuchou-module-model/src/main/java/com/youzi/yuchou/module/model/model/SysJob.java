@@ -1,9 +1,13 @@
 package com.youzi.yuchou.module.model.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class SysJob {
-    private Integer jobKy;
+public class SysJob implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private Integer jobKy;
 
     private String name;
 

@@ -1,9 +1,13 @@
 package com.youzi.yuchou.module.model.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class MerchantShop {
-    private Integer sid;
+public class MerchantShop implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private Integer sid;
 
     private Integer uid;
 

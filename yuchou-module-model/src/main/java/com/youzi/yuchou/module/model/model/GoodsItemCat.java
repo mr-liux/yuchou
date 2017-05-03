@@ -1,7 +1,12 @@
 package com.youzi.yuchou.module.model.model;
 
-public class GoodsItemCat {
-    private Integer id;
+import java.io.Serializable;
+
+public class GoodsItemCat implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private Integer id;
 
     private Integer merchantItemCatid;
 

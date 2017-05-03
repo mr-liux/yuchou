@@ -1,7 +1,12 @@
 package com.youzi.yuchou.module.model.model;
 
-public class MemberValidation {
-    private Integer id;
+import java.io.Serializable;
+
+public class MemberValidation implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private Integer id;
 
     private Integer uid;
 

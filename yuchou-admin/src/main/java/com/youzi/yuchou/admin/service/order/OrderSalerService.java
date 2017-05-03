@@ -56,7 +56,7 @@ public class OrderSalerService extends BaseService {
 		page.setData(orderSaler);
 		return page;
 	}
-	@Cacheable(value = "findByIdOrderSaler", key = "#id")
+	@Cacheable(value = "findByIdOrderSaler", key = "#id", unless = "#result == null")
 	public OrderSaler findById1(Integer id) {
 		OrderSaler orderSaler = orderSalerMapper.selectByPrimaryKey(id);
 		return orderSaler;

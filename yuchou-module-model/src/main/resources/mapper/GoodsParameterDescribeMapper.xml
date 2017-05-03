@@ -6,23 +6,16 @@
     <result column="gid" jdbcType="INTEGER" property="gid" />
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="upd_time" jdbcType="TIMESTAMP" property="updTime" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.youzi.yuchou.module.model.model.GoodsParameterDescribeWithBLOBs">
     <result column="goods_description" jdbcType="LONGVARCHAR" property="goodsDescription" />
     <result column="goods_description_mobile" jdbcType="LONGVARCHAR" property="goodsDescriptionMobile" />
     <result column="goods_parameter" jdbcType="LONGVARCHAR" property="goodsParameter" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, gid, add_time, upd_time
+    id, gid, add_time, upd_time, goods_description, goods_description_mobile, goods_parameter
   </sql>
-  <sql id="Blob_Column_List">
-    goods_description, goods_description_mobile, goods_parameter
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from goods_parameter_describe
     where id = #{id,jdbcType=INTEGER}
   </select>
@@ -30,7 +23,7 @@
     delete from goods_parameter_describe
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.youzi.yuchou.module.model.model.GoodsParameterDescribeWithBLOBs">
+  <insert id="insert" parameterType="com.youzi.yuchou.module.model.model.GoodsParameterDescribe">
     insert into goods_parameter_describe (id, gid, add_time, 
       upd_time, goods_description, goods_description_mobile, 
       goods_parameter)
@@ -38,7 +31,7 @@
       #{updTime,jdbcType=TIMESTAMP}, #{goodsDescription,jdbcType=LONGVARCHAR}, #{goodsDescriptionMobile,jdbcType=LONGVARCHAR}, 
       #{goodsParameter,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.youzi.yuchou.module.model.model.GoodsParameterDescribeWithBLOBs">
+  <insert id="insertSelective" parameterType="com.youzi.yuchou.module.model.model.GoodsParameterDescribe">
     insert into goods_parameter_describe
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -87,7 +80,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.youzi.yuchou.module.model.model.GoodsParameterDescribeWithBLOBs">
+  <update id="updateByPrimaryKeySelective" parameterType="com.youzi.yuchou.module.model.model.GoodsParameterDescribe">
     update goods_parameter_describe
     <set>
       <if test="gid != null">
@@ -111,7 +104,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.youzi.yuchou.module.model.model.GoodsParameterDescribeWithBLOBs">
+  <update id="updateByPrimaryKey" parameterType="com.youzi.yuchou.module.model.model.GoodsParameterDescribe">
     update goods_parameter_describe
     set gid = #{gid,jdbcType=INTEGER},
       add_time = #{addTime,jdbcType=TIMESTAMP},
@@ -119,13 +112,6 @@
       goods_description = #{goodsDescription,jdbcType=LONGVARCHAR},
       goods_description_mobile = #{goodsDescriptionMobile,jdbcType=LONGVARCHAR},
       goods_parameter = #{goodsParameter,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.youzi.yuchou.module.model.model.GoodsParameterDescribe">
-    update goods_parameter_describe
-    set gid = #{gid,jdbcType=INTEGER},
-      add_time = #{addTime,jdbcType=TIMESTAMP},
-      upd_time = #{updTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

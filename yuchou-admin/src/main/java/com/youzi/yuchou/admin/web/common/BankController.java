@@ -53,10 +53,10 @@ public class BankController extends BaseController {
 	 * @param condition
 	 * @return
 	 * @throws Exception
-	 * ,@RequestBody CommonKeyWordCondition condition
+	 * 
 	 */
 	@PostMapping("/banklist")
-	public RestResponse<Object> findAll(@RequestBody PageInfo pageInfo) {
+	public RestResponse<Object> findAll(@RequestBody PageInfo pageInfo, @RequestBody CommonKeyWordCondition condition) {
 		RestResponse<Object> page = bankService.findPage(pageInfo ,null);
 		return page;
 	}

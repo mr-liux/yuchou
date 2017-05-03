@@ -1,9 +1,13 @@
 package com.youzi.yuchou.module.model.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class OrderLogisticsCompany {
-    private Integer id;
+public class OrderLogisticsCompany implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private Integer id;
 
     private String name;
 

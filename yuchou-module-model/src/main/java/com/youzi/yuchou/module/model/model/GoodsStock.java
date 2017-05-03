@@ -1,7 +1,12 @@
 package com.youzi.yuchou.module.model.model;
 
-public class GoodsStock {
-    private Integer gid;
+import java.io.Serializable;
+
+public class GoodsStock implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private Integer gid;
 
     private Integer stockBalance;
 

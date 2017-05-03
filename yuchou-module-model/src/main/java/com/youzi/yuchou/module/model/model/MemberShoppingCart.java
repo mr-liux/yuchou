@@ -1,10 +1,14 @@
 package com.youzi.yuchou.module.model.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class MemberShoppingCart {
-    private Integer id;
+public class MemberShoppingCart implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private Integer id;
 
     private Integer uid;
 

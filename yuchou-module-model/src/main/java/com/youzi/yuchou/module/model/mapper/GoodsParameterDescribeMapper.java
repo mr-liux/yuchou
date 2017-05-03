@@ -1,20 +1,17 @@
 package com.youzi.yuchou.module.model.mapper;
 
 import com.youzi.yuchou.module.model.model.GoodsParameterDescribe;
-import com.youzi.yuchou.module.model.model.GoodsParameterDescribeWithBLOBs;
 
 public interface GoodsParameterDescribeMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(GoodsParameterDescribeWithBLOBs record);
+    int insert(GoodsParameterDescribe record);
 
-    int insertSelective(GoodsParameterDescribeWithBLOBs record);
+    int insertSelective(GoodsParameterDescribe record);
 
-    GoodsParameterDescribeWithBLOBs selectByPrimaryKey(Integer id);
+    GoodsParameterDescribe selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(GoodsParameterDescribeWithBLOBs record);
-
-    int updateByPrimaryKeyWithBLOBs(GoodsParameterDescribeWithBLOBs record);
+    int updateByPrimaryKeySelective(GoodsParameterDescribe record);
 
     int updateByPrimaryKey(GoodsParameterDescribe record);
 }

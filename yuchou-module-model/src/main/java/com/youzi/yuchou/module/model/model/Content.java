@@ -1,9 +1,13 @@
 package com.youzi.yuchou.module.model.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Content {
-    private Integer conId;
+public class Content  implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+
+	private Integer conId;
 
     private Integer mid;
 

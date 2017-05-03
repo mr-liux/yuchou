@@ -1,10 +1,14 @@
 package com.youzi.yuchou.module.model.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class GoodsServe {
-    private Integer gid;
+public class GoodsServe implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private Integer gid;
 
     private Integer freightType;
 

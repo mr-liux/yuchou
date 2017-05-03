@@ -1,7 +1,12 @@
 package com.youzi.yuchou.module.model.model;
 
-public class Bank {
-    private Integer id;
+import java.io.Serializable;
+
+public class Bank implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private Integer id;
 
     private String name;
 

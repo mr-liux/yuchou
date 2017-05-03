@@ -1,9 +1,13 @@
 package com.youzi.yuchou.module.model.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class OrderSubtract {
-    private Integer id;
+public class OrderSubtract implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private Integer id;
 
     private Integer orderId;
 

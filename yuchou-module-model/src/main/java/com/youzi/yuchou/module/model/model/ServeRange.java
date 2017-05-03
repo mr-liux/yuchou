@@ -1,9 +1,18 @@
 package com.youzi.yuchou.module.model.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class ServeRange {
-    private Integer id;
+/**
+ * 商品服务范围表
+ * @author 背包  作者QQ：763542022
+ * @date 创建时间：2017年5月3日 下午12:29:06
+ */
+public class ServeRange implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private Integer id;
 
     private String name;
 

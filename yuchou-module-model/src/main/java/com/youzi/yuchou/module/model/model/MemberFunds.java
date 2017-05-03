@@ -1,9 +1,13 @@
 package com.youzi.yuchou.module.model.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class MemberFunds {
-    private Integer uid;
+public class MemberFunds implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private Integer uid;
 
     private BigDecimal balance;
 
