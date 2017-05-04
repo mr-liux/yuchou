@@ -1,4 +1,4 @@
-package com.youzi.yuchou.module.model.enums;
+package com.youzi.yuchou.core.enums;
 
 import java.util.HashMap;
 import java.util.Map;

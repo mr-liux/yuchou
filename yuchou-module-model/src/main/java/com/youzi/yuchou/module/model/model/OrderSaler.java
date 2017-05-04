@@ -4,7 +4,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import com.youzi.yuchou.module.model.enums.CommonStatusEnum;
+import com.youzi.yuchou.core.enums.CommonStatusEnum;
+
 
 public class OrderSaler implements Serializable {
 	

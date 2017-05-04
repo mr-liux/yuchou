@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.youzi.yuchou.admin.repository.OrderSalerRepository;
-import com.youzi.yuchou.module.model.enums.CommonStatusEnum;
+import com.youzi.yuchou.core.enums.CommonStatusEnum;
 import com.youzi.yuchou.module.model.mapper.OrderSalerMapper;
 import com.youzi.yuchou.module.model.model.OrderSaler;
 import com.youzi.yuchou.module.mvc.dto.RestResponse;
@@ -30,18 +30,18 @@ public class OrderSalerService extends BaseService {
 	 * @author 背包
 	 * @param bank
 	 */
-	public void add(OrderSaler orderSaler) {
-		orderSaler.setOrderId(0);
-		orderSaler.setName("");
-		orderSaler.setUid(0);
-		orderSaler.setParentUid(0);
-		orderSaler.setLevel(1);
-		orderSaler.setCommission(CommonUtils.bigDecimal(0.00));
-		orderSaler.setStatus(CommonStatusEnum.WQS);
-		orderSaler.setReserve1(null);	
-		boolean result = orderSalerRepository.insert(orderSaler);
+	public void add(OrderSaler saler) {
+		saler.setOrderId(saler.getOrderId());
+		saler.setName(saler.getName());
+		saler.setUid(0);
+		saler.setParentUid(0);
+		saler.setLevel(1);
+		saler.setCommission(CommonUtils.bigDecimal(0.00));
+		saler.setStatus(CommonStatusEnum.WQS);
+		saler.setReserve1(null);	
+		boolean result = orderSalerRepository.insert(saler);
 		if(!result)
-			orderSaler=null;
+			saler=null;
 	}
 	@CacheEvict(value = "findByIdOrderSaler", key = "#orderSaler.id")
 	public void update(OrderSaler orderSaler) {
