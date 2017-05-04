@@ -35,7 +35,7 @@ public class PageInfo implements Serializable {
 	}
 
     /**
-     * 计算分页及入参
+     * 解析入参
      * @param requestMap
      * @throws Exception
      */
@@ -69,13 +69,21 @@ public class PageInfo implements Serializable {
 					}
 					this.paramsMap.put(name, value); 
 				}
-				this.pageSize=StringUtil.stringToInt(this.paramsMap.get(PageInfo.PAGE_SIZE_KEY).toString(),DEFAULT_PAGE_SIZE);
-				this.currentPage=StringUtil.stringToInt(this.paramsMap.get(PageInfo.CURRENT_PAGE_KEY).toString(),this.currentPage);
-				this.paramsMap.put("currentPage", currentPage);
-				this.paramsMap.put("startRow", getStartRow());
-				this.paramsMap.put("endRow", getEndRow());
-				this.paramsMap.put("offset", getStartRow()-1);
-				this.paramsMap.put("pageSize", getPageSize());
+				if(this.paramsMap.get(PageInfo.PAGE_SIZE_KEY)!=null){
+					this.pageSize=StringUtil.stringToInt(this.paramsMap.get(PageInfo.PAGE_SIZE_KEY).toString(),DEFAULT_PAGE_SIZE);
+				}
+				if(this.paramsMap.get(PageInfo.CURRENT_PAGE_KEY)!=null){
+					this.currentPage=StringUtil.stringToInt(this.paramsMap.get(PageInfo.CURRENT_PAGE_KEY).toString(),this.currentPage);
+				}
+				if(this.paramsMap.get(PageInfo.PAGE_SIZE_KEY)!=null&&this.paramsMap.get(PageInfo.CURRENT_PAGE_KEY)!=null){
+					this.paramsMap.remove(PageInfo.PAGE_SIZE_KEY);
+					this.paramsMap.remove(PageInfo.CURRENT_PAGE_KEY);
+					this.paramsMap.put("currentPage", currentPage);
+					this.paramsMap.put("startRow", getStartRow());
+					this.paramsMap.put("endRow", getEndRow());
+					this.paramsMap.put("offset", getStartRow()-1);
+					this.paramsMap.put("pageSize", getPageSize());
+				}
 			} catch (Exception e) {
 				throw new ServiceException(ExceptionStaticEnum.ERRORPARAMS.getCode(),ExceptionStaticEnum.ERRORPARAMS.getMessage());
 			}

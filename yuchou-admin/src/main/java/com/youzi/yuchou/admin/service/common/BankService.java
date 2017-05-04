@@ -74,8 +74,11 @@ public class BankService extends BaseService {
 	 */
 	public RestResponse<Object> findPage(PageInfo pageInfo) {
 		RestResponse<Object> page = new RestResponse<Object>();
-		List<Bank> list = bankMapper.query(pageInfo.getParamsMap());
+		List<Bank> list = null;
 		int totalCount = bankMapper.count(pageInfo.getParamsMap());
+		if(totalCount>0){
+			list = bankMapper.query(pageInfo.getParamsMap());
+		}
 		pageInfo.setTotalCount(totalCount);
 		page.setSuccess(true);
 		page.setData(list);

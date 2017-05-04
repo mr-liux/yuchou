@@ -26,6 +26,7 @@ public class RestResponse<T> {
 
 	private Map<String, Object> ext;
 
+	
 	/**
 	 * 添加额外数据
 	 * @param name
@@ -64,6 +65,11 @@ public class RestResponse<T> {
 
 	public static <T> RestResponse<T> buildFailed(String resMessage) {
 		return new RestResponse<T>(false, 1000, resMessage, null,null);
+	}
+	public RestResponse(T data, Map<String, Object> ext) {
+		super();
+		this.data = data;
+		this.ext = ext;
 	}
 
 }
