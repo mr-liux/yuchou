@@ -2,12 +2,21 @@ package com.youzi.yuchou.module.mvc.form;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
+
+import com.youzi.yuchou.core.exception.ExceptionStaticEnum;
+import com.youzi.yuchou.core.exception.ServiceException;
+import com.youzi.yuchou.core.text.StringUtil;
 
 
 public class PageInfo implements Serializable {
 	private static final long serialVersionUID = 7832219375451289658L;
 	public static final int DEFAULT_PAGE_SIZE = 20;
+	public static final String CURRENT_PAGE_KEY="cpage";
+	public static final String PAGE_SIZE_KEY="pagesize";
+	
     // 当前页
     private int currentPage = 1;
     // 每页数量
@@ -18,14 +27,66 @@ public class PageInfo implements Serializable {
     private int totalPage = 0;
     
     //请求参数封装回给页面
-	private Map<String, Object> requestExt;
+	private Map<String, Object> paramsMap;
     
+	
+    public PageInfo() {
+		super();
+	}
 
     /**
+     * 计算分页及入参
+     * @param requestMap
+     * @throws Exception
+     */
+	public PageInfo(Map<String, String[]> requestMap)throws Exception {
+		super();
+		if(requestMap!=null){
+			try {
+				this.paramsMap = new HashMap<String, Object>(); 
+				Iterator<Entry<String, String[]>> entries = requestMap.entrySet().iterator(); 
+				Map.Entry<String, String[]> entry = null ; 
+				String name = null;  
+				String value = null;  
+				Object valueObj = null ;
+				while (entries.hasNext()) {
+					entry = (Map.Entry<String, String[]>) entries.next(); 
+					name = (String) entry.getKey(); 
+					valueObj = entry.getValue(); 
+					value = null;
+					if(valueObj == null){ 
+						value = ""; 
+					}else{ 
+						String[] values = (String[])valueObj;
+						if(values!=null){
+							for(int i=0;i<values.length;i++){
+								if(values[i] == null)
+									value ="";
+								else
+									value = values[i].toString();
+							}
+						}
+					}
+					this.paramsMap.put(name, value); 
+				}
+				this.pageSize=StringUtil.stringToInt(this.paramsMap.get(PageInfo.PAGE_SIZE_KEY).toString(),DEFAULT_PAGE_SIZE);
+				this.currentPage=StringUtil.stringToInt(this.paramsMap.get(PageInfo.CURRENT_PAGE_KEY).toString(),this.currentPage);
+				this.paramsMap.put("currentPage", currentPage);
+				this.paramsMap.put("startRow", getStartRow());
+				this.paramsMap.put("endRow", getEndRow());
+				this.paramsMap.put("offset", getStartRow()-1);
+				this.paramsMap.put("pageSize", getPageSize());
+			} catch (Exception e) {
+				throw new ServiceException(ExceptionStaticEnum.ERRORPARAMS.getCode(),ExceptionStaticEnum.ERRORPARAMS.getMessage());
+			}
+		}
+	}
+
+	/**
      * 从0开始，用户mysql分页
      * @return 起始记录位置
      */
-    public int getStartIndex() {
+	private int getStartIndex() {
         int index = getStartRow() - 1;
         if (index < 0) {
             index = 0;
@@ -38,7 +99,7 @@ public class PageInfo implements Serializable {
      *
      * @return 开始序号，从1开始
      */
-    public int getStartRow() {
+    private int getStartRow() {
         return (this.currentPage - 1) * this.pageSize + 1;
     }
 
@@ -47,7 +108,7 @@ public class PageInfo implements Serializable {
      *
      * @return 结束序号
      */
-    public int getEndRow() {
+    private int getEndRow() {
         int last = this.currentPage * this.pageSize;
         return this.totalCount > 0 && last > this.totalCount ? this.totalCount : last;
     }
@@ -137,20 +198,16 @@ public class PageInfo implements Serializable {
         this.totalPage = totalPage;
     }
     
-    public Map<String, Object> getRequestExt() {
-		return requestExt;
+
+
+
+	public Map<String, Object> getParamsMap() {
+		return paramsMap;
 	}
 
-	public void setRequestExt(Map<String, Object> requestExt) {
-		this.requestExt = requestExt;
+	public void setParamsMap(Map<String, Object> paramsMap) {
+		this.paramsMap = paramsMap;
 	}
 
-	public Map<String,Object> toQueryMap(){
-        Map<String,Object> params = new HashMap<String,Object>();
-        params.put("startRow", getStartRow());
-        params.put("endRow", getEndRow());
-        params.put("offset", getStartRow()-1);
-        params.put("pageSize", getPageSize());
-        return params;
-    }
+
 }

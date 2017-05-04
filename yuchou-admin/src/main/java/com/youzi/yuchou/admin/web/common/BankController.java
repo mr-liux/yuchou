@@ -51,24 +51,14 @@ public class BankController extends BaseController {
 	}
 	/**
 	 * 分页查询 银行卡字典
-	 * @author 背包
-	 * @param pageInfo
-	 * @param condition
+	 * @author 
 	 * @return
 	 * @throws Exception
 	 * 
 	 */
-	@PostMapping("/banklist")
-	public RestResponse<Object> findAll(@RequestBody PageInfo pageInfo, @RequestBody CommonKeyWordCondition condition) {
-		RestResponse<Object> page = bankService.findPage(pageInfo ,null);
-		return page;
-	}
-	
 	@GetMapping("/banklist")
 	public RestResponse<Object> findAll(HttpServletRequest request) throws Exception{
-		Map<String, String[]> param = request.getParameterMap();
-		logger.info(param.toString());
-		RestResponse<Object> page = bankService.findPage(null ,null);
+		RestResponse<Object> page = bankService.findPage(new PageInfo(request.getParameterMap()));
 		return page;
 	}
 }

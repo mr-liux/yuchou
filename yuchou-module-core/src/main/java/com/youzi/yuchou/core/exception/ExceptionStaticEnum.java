@@ -11,6 +11,8 @@ public enum ExceptionStaticEnum  {
     NOPERMISSIONS(401, "没有权限访问"),
     
     ERRORSERVICE(500, "系统异常"),
+    
+    ERRORPARAMS(500, "参数错误"),
 
     ERROR(1000, "错误"),
     

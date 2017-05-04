@@ -72,23 +72,11 @@ public class BankService extends BaseService {
 	 * 分页查询
 	 * @author 背包
 	 */
-	public RestResponse<Object> findPage(PageInfo pageInfo,CommonKeyWordCondition condition) {
+	public RestResponse<Object> findPage(PageInfo pageInfo) {
 		RestResponse<Object> page = new RestResponse<Object>();
-		if(pageInfo==null)
-		pageInfo=new PageInfo();
-		
-		Map<String, Object> map = pageInfo.toQueryMap();
-		if(condition!=null && condition.getKeyWord()!=null){
-			map.put("keyWord", condition.getKeyWord());
-		}
-//		map.put("orderByClause","sort");
-//		map.put("sort","DESC");
-
-		List<Bank> list = bankMapper.query(map);
-		int totalCount = bankMapper.count(map);
-		
+		List<Bank> list = bankMapper.query(pageInfo.getParamsMap());
+		int totalCount = bankMapper.count(pageInfo.getParamsMap());
 		pageInfo.setTotalCount(totalCount);
-//		pageInfo.setRequestExt(map);
 		page.setSuccess(true);
 		page.setData(list);
 		page.addExtData("pageInfo", pageInfo);

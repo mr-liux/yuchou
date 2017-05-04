@@ -445,5 +445,21 @@ public abstract class StringUtil {
 		}
 		return false;
 	}
+	
+	public static Integer stringToInt(String str){
+		try {
+			return Integer.parseInt(str);
+		} catch (NumberFormatException e) {
+			throw e;
+		}
+	}
+	
+	public static Integer stringToInt(String str,int defaultVal){
+		try {
+			return Integer.parseInt(str);
+		} catch (NumberFormatException e) {
+			return defaultVal;
+		}
+	}
 
 }
