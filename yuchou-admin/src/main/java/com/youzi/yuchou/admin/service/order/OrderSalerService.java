@@ -2,6 +2,7 @@
 package com.youzi.yuchou.admin.service.order;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +26,7 @@ public class OrderSalerService extends BaseService {
 	
 	
 	/**
-	 * 根据主键查询
+	 * 根据
 	 * @author 背包
 	 * @param bank
 	 */
@@ -42,13 +43,17 @@ public class OrderSalerService extends BaseService {
 		if(!result)
 			orderSaler=null;
 	}
+	@CacheEvict(value = "findByIdOrderSaler", key = "#orderSaler.id")
+	public void update(OrderSaler orderSaler) {
+		//
+	}
 	
 	/**
 	 * 根据主键查询
 	 * @author 背包
 	 * @param bank
 	 */
-	@Cacheable(value = "findByIdOrderSaler", key = "#id", unless = "#result == null")
+	@Cacheable(value = "findByIdOrderSaler_1", key = "#id", unless = "#result == null")
 	public RestResponse<Object> findById(Integer id) {
 		RestResponse<Object> page = new RestResponse<Object>();
 		OrderSaler orderSaler = orderSalerMapper.selectByPrimaryKey(id);

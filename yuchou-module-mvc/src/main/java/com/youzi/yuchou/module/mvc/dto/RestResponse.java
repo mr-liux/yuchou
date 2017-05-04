@@ -58,8 +58,8 @@ public class RestResponse<T> {
 		return new RestResponse<T>(true, 0, resMessage, null,null);
 	}
 
-	public static <T> RestResponse<T> buildFailed(boolean success ,Integer code, String message) {
-		return new RestResponse<T>(success, code, message, null,null);
+	public static <T> RestResponse<T> buildFailed(Integer code, String message) {
+		return new RestResponse<T>(false, code, message, null,null);
 	}
 
 	public static <T> RestResponse<T> buildFailed(String resMessage) {

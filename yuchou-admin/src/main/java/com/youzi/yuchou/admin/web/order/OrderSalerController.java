@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.youzi.yuchou.admin.service.order.OrderSalerService;
 import com.youzi.yuchou.core.mapper.JsonMapper;
 import com.youzi.yuchou.module.model.model.OrderSaler;
+import com.youzi.yuchou.module.mvc.annotation.Auth;
 import com.youzi.yuchou.module.mvc.dto.RestResponse;
 import com.youzi.yuchou.module.mvc.web.BaseController;
 
@@ -37,6 +38,7 @@ public class OrderSalerController extends BaseController {
 		RestResponse<Object> page = orderSalerService.findById(id);
 		return page;
 	}*/
+	
 	@GetMapping("/orderSaler/{id}")
 	public RestResponse<Object> findById1(@PathVariable Integer id) {
 		OrderSaler orderSaler = orderSalerService.findById1(id);

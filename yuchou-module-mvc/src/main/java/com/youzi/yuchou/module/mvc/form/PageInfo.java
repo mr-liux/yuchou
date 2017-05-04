@@ -20,10 +20,6 @@ public class PageInfo implements Serializable {
     //请求参数封装回给页面
 	private Map<String, Object> requestExt;
     
-    /**
-     * 空对象
-     */
-    public static final PageInfo EMPTY = new PageInfo();
 
     /**
      * 从0开始，用户mysql分页

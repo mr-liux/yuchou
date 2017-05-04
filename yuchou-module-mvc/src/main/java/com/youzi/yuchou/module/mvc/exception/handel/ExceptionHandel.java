@@ -34,7 +34,7 @@ public class ExceptionHandel {
 		} else if (ex instanceof NoHandlerFoundException) {
 			return buildErrorMessage("404NotFound");
 		} else if (ex instanceof BaseException) {
-			return buildErrorMessage(((BaseException) ex).getMsg());
+			return buildErrorMessage(((BaseException) ex).getCode(),((BaseException) ex).getMsg());
 		} else {
 			logger.info(request.getMethod() + request.getServletPath());
 			logger.info(request.getQueryString());
@@ -52,7 +52,7 @@ public class ExceptionHandel {
 		return buildErrorMessage(1000, message);
 	}
 
-	private ErrorMessage buildErrorMessage(int code, String message) {
+	private ErrorMessage buildErrorMessage(Integer code, String message) {
 		return new ErrorMessage(code, message);
 	}
 

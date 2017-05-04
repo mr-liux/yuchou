@@ -1,5 +1,9 @@
 package com.youzi.yuchou.admin.web.common;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -60,9 +64,11 @@ public class BankController extends BaseController {
 		return page;
 	}
 	
-/*	@GetMapping("/banklist")
-	public RestResponse<Object> findAll() throws Exception{
+	@GetMapping("/banklist")
+	public RestResponse<Object> findAll(HttpServletRequest request) throws Exception{
+		Map<String, String[]> param = request.getParameterMap();
+		logger.info(param.toString());
 		RestResponse<Object> page = bankService.findPage(null ,null);
 		return page;
-	}*/
+	}
 }

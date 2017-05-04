@@ -8,6 +8,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.youzi.yuchou.core.exception.AuthException;
+import com.youzi.yuchou.core.exception.ExceptionStaticEnum;
 import com.youzi.yuchou.module.mvc.annotation.Auth;
 
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +26,9 @@ public class AuthInterceptor implements HandlerInterceptor {
 			if (auth != null) {
 				// TODO 权限校验
 				log.info("start auth ...");
-				throw new AuthException("无权限访问");
+				throw new AuthException(
+						ExceptionStaticEnum.NOPERMISSIONS.getCode(),
+						ExceptionStaticEnum.NOPERMISSIONS.getMessage());
 			}
 		}
 		return true;

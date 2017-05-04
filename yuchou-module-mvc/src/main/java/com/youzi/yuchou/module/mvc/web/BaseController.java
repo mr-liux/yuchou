@@ -70,7 +70,7 @@ public abstract class BaseController {
 	 * @return
 	 */
 	protected <T> RestResponse<T> buildFailed(String message) {
-		return RestResponse.buildFailed(false,1000, message);
+		return RestResponse.buildFailed(1000, message);
 	}
 
 	/**
@@ -79,8 +79,8 @@ public abstract class BaseController {
 	 * @param message
 	 * @return
 	 */
-	protected <T> RestResponse<T> buildFailed(boolean success ,Integer code, String message) {
-		return RestResponse.buildFailed(success, code, message);
+	protected <T> RestResponse<T> buildFailed(Integer code, String message) {
+		return RestResponse.buildFailed(code, message);
 	}
 
 }
