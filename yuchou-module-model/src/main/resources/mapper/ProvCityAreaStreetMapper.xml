@@ -12,16 +12,32 @@
   <sql id="Base_Column_List">
     id, code, parent_code, name, level, sort
   </sql>
+  <sql id="Base_Column_List_param">
+    code, name
+  </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from prov_city_area_street
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from prov_city_area_street
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
+
+  <select id="getParamsList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List_param" />
+    from prov_city_area_street
+    where level = #{level,jdbcType=INTEGER}
+  </select>
+
+  <select id="getParentCodeList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List_param" />
+    from prov_city_area_street
+    where parent_code = #{parentCode,jdbcType=INTEGER}
+    ORDER BY sort DESC
+  </select>
+
+
   <insert id="insert" parameterType="com.youzi.yuchou.module.model.model.ProvCityAreaStreet">
     insert into prov_city_area_street (id, code, parent_code, 
       name, level, sort)

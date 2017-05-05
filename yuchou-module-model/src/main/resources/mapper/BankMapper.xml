@@ -18,7 +18,7 @@
      <include refid="T_CMS_AD_QUERY" />
      <if test="orderByClause != null" >
      	 ORDER BY ${orderByClause} ${sort}
-    </if>
+     </if>
      <if test="offset != null and offset >= 0 ">  
                LIMIT  #{offset},
            </if>    
