@@ -9,6 +9,10 @@
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="upd_time" jdbcType="TIMESTAMP" property="updTime" />
   </resultMap>
+  
+  <resultMap id="MenuKyMap" type="java.lang.Integer">
+    <result column="menu_ky" jdbcType="INTEGER" property="menuKy" />
+  </resultMap>
   <sql id="Base_Column_List">
     grant_ky, user_ky, menu_ky, status, add_time, upd_time
   </sql>
@@ -103,4 +107,11 @@
       upd_time = #{updTime,jdbcType=TIMESTAMP}
     where grant_ky = #{grantKy,jdbcType=INTEGER}
   </update>
+  
+  <select id="queryByUserKy" parameterType="java.lang.Integer" resultMap="MenuKyMap">
+    select 
+    menu_ky
+    from sys_user_menu
+    where user_ky = #{userKy,jdbcType=INTEGER}
+  </select>
 </mapper>

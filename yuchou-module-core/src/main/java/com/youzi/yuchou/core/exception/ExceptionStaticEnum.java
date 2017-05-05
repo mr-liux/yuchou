@@ -14,7 +14,8 @@ public enum ExceptionStaticEnum  {
     ERROR(1000, "未知错误"),
     ERROR_DB(100010, "数据库执行失败。"),
     ERROR_NO_INVALID_USER(100011, "用户名或者密码错误，请重新输入。"),
-    ERROR_NO_NO_INVALID_TOKEN(100013, "登录无效，或者已经过期，请重新登录。"),
+    ERROR_NO_LOGIN(100012, "对不起，您没有登录。"),
+    ERROR_NO_INVALID_TOKEN(100013, "口令无效，或者已经过期，请重新登录。"),
     ERROR_MAX_INVALID_INPUT(100014, "“<@1>”输入不合法，请重新输入。"),
     ERROR_INVALID_SID(100015, "系统鉴权失败，请重新登陆系统。"),   
     ERROR_NOT_EXISTS(100016, "查询的数据不存在。"),
@@ -23,7 +24,7 @@ public enum ExceptionStaticEnum  {
     ERROR_SIGN(100019, "系统连接证书错误，请更新正确的证书。"),
     ERROR_DATA_USED(100020, "该数据正在被其他配置使用，无法删除。"),
     ERROR_USER_IS_UNABLE(100027, "此用户已经被禁用。 "),
-    USER_LOGIN_LOCKED(100028, "连续输入错误密码次数过多，用户登录被锁定，请稍后再试！"),
+    USER_LOGIN_LOCKED(100028, "连续输入错误密码次数过多，用户登录被锁定，请稍后再试。"),
     ;
 
     private final Integer                            code;

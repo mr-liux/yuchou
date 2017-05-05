@@ -9,9 +9,11 @@ import com.youzi.yuchou.module.model.mapper.SysUsersMapper;
 import com.youzi.yuchou.module.model.model.SysUsers;
 import com.youzi.yuchou.module.mvc.dto.RestResponse;
 import com.youzi.yuchou.module.mvc.form.PageInfo;
+import com.youzi.yuchou.module.mvc.login.domain.User;
+import com.youzi.yuchou.module.mvc.login.service.intf.TokenUserServiceIntf;
 
 @Service
-public class SysUserService   {
+public class SysUserService  implements TokenUserServiceIntf {
 	@Autowired
 	private SysUsersMapper  userMapper;
 	
@@ -39,7 +41,7 @@ public class SysUserService   {
 	public SysUsers findById(Integer id) {
 		return userMapper.selectByPrimaryKey(id);
 	}
-
+	
 	public RestResponse<Object> findAll(PageInfo pageInfo) {
 		RestResponse<Object> page = new RestResponse<Object>();
 		List<SysUsers> list = null;
@@ -53,5 +55,26 @@ public class SysUserService   {
 		page.addExtData("pageInfo", pageInfo);
 		return page;
 	}
+
+	@Override
+	public User queryUserByCode(String userCode) {
+		SysUsers users = userMapper.queryByUserCode(userCode);
+		if(users!=null){
+			User user = new User();
+			user.setUserKy(users.getUserKy());
+			user.setUserId(users.getUserId());
+			user.setPassword(users.getPassword());
+			user.setStatus(users.getStatus());
+			return user;
+		}
+		return null;
+	}
+
+	@Override
+	public boolean modifyUser(User user) {
+		return false;
+	}
+
+
 
 }

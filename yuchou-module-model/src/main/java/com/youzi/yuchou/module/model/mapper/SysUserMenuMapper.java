@@ -1,5 +1,9 @@
 package com.youzi.yuchou.module.model.mapper;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.youzi.yuchou.module.model.model.SysUserMenu;
 
 public interface SysUserMenuMapper {
@@ -14,4 +18,6 @@ public interface SysUserMenuMapper {
     int updateByPrimaryKeySelective(SysUserMenu record);
 
     int updateByPrimaryKey(SysUserMenu record);
+
+	List<Integer> queryByUserKy(@Param("userKy")Integer userKy);
 }

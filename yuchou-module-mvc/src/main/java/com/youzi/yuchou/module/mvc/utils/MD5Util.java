@@ -36,7 +36,7 @@ public class MD5Util {
 	
 	public static void main(String[] args) {
 		//String md5 = MD5Util.MD5("QingYouCloud@66");
-		String md5 = MD5Util.MD5("QingYouCloud@66");
+		String md5 = MD5Util.MD5("123456");
 		System.out.println(md5);
 	}
 }

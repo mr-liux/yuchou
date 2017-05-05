@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.youzi.yuchou.admin.service.system.SysUserService;
 import com.youzi.yuchou.module.model.model.SysUsers;
+import com.youzi.yuchou.module.mvc.annotation.Auth;
 import com.youzi.yuchou.module.mvc.dto.RestResponse;
 import com.youzi.yuchou.module.mvc.form.PageInfo;
 import com.youzi.yuchou.module.mvc.web.BaseController;
@@ -27,7 +28,7 @@ import io.swagger.annotations.ApiOperation;
 
 @Api(value = "API - SysUserController", description = "后台用户信息处理")
 @RestController
-@RequestMapping("/system/user")
+@RequestMapping("/admin/system/user")
 public class SysUserController extends BaseController {
 
 	@Autowired
@@ -35,9 +36,10 @@ public class SysUserController extends BaseController {
 	
 	
 	@ApiOperation(value = "新增用户信息",notes="通过body传入新增用户信息", httpMethod = "POST", response = RestResponse.class)
-	@ApiImplicitParam(name = "APIKEY",value="权限token",required = true, dataType = "Sting", paramType = "header")
+	@ApiImplicitParam(name = "X-AUTH-TOKEN",value="权限token",required = true, dataType = "Sting", paramType = "header")
+	@Auth 
 	@PostMapping("/")
-	public RestResponse<String> add(@RequestHeader String APIKEY,@RequestBody SysUsers users){
+	public RestResponse<String> add(@RequestBody SysUsers users){
 		userService.add(users);
 		return buildDefaultSuccessed("新增成功");
 	}
@@ -48,10 +50,11 @@ public class SysUserController extends BaseController {
 	@ApiOperation(value = "删除用户信息", notes="根据url的id来删除用户信息",httpMethod = "DELETE", response = RestResponse.class)
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "Long", paramType="path"),
-		@ApiImplicitParam(name = "APIKEY",value="权限token",required = true, dataType = "Sting", paramType = "header")
+		@ApiImplicitParam(name = "X-AUTH-TOKEN",value="权限token",required = true, dataType = "Sting", paramType = "header")
 	})
+	@Auth 
 	@DeleteMapping("/{id}")
-	public RestResponse<String> delete(@RequestHeader String APIKEY,@PathVariable Integer id) {
+	public RestResponse<String> delete(@PathVariable Integer id) {
 		userService.delete(id);
 		return buildDefaultSuccessed("删除成功");
 	}
@@ -60,9 +63,10 @@ public class SysUserController extends BaseController {
 	
 	
 	@ApiOperation(value = "修改用户信息",notes="根据表单传入的User对象来修改用户信息", httpMethod = "PUT", response = RestResponse.class)
-	@ApiImplicitParam(name = "APIKEY",value="权限token",required = true, dataType = "Sting", paramType = "header")
+	@ApiImplicitParam(name = "X-AUTH-TOKEN",value="权限token",required = true, dataType = "Sting", paramType = "header")
+	@Auth 
 	@PutMapping("/")
-	public RestResponse<String> update(@RequestHeader String APIKEY, @RequestBody SysUsers users) {
+	public RestResponse<String> update( @RequestBody SysUsers users) {
 		userService.update(users);
 		return buildDefaultSuccessed("修改成功");
 	}
@@ -73,10 +77,11 @@ public class SysUserController extends BaseController {
 	@ApiOperation(value = "查询用户信息",notes="根据url的id查询用户信息", httpMethod = "GET", response = SysUsers.class)
 	@ApiImplicitParams({
 		@ApiImplicitParam(name="id",value="用户id",required = true, dataType = "int",paramType="path"),
-		@ApiImplicitParam(name = "APIKEY",value="权限token",required = true, dataType = "Sting", paramType = "header")
+		@ApiImplicitParam(name = "X-AUTH-TOKEN",value="权限token",required = true, dataType = "Sting", paramType = "header")
 	})
+	@Auth 
 	@GetMapping("/{id}")
-	public SysUsers findById(@RequestHeader String APIKEY,@PathVariable Integer id) {
+	public SysUsers findById(@PathVariable Integer id) {
 		return userService.findById(id);
 	}
 
@@ -89,10 +94,10 @@ public class SysUserController extends BaseController {
 			@ApiImplicitParam(name = "name", value="姓名",required = false, dataType = "String", paramType = "query"),
 			@ApiImplicitParam(name = "userId", value="用户名",required = false, dataType = "String", paramType = "query"),
 			@ApiImplicitParam(name = "companyKy",value="公司ID",required = false, dataType = "int", paramType = "query"),
-			@ApiImplicitParam(name = "APIKEY",value="权限token",required = true, dataType = "Sting", paramType = "header")})
+			@ApiImplicitParam(name = "X-AUTH-TOKEN",value="权限token",required = true, dataType = "Sting", paramType = "header")})
+	@Auth 
 	@GetMapping("/list")
-	public RestResponse<Object> findAll(@RequestHeader String APIKEY,HttpServletRequest request) throws Exception{
-		logger.info(APIKEY);
+	public RestResponse<Object> findAll(HttpServletRequest request) throws Exception{
 		RestResponse<Object> page = userService.findAll(new PageInfo(request.getParameterMap()));
 		return page;
 	}

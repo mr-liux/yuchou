@@ -1,8 +1,9 @@
 package com.youzi.yuchou.module.mvc.login.service.intf;
 
+
 import com.youzi.yuchou.module.mvc.login.domain.User;
 
-public interface TokenServiceIntf {
+public interface TokenUserServiceIntf {
 	
 
 	/**
@@ -18,5 +19,6 @@ public interface TokenServiceIntf {
 	 * @return
 	 */
 	public boolean modifyUser(User user);
+
 
 }

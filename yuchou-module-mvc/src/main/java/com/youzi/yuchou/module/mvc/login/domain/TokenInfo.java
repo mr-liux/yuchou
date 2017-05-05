@@ -7,7 +7,6 @@ public class TokenInfo {
 	private Long uid;		//用户id
 	private long firstVisitTime;	//首次访问时间
 	private long lastVisitTime;		//上次访问时间
-	private long periodOfvalidity;	//token生效时间
 
 
 	public long getFirstVisitTime() {
@@ -45,14 +44,5 @@ public class TokenInfo {
 		this.lastVisitTime = lastVisitTime;
 	}
 
-	public long getPeriodOfvalidity() {
-
-		return periodOfvalidity;
-	}
-
-	public void setPeriodOfvalidity(long periodOfvalidity) {
-
-		this.periodOfvalidity = periodOfvalidity;
-	}
 
 }

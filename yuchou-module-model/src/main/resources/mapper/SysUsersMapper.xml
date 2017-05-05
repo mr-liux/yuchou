@@ -71,6 +71,14 @@
     from sys_users
     where user_ky = #{userKy,jdbcType=INTEGER}
   </select>
+  
+  <select id="queryByUserCode" parameterType="string" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_users
+    where user_id = #{code,jdbcType=VARCHAR}
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from sys_users
     where user_ky = #{userKy,jdbcType=INTEGER}
