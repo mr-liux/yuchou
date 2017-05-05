@@ -8,6 +8,7 @@ public class LoginCommand implements Serializable{
 
 	private String userCode;
 
+	
 	private String password;
 
 	public String getPassword() {
