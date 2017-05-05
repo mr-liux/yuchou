@@ -29,4 +29,5 @@ public interface ProvCityAreaStreetMapper {
      */
     List<ProvCityAreaStreet> getParentCodeList(Integer code);
 
+
 }

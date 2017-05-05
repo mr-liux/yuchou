@@ -23,6 +23,43 @@
     <result column="reserve1" jdbcType="INTEGER" property="reserve1" />
     <result column="reserve2" jdbcType="VARCHAR" property="reserve2" />
   </resultMap>
+  
+  <sql id="T_CMS_AD_QUERY" >
+    <trim prefix="WHERE" prefixOverrides="AND " >
+      <if test="userId != null and '' != userId" >
+        AND userId = #{userId}
+      </if>
+      <if test="name != null and '' != name" >
+        AND (name like '%' || #{name} || '%') 
+      </if>
+      <if test="companyKy != null and '' != companyKy" >
+        AND companyKy = #{companyKy} 
+      </if>
+      
+    </trim>
+  </sql>
+  
+   <select id="query" resultMap="BaseResultMap" >
+    SELECT
+    <include refid="Base_Column_List" />
+     FROM sys_users   
+     <include refid="T_CMS_AD_QUERY" />
+     <if test="orderByClause != null" >
+     	 ORDER BY ${orderByClause} ${sort}
+    </if>
+     <if test="offset != null and offset >= 0 ">  
+               LIMIT  #{offset},
+           </if>    
+            <if test="pageSize != null and pageSize > 0 and offset >= 0">                
+                 #{pageSize}                           
+            </if>
+  </select>
+  
+  <select id="count" resultType="int" >
+    SELECT count(*) FROM sys_users 
+      <include refid="T_CMS_AD_QUERY" />
+  </select>
+  
   <sql id="Base_Column_List">
     user_ky, user_id, password, name, company_ky, org_ky, job_ky, mobile_phone, phone, 
     email, service_num, manage_flag, manage_parents, status, add_time, upd_time, last_login_ip, 
