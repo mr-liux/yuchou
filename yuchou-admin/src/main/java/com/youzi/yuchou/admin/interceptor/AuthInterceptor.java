@@ -27,8 +27,8 @@ public class AuthInterceptor implements HandlerInterceptor {
 				// TODO 权限校验
 				log.info("start auth ...");
 				throw new AuthException(
-						ExceptionStaticEnum.NOPERMISSIONS.getCode(),
-						ExceptionStaticEnum.NOPERMISSIONS.getMessage());
+						ExceptionStaticEnum.ERROR_NO_RIGHT.getCode(),
+						ExceptionStaticEnum.ERROR_NO_RIGHT.getMessage());
 			}
 		}
 		return true;

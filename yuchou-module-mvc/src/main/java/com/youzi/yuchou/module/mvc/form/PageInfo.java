@@ -85,7 +85,7 @@ public class PageInfo implements Serializable {
 					this.paramsMap.put("pageSize", getPageSize());
 				}
 			} catch (Exception e) {
-				throw new ServiceException(ExceptionStaticEnum.ERRORPARAMS.getCode(),ExceptionStaticEnum.ERRORPARAMS.getMessage());
+				throw new ServiceException(ExceptionStaticEnum.ERROR_PARAMS.getCode(),ExceptionStaticEnum.ERROR_PARAMS.getMessage());
 			}
 		}
 	}

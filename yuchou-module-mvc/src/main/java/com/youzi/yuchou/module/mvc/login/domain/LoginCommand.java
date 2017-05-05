@@ -1,4 +1,4 @@
-package com.youzi.yuchou.module.mvc.login;
+package com.youzi.yuchou.module.mvc.login.domain;
 
 
 import java.io.Serializable;
@@ -7,7 +7,6 @@ public class LoginCommand implements Serializable{
 	private static final long serialVersionUID = -4039049913840145509L;
 
 	private String userCode;
-
 	
 	private String password;
 
