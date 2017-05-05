@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.youzi.yuchou.admin.web.system.intf.SysUserServiceIntf;
+import com.youzi.yuchou.admin.service.system.SysUserService;
 import com.youzi.yuchou.module.model.model.SysUsers;
 import com.youzi.yuchou.module.mvc.dto.RestResponse;
 import com.youzi.yuchou.module.mvc.form.PageInfo;
@@ -31,14 +31,14 @@ import io.swagger.annotations.ApiOperation;
 public class SysUserController extends BaseController {
 
 	@Autowired
-	private SysUserServiceIntf userServiceIntf;
+	private SysUserService userService;
 	
 	
 	@ApiOperation(value = "新增用户信息",notes="通过body传入新增用户信息", httpMethod = "POST", response = RestResponse.class)
 	@ApiImplicitParam(name = "APIKEY",value="权限token",required = true, dataType = "Sting", paramType = "header")
 	@PostMapping("/")
 	public RestResponse<String> add(@RequestHeader String APIKEY,@RequestBody SysUsers users){
-		userServiceIntf.add(users);
+		userService.add(users);
 		return buildDefaultSuccessed("新增成功");
 	}
 
@@ -52,7 +52,7 @@ public class SysUserController extends BaseController {
 	})
 	@DeleteMapping("/{id}")
 	public RestResponse<String> delete(@RequestHeader String APIKEY,@PathVariable Integer id) {
-		userServiceIntf.delete(id);
+		userService.delete(id);
 		return buildDefaultSuccessed("删除成功");
 	}
 
@@ -63,7 +63,7 @@ public class SysUserController extends BaseController {
 	@ApiImplicitParam(name = "APIKEY",value="权限token",required = true, dataType = "Sting", paramType = "header")
 	@PutMapping("/")
 	public RestResponse<String> update(@RequestHeader String APIKEY, @RequestBody SysUsers users) {
-		userServiceIntf.update(users);
+		userService.update(users);
 		return buildDefaultSuccessed("修改成功");
 	}
 	
@@ -77,7 +77,7 @@ public class SysUserController extends BaseController {
 	})
 	@GetMapping("/{id}")
 	public SysUsers findById(@RequestHeader String APIKEY,@PathVariable Integer id) {
-		return userServiceIntf.findById(id);
+		return userService.findById(id);
 	}
 
 	
@@ -93,7 +93,7 @@ public class SysUserController extends BaseController {
 	@GetMapping("/list")
 	public RestResponse<Object> findAll(@RequestHeader String APIKEY,HttpServletRequest request) throws Exception{
 		logger.info(APIKEY);
-		RestResponse<Object> page = userServiceIntf.findAll(new PageInfo(request.getParameterMap()));
+		RestResponse<Object> page = userService.findAll(new PageInfo(request.getParameterMap()));
 		return page;
 	}
 }
