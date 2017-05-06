@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.youzi.yuchou.module.model.mapper.SysMenuMapper">
   <resultMap id="BaseResultMap" type="com.youzi.yuchou.module.model.model.SysMenu">
-    <id column="menu_ky" jdbcType="INTEGER" property="menuKy" />
+    <result column="menu_ky" jdbcType="INTEGER" property="menuKy" />
     <result column="pid" jdbcType="INTEGER" property="pid" />
     <result column="url" jdbcType="VARCHAR" property="url" />
     <result column="name" jdbcType="VARCHAR" property="name" />
@@ -20,6 +20,49 @@
     menu_ky, pid, url, name, image, request, attribute, remark, level, sort, status, 
     add_time, upd_time
   </sql>
+  
+  <select id="query" resultMap="BaseResultMap" >
+    SELECT
+    <include refid="Base_Column_List" />
+     FROM sys_menu 
+     <include refid="T_CMS_AD_QUERY" />
+     <if test="orderByClause != null" >
+     	 ORDER BY ${orderByClause} ${sort}
+    </if>
+     <if test="offset != null and offset >= 0 ">  
+               LIMIT  #{offset},
+           </if>    
+            <if test="pageSize != null and pageSize > 0 and offset >= 0">                
+                 #{pageSize}                           
+            </if>
+  </select>
+  
+  <select id="count" resultType="int" >
+    SELECT count(*) FROM sys_menu 
+      <include refid="T_CMS_AD_QUERY" />
+  </select>
+  
+  <select id="getMyMenu" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		SELECT m.* FROM  sys_user_menu r LEFT JOIN sys_menu m ON r.`menu_ky`= m.`menu_ky`  
+		<where>
+			m.`status`=1 
+			<if test="userKy != null and userKy != '' ">
+				AND user_ky= #{userKy} 
+			</if>
+		</where>
+		ORDER BY pid ASC,`level` ASC,`sort` ASC
+	</select>
+	
+	
+	<select id="getAllMenu" parameterType="map" resultMap="BaseResultMap">
+		SELECT 
+		<include refid="Base_Column_List" />  
+		FROM  sys_menu 
+		WHERE
+			`status`=1 
+			ORDER BY pid ASC,`level` ASC,`sort` ASC
+	</select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -185,4 +228,19 @@
       upd_time = #{updTime,jdbcType=TIMESTAMP}
     where menu_ky = #{menuKy,jdbcType=INTEGER}
   </update>
+   <update id="updateByStatus" parameterType="java.lang.Integer">
+    update sys_menu
+    set 
+      status = 0
+    where menu_ky = #{menuKy,jdbcType=INTEGER}
+  </update>
+  
+  <sql id="T_CMS_AD_QUERY" >
+    <trim prefix="WHERE" prefixOverrides="AND " >
+    	status = 1
+      <if test="name != null and '' != name" >
+        AND (name like '%${name}%') 
+      </if>
+    </trim>
+  </sql>
 </mapper>

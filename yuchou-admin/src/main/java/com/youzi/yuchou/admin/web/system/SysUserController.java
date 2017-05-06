@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -82,7 +81,9 @@ public class SysUserController extends BaseController {
 	@Auth 
 	@GetMapping("/{id}")
 	public SysUsers findById(@PathVariable Integer id) {
-		return userService.findById(id);
+		SysUsers u = userService.findById(id);
+		u.setPassword(null);
+		return u;
 	}
 
 	

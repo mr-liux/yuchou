@@ -1,5 +1,8 @@
 package com.youzi.yuchou.module.model.mapper;
 
+import java.util.List;
+import java.util.Map;
+
 import com.youzi.yuchou.module.model.model.SysOrg;
 
 public interface SysOrgMapper {
@@ -14,4 +17,10 @@ public interface SysOrgMapper {
     int updateByPrimaryKeySelective(SysOrg record);
 
     int updateByPrimaryKey(SysOrg record);
+
+	int count(Map<String, Object> paramsMap);
+
+	List<SysOrg> query(Map<String, Object> paramsMap);
+	
+	int updateByStatus(Integer orgKy);
 }

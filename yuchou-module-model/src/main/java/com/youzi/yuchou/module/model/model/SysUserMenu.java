@@ -19,7 +19,19 @@ public class SysUserMenu implements Serializable {
 
     private Date updTime;
 
-    public Integer getGrantKy() {
+    
+
+	public SysUserMenu() {
+		super();
+	}
+
+	public SysUserMenu(Integer userKy, Integer menuKy) {
+		super();
+		this.userKy = userKy;
+		this.menuKy = menuKy;
+	}
+
+	public Integer getGrantKy() {
         return grantKy;
     }
 

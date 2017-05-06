@@ -20,4 +20,10 @@ public interface SysUserMenuMapper {
     int updateByPrimaryKey(SysUserMenu record);
 
 	List<Integer> queryByUserKy(@Param("userKy")Integer userKy);
+	
+	int deleteByUserKey(@Param("userKy")Integer userKy);
+	
+	int insertUserMenu(@Param(value="menus") List<SysUserMenu> menus);
+
+	int updateByStatus(Integer grantKy);
 }

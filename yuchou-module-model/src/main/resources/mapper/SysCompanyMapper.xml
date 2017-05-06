@@ -5,10 +5,15 @@
     <id column="company_ky" jdbcType="INTEGER" property="companyKy" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="pid" jdbcType="INTEGER" property="pid" />
+    <result column="pname" jdbcType="VARCHAR" property="pname" />
     <result column="prov_id" jdbcType="INTEGER" property="provId" />
+    <result column="provName" jdbcType="VARCHAR" property="provName" />
     <result column="city_id" jdbcType="INTEGER" property="cityId" />
+    <result column="cityName" jdbcType="VARCHAR" property="cityName" />
     <result column="area_id" jdbcType="INTEGER" property="areaId" />
+    <result column="areaName" jdbcType="VARCHAR" property="areaName" />
     <result column="street_id" jdbcType="INTEGER" property="streetId" />
+    <result column="streetName" jdbcType="VARCHAR" property="streetName" />
     <result column="detail_address" jdbcType="VARCHAR" property="detailAddress" />
     <result column="full_address" jdbcType="VARCHAR" property="fullAddress" />
     <result column="service_phone" jdbcType="VARCHAR" property="servicePhone" />
@@ -16,6 +21,7 @@
     <result column="weixin" jdbcType="VARCHAR" property="weixin" />
     <result column="sub_domain" jdbcType="VARCHAR" property="subDomain" />
     <result column="sub_name" jdbcType="VARCHAR" property="subName" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="cash_deposit" jdbcType="DECIMAL" property="cashDeposit" />
     <result column="manage_id" jdbcType="INTEGER" property="manageId" />
     <result column="status" jdbcType="INTEGER" property="status" />
@@ -26,19 +32,42 @@
     <result column="description" jdbcType="LONGVARCHAR" property="description" />
   </resultMap>
   <sql id="Base_Column_List">
-    company_ky, name, pid, prov_id, city_id, area_id, street_id, detail_address, full_address, 
+    company_ky, name, pid,pname, prov_id,provName, city_id,cityName, area_id,areaName, street_id,streetName, detail_address, full_address, 
     service_phone, qq, weixin, sub_domain, sub_name, cash_deposit, manage_id, status, 
     add_time, upd_time
   </sql>
   <sql id="Blob_Column_List">
     description
   </sql>
+  
+  <select id="query" resultMap="BaseResultMap" >
+    SELECT
+    <include refid="Base_Column_List" />
+     FROM v_sys_company   
+     <include refid="T_CMS_AD_QUERY" />
+     <if test="orderByClause != null" >
+     	 ORDER BY ${orderByClause} ${sort}
+    </if>
+     <if test="offset != null and offset >= 0 ">  
+               LIMIT  #{offset},
+           </if>    
+            <if test="pageSize != null and pageSize > 0 and offset >= 0">                
+                 #{pageSize}                           
+            </if>
+  </select>
+  
+  <select id="count" resultType="int" >
+    SELECT count(*) FROM v_sys_company 
+      <include refid="T_CMS_AD_QUERY" />
+  </select>
+  
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from sys_company
+    from v_sys_company
     where company_ky = #{companyKy,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -296,4 +325,21 @@
       upd_time = #{updTime,jdbcType=TIMESTAMP}
     where company_ky = #{companyKy,jdbcType=INTEGER}
   </update>
+
+  <update id="updateByStatus" parameterType="java.lang.Integer">
+    update sys_company
+    set 
+      status = 0
+    where company_ky = #{companyKy,jdbcType=INTEGER}
+  </update>
+  
+  <sql id="T_CMS_AD_QUERY" >
+    <trim prefix="WHERE" prefixOverrides="AND " >
+    	status = 1
+      <if test="name != null and '' != name" >
+        AND (name like '%${name}%') 
+      </if>
+    </trim>
+  </sql>
+  
 </mapper>

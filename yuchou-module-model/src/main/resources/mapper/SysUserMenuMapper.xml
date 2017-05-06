@@ -108,10 +108,30 @@
     where grant_ky = #{grantKy,jdbcType=INTEGER}
   </update>
   
+  <update id="updateByStatus" parameterType="java.lang.Integer">
+    update sys_user_menu
+    set 
+      status = 0
+    where grant_ky = #{grantKy,jdbcType=INTEGER}
+  </update>
+  
   <select id="queryByUserKy" parameterType="java.lang.Integer" resultMap="MenuKyMap">
     select 
     menu_ky
     from sys_user_menu
     where user_ky = #{userKy,jdbcType=INTEGER}
   </select>
+  
+  	<delete id="deleteByUserKey"  parameterType="java.lang.Integer">
+		delete from sys_user_menu
+		where user_ky = #{userKy,jdbcType=INTEGER}
+	</delete> 
+	
+	 <insert id="insertUserMenu" useGeneratedKeys="true" parameterType="java.util.List">  
+        insert into sys_user_menu (user_ky,menu_ky)   
+        values  
+        <foreach collection="menus" item="menu" index="index" separator="," >  
+            (#{menu.userKy},#{menu.menuKy})  
+        </foreach>  
+    </insert>  
 </mapper>

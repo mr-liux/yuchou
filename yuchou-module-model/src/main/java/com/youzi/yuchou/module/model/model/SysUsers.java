@@ -16,10 +16,16 @@ public class SysUsers implements Serializable {
     private String name;
 
     private Integer companyKy;
+    
+    private String companyName;
 
     private Integer orgKy;
+    
+    private String orgName;
 
     private Integer jobKy;
+    
+    private String jobName;
 
     private String mobilePhone;
 
@@ -206,4 +212,30 @@ public class SysUsers implements Serializable {
     public void setReserve2(String reserve2) {
         this.reserve2 = reserve2 == null ? null : reserve2.trim();
     }
+
+	public String getCompanyName() {
+		return companyName==null?"":companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
+	public String getOrgName() {
+		return orgName==null?"":orgName;
+	}
+
+	public void setOrgName(String orgName) {
+		this.orgName = orgName;
+	}
+
+	public String getJobName() {
+		return jobName==null?"":jobName;
+	}
+
+	public void setJobName(String jobName) {
+		this.jobName = jobName;
+	}
+    
+    
 }

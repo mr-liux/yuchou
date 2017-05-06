@@ -13,8 +13,14 @@ public class SysCompany implements Serializable {
     private String name;
 
     private Integer pid;
+    
+    private String pname;
 
     private Integer provId;
+    private String provName;
+    private String cityName;
+    private String areaName;
+    private String streetName;
 
     private Integer cityId;
 
@@ -48,7 +54,47 @@ public class SysCompany implements Serializable {
 
     private String description;
 
-    public Integer getCompanyKy() {
+    public String getPname() {
+		return pname==null?"":pname;
+	}
+
+	public void setPname(String pname) {
+		this.pname = pname;
+	}
+
+	public String getProvName() {
+		return provName==null?"":provName;
+	}
+
+	public void setProvName(String provName) {
+		this.provName = provName;
+	}
+
+	public String getCityName() {
+		return cityName==null?"":cityName;
+	}
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+
+	public String getAreaName() {
+		return areaName==null?"":areaName;
+	}
+
+	public void setAreaName(String areaName) {
+		this.areaName = areaName;
+	}
+
+	public String getStreetName() {
+		return streetName==null?"":streetName;
+	}
+
+	public void setStreetName(String streetName) {
+		this.streetName = streetName;
+	}
+
+	public Integer getCompanyKy() {
         return companyKy;
     }
 

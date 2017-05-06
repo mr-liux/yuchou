@@ -14,6 +14,12 @@ public class SysJob implements Serializable {
     private Integer pid;
 
     private Integer orgKy;
+    
+    private String oname;
+    
+    private Integer companyKy;
+    
+    private String cname;
 
     private Integer manageId;
 
@@ -23,7 +29,33 @@ public class SysJob implements Serializable {
 
     private Date updTime;
 
-    public Integer getJobKy() {
+    
+    
+    public String getOname() {
+		return oname==null?"":oname;
+	}
+
+	public void setOname(String oname) {
+		this.oname = oname;
+	}
+
+	public String getCname() {
+		return cname==null?"":cname;
+	}
+
+	public void setCname(String cname) {
+		this.cname = cname;
+	}
+
+	public Integer getCompanyKy() {
+		return companyKy;
+	}
+
+	public void setCompanyKy(Integer companyKy) {
+		this.companyKy = companyKy;
+	}
+
+	public Integer getJobKy() {
         return jobKy;
     }
 

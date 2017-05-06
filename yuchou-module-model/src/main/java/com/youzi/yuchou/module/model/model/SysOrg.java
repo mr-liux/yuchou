@@ -12,6 +12,8 @@ public class SysOrg implements Serializable {
     private String name;
 
     private Integer pid;
+    
+    private String pname;
 
     private Integer operation;
 
@@ -23,7 +25,16 @@ public class SysOrg implements Serializable {
 
     private Date updTime;
 
-    public Integer getOrgKy() {
+    
+    public String getPname() {
+		return pname==null?"":pname;
+	}
+
+	public void setPname(String pname) {
+		this.pname = pname;
+	}
+
+	public Integer getOrgKy() {
         return orgKy;
     }
 
