@@ -20,7 +20,7 @@ public class RestResponse<T> {
     
 	private Integer code = 0; // 0：成功;其他:失败
 
-	private String messgae; // 消息
+	private String message; // 消息
 
 	private T data;
 

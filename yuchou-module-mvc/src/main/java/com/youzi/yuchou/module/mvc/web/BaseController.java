@@ -2,9 +2,13 @@ package com.youzi.yuchou.module.mvc.web;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.youzi.yuchou.core.text.StringUtil;
+import com.youzi.yuchou.module.mvc.common.LocalStaticValue;
 import com.youzi.yuchou.module.mvc.dto.RestResponse;
 
 public abstract class BaseController {
@@ -81,6 +85,20 @@ public abstract class BaseController {
 	 */
 	protected <T> RestResponse<T> buildFailed(Integer code, String message) {
 		return RestResponse.buildFailed(code, message);
+	}
+	
+	/**
+	 * 获取当前登录用户id
+	 * @param request
+	 * @return
+	 */
+	public int getLoginUid(HttpServletRequest request){
+		int uid = 0;
+		Object uidStr = request.getAttribute(LocalStaticValue.UID);
+		if(uidStr!=null){
+			uid = StringUtil.stringToInt(uidStr.toString(),uid);
+		}
+		return uid;
 	}
 
 }

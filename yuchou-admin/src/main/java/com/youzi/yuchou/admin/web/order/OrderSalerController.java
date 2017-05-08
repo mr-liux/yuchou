@@ -29,7 +29,7 @@ public class OrderSalerController extends BaseController {
 		page.setCode(0);
 		page.setSuccess(true);
 		page.setData(saler);
-		page.setMessgae("新增成功");
+		page.setMessage("新增成功");
 		return buildSuccessed(page);
 	}
 	

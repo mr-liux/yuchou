@@ -28,7 +28,7 @@ public class ProvCityAreaStreetController extends BaseController {
 		page.setCode(0);
 		page.setSuccess(true);
 		page.setData(list);
-		page.setMessgae("成功");
+		page.setMessage("成功");
 		return buildSuccessed(page);
 	}
 
@@ -44,7 +44,7 @@ public class ProvCityAreaStreetController extends BaseController {
 		page.setCode(0);
 		page.setSuccess(true);
 		page.setData(list);
-		page.setMessgae("成功");
+		page.setMessage("成功");
 		return buildSuccessed(page);
 	}
 

@@ -7,15 +7,15 @@ public class TokenResponse implements Serializable {
 	private static final long serialVersionUID = -3259567267416578859L;
 	
 	private String code;
-	private String messgae;
+	private String message;
 	
 	public TokenResponse() {
 		super();
 	}
-	public TokenResponse(String code, String messgae) {
+	public TokenResponse(String code, String message) {
 		super();
 		this.code = code;
-		this.messgae = messgae;
+		this.message = message;
 	}
 	public String getCode() {
 		return code;
@@ -23,11 +23,12 @@ public class TokenResponse implements Serializable {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	public String getMessgae() {
-		return messgae;
+	public String getMessage() {
+		return message;
 	}
-	public void setMessgae(String messgae) {
-		this.messgae = messgae;
+	public void setMessage(String message) {
+		this.message = message;
 	}
+
 	
 }

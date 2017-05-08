@@ -2,13 +2,15 @@ package com.youzi.yuchou.admin.web.system;
 
 
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.youzi.yuchou.admin.web.system.domain.request.UserRightsRequest;
 import com.youzi.yuchou.admin.web.system.domain.response.TreeEntityResponse;
 import com.youzi.yuchou.admin.service.system.SysUserRightsService;
@@ -46,25 +48,21 @@ public class SysUserRightsController extends BaseController {
 	
 	@ApiOperation(value = "查询我的权限菜单，用于ztree.js",notes="根据url的id查询用户菜单权限树状菜单信息", httpMethod = "GET", response = RestResponse.class)
 	@ApiImplicitParams({
-		@ApiImplicitParam(name="uid",value="用户id",required = true, dataType = "int",paramType="path"),
 		@ApiImplicitParam(name = "X-AUTH-TOKEN",value="权限token",required = true, dataType = "Sting", paramType = "header")
 	})
 	@Auth 
-	@GetMapping("/myTreeMenu/{uid}")
-	public RestResponse<List<TreeEntityResponse>> findById(@PathVariable Integer uid) {
-		return RestResponse.buildSuccessed(rightsService.queryMyRightsTreeMenu(uid));
+	@GetMapping("/myTreeMenu")
+	public RestResponse<List<TreeEntityResponse>> findById( HttpServletRequest request) {
+		return RestResponse.buildSuccessed(rightsService.queryMyRightsTreeMenu(super.getLoginUid(request)));
 	}
 	
 	
 	@ApiOperation(value = "获取我的菜单列表",notes="获取我的菜单列表", httpMethod = "GET", response = RestResponse.class)
-	@ApiImplicitParams({
-		@ApiImplicitParam(name="uid",value="用户id",required = true, dataType = "int",paramType="path"),
-		@ApiImplicitParam(name = "X-AUTH-TOKEN",value="权限token",required = true, dataType = "Sting", paramType = "header")
-	})
+	@ApiImplicitParam(name = "X-AUTH-TOKEN",value="权限token",required = true, dataType = "Sting", paramType = "header")
 	@Auth 
-	@GetMapping("/myMenu/{uid}")
-	public RestResponse<List<SysMenu>> findAll(@PathVariable Integer uid) throws Exception{
-		return RestResponse.buildSuccessed(rightsService.queryMyMenu(uid));
+	@GetMapping("/myMenu")
+	public RestResponse<List<SysMenu>> findAll( HttpServletRequest request) throws Exception{
+		return RestResponse.buildSuccessed(rightsService.queryMyMenu(super.getLoginUid(request)));
 	}
 
 	

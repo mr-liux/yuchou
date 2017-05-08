@@ -7,10 +7,10 @@ public class ErrorMessage {
 
 	private int code;
 
-	private String messgae;
+	private String message;
 
-	public ErrorMessage(int code, String messgae) {
+	public ErrorMessage(int code, String message) {
 		this.code = code;
-		this.messgae = messgae;
+		this.message = message;
 	}
 }

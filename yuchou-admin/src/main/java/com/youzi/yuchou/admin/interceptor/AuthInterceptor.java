@@ -13,6 +13,7 @@ import com.youzi.yuchou.module.mvc.annotation.Auth;
 import com.youzi.yuchou.module.mvc.common.LocalStaticValue;
 import com.youzi.yuchou.module.mvc.login.UserTokenManager;
 import com.youzi.yuchou.module.mvc.login.domain.TokenInfo;
+import com.youzi.yuchou.module.mvc.utils.NetworkUtils;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,7 +32,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 				// TODO 权限校验
 				log.info("start auth ...");
 				String token = request.getHeader(LocalStaticValue.AUTH_TOKEN);
-				String ip = request.getLocalAddr();
+				String ip = NetworkUtils.getIpAddress(request);
 				if(token==null){
 					throw new AuthException(
 							ExceptionStaticEnum.ERROR_NO_LOGIN.getCode(),
@@ -56,6 +57,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 							}
 							//更新最后一次访问时间
 							UserTokenManager.userTokenMap.get(token).setLastVisitTime(System.currentTimeMillis());
+							request.setAttribute(LocalStaticValue.UID, tokenInfo.getUid());
 						}
 					}else{
 						throw new AuthException(
