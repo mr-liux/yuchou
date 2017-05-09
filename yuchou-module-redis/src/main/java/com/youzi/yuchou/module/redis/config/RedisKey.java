@@ -4,7 +4,9 @@ package com.youzi.yuchou.module.redis.config;
  * Created by LIUXUAN on 2017/5/9.
  */
 public enum RedisKey {
-    TEST_AAAA("com" , ValueType.MAP);
+    TEST_AAAA("com" , ValueType.MAP),
+    TEST_BBBB("cccc" , ValueType.SINGLE);
+
 
 
 
