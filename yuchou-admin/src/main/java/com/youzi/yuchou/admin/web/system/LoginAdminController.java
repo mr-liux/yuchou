@@ -31,7 +31,7 @@ public class LoginAdminController extends BaseController {
 	@ApiOperation(value = "后台管理员登录",notes="通过body传入用户名密码获取token信息", httpMethod = "POST", response = TokenResponse.class)
 	@PostMapping("/login")
 	public TokenResponse login(@RequestBody LoginCommand user,HttpServletRequest request){
-		return new TokenResponse(LocalStaticValue.SUCCESS+"",tokenService.getToken(user, NetworkUtils.getIpAddress(request)));
+		return new TokenResponse(LocalStaticValue.SUCCESS+"","获取令牌成功",tokenService.getToken(user, NetworkUtils.getIpAddress(request)));
 	}
 
 	

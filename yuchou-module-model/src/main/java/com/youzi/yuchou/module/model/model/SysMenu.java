@@ -10,7 +10,9 @@ public class SysMenu implements Serializable {
 	private Integer menuKy;
 
     private Integer pid;
-
+    
+    private String htmlUrl;
+    
     private String url;
 
     private String name;
@@ -33,7 +35,16 @@ public class SysMenu implements Serializable {
 
     private Date updTime;
 
-    public Integer getMenuKy() {
+    
+    public String getHtmlUrl() {
+		return htmlUrl;
+	}
+
+	public void setHtmlUrl(String htmlUrl) {
+		this.htmlUrl = htmlUrl;
+	}
+
+	public Integer getMenuKy() {
         return menuKy;
     }
 

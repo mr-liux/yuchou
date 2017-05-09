@@ -5,6 +5,7 @@
     <result column="menu_ky" jdbcType="INTEGER" property="menuKy" />
     <result column="pid" jdbcType="INTEGER" property="pid" />
     <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="htmlUrl" jdbcType="VARCHAR" property="htmlUrl" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="image" jdbcType="VARCHAR" property="image" />
     <result column="request" jdbcType="CHAR" property="request" />
@@ -17,7 +18,7 @@
     <result column="upd_time" jdbcType="TIMESTAMP" property="updTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    menu_ky, pid, url, name, image, request, attribute, remark, level, sort, status, 
+    menu_ky, pid, url,htmlUrl, name, image, request, attribute, remark, level, sort, status, 
     add_time, upd_time
   </sql>
   
@@ -74,12 +75,12 @@
     where menu_ky = #{menuKy,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.youzi.yuchou.module.model.model.SysMenu">
-    insert into sys_menu (menu_ky, pid, url, 
+    insert into sys_menu (menu_ky, pid, url, htmlUrl,
       name, image, request, 
       attribute, remark, level, 
       sort, status, add_time, 
       upd_time)
-    values (#{menuKy,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, 
+    values (#{menuKy,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{htmlUrl,jdbcType=VARCHAR}, 
       #{name,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, #{request,jdbcType=CHAR}, 
       #{attribute,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, 
       #{sort,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{addTime,jdbcType=TIMESTAMP}, 
@@ -96,6 +97,9 @@
       </if>
       <if test="url != null">
         url,
+      </if>
+      <if test="htmlUrl != null">
+        htmlUrl,
       </if>
       <if test="name != null">
         name,
@@ -138,6 +142,9 @@
       <if test="url != null">
         #{url,jdbcType=VARCHAR},
       </if>
+      <if test="htmlUrl != null">
+        #{htmlUrl,jdbcType=VARCHAR},
+      </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
@@ -179,6 +186,9 @@
       <if test="url != null">
         url = #{url,jdbcType=VARCHAR},
       </if>
+      <if test="htmlUrl != null">
+        url = #{htmlUrl,jdbcType=VARCHAR},
+      </if>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
@@ -216,6 +226,7 @@
     update sys_menu
     set pid = #{pid,jdbcType=INTEGER},
       url = #{url,jdbcType=VARCHAR},
+      htmlUrl = #{htmlUrl,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       image = #{image,jdbcType=VARCHAR},
       request = #{request,jdbcType=CHAR},

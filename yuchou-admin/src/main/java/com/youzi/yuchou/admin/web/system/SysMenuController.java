@@ -95,7 +95,10 @@ public class SysMenuController extends BaseController {
 	@Auth 
 	@GetMapping("/list")
 	public RestResponse<Object> findAll(HttpServletRequest request) throws Exception{
-		RestResponse<Object> page = menuService.findAll(new PageInfo(request.getParameterMap()));
+		PageInfo pageInfo = new PageInfo(request.getParameterMap());
+		pageInfo.getParamsMap().put("orderByClause", "order");
+		pageInfo.getParamsMap().put("sort", "asc");
+		RestResponse<Object> page = menuService.findAll(pageInfo);
 		return page;
 	}
 }

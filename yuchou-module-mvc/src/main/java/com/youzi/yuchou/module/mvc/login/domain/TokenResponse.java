@@ -8,7 +8,15 @@ public class TokenResponse implements Serializable {
 	
 	private String code;
 	private String message;
+	private String token;
 	
+	
+	public String getToken() {
+		return token;
+	}
+	public void setToken(String token) {
+		this.token = token;
+	}
 	public TokenResponse() {
 		super();
 	}
@@ -16,6 +24,13 @@ public class TokenResponse implements Serializable {
 		super();
 		this.code = code;
 		this.message = message;
+	}
+	
+	public TokenResponse(String code, String message, String token) {
+		super();
+		this.code = code;
+		this.message = message;
+		this.token = token;
 	}
 	public String getCode() {
 		return code;
