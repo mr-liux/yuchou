@@ -22,7 +22,7 @@ public class SwaggerConfig {
 				initContextInfo(), // 简单的描述
 				"1.0.0", // 版本
 				"服务条款", "后台开发团队", // 作者
-				"上海（御筹）科技有限公司", // 链接显示文字
+				"御筹（上海）科技有限公司", // 链接显示文字
 				""// 网站链接
 		);
 		return apiInfo;
