@@ -1,13 +1,9 @@
 package com.youzi.yuchou.admin.web;
 
+import com.youzi.yuchou.module.redis.config.CacheAutoConfig;
+import com.youzi.yuchou.module.redis.config.RedisKey;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.github.pagehelper.PageInfo;
 import com.youzi.yuchou.admin.service.UserService;
@@ -51,6 +47,23 @@ public class UserController extends BaseController {
 		PageInfo<TbUser> page = userService.findAll(searchForm);
 		
 		return buildSuccessed(page);
+	}
+
+	@GetMapping("/setRedis")
+	public RestResponse setRedis(){
+		CacheAutoConfig cacheAutoConfig = new CacheAutoConfig();
+		try {
+			cacheAutoConfig.put(RedisKey.TEST_AAAA, "aaaaaa");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@GetMapping("/getRedis")
+	public void getRedis(){
+		CacheAutoConfig cacheAutoConfig = new CacheAutoConfig();
+		logger.info(cacheAutoConfig.findByKey(RedisKey.TEST_AAAA).toString());
 	}
 
 }
