@@ -1,9 +1,11 @@
-package com.youzi.yuchou.module.redis.config;
+package com.youzi.yuchou.module.redis.service.impl;
 
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.youzi.yuchou.module.redis.config.ValueType;
+import com.youzi.yuchou.module.redis.service.RedisProxyService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;

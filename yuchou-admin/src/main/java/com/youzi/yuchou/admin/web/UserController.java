@@ -2,6 +2,7 @@ package com.youzi.yuchou.admin.web;
 
 import com.youzi.yuchou.module.redis.config.CacheAutoConfig;
 import com.youzi.yuchou.module.redis.config.RedisKey;
+import com.youzi.yuchou.module.redis.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,9 @@ public class UserController extends BaseController {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private RedisService redisService;
 
 	@PostMapping("/user")
 	public RestResponse<String> add(@RequestBody TbUser user) {
@@ -51,9 +55,8 @@ public class UserController extends BaseController {
 
 	@GetMapping("/setRedis")
 	public RestResponse setRedis(){
-		CacheAutoConfig cacheAutoConfig = new CacheAutoConfig();
 		try {
-			cacheAutoConfig.put(RedisKey.TEST_AAAA, "aaaaaa");
+			redisService.put(RedisKey.TEST_AAAA, "aaaaaa");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -62,8 +65,7 @@ public class UserController extends BaseController {
 
 	@GetMapping("/getRedis")
 	public void getRedis(){
-		CacheAutoConfig cacheAutoConfig = new CacheAutoConfig();
-		logger.info(cacheAutoConfig.findByKey(RedisKey.TEST_AAAA).toString());
+		logger.info(redisService.findByKey(RedisKey.TEST_AAAA).toString());
 	}
 
 }

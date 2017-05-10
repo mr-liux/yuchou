@@ -1,4 +1,6 @@
-package com.youzi.yuchou.module.redis.config;
+package com.youzi.yuchou.module.redis.service;
+
+import com.youzi.yuchou.module.redis.config.ValueType;
 
 import java.util.List;
 
