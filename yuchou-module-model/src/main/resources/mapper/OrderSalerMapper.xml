@@ -13,6 +13,37 @@
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="reserve1" jdbcType="VARCHAR" property="reserve1" />
   </resultMap>
+  
+  <select id="query" resultMap="BaseResultMap" >
+    SELECT
+    <include refid="Base_Column_List" />
+     FROM order_saler AS a  
+     <include refid="T_WHERE_QUERY" />
+     <if test="orderByClause != null" >
+     	 ORDER BY ${orderByClause} ${sort}
+     </if>
+     <if test="offset != null and offset >= 0 ">  
+               LIMIT  #{offset},
+           </if>    
+            <if test="pageSize != null and pageSize > 0 and offset >= 0">                
+                 #{pageSize}                           
+            </if>
+  </select>
+  <select id="count" resultType="int" >
+    SELECT count(*) FROM order_saler AS a 
+      <include refid="T_WHERE_QUERY" />
+  </select>
+  <sql id="T_WHERE_QUERY" >
+    <trim prefix="WHERE" prefixOverrides="AND " >
+      <if test="keyWord != null and '' != keyWord" >
+        AND (
+        	(a.name like '%' || #{keyWord} || '%') 
+        )	
+      </if>
+    </trim>
+  </sql>
+  
+  
   <sql id="Base_Column_List">
     id, order_id, name, uid, parent_uid, level, commission, status, add_time, reserve1
   </sql>

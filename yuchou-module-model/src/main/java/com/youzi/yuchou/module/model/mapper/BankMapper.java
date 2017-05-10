@@ -19,7 +19,8 @@ public interface BankMapper {
     int updateByPrimaryKey(Bank record);
     
     List<Bank> query(Map<String, Object> conditionMap);
-
+    
     int count(Map<String, Object> keyWord);
     
+    List<Bank> querylistAll(Map<String, Object> conditionMap);
 }

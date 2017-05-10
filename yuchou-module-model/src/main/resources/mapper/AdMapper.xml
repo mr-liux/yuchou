@@ -23,6 +23,36 @@
     ad_id, ad_locat_id, title, description, color, pic, url, sort, user_ky, is_user_ky, 
     upd_user_ky, status, add_time, upd_time, release_time, reserve1
   </sql>
+  
+  <select id="query" resultMap="BaseResultMap" >
+    SELECT
+    <include refid="Base_Column_List" />
+     FROM ad AS a  
+     <include refid="T_WHERE_QUERY" />
+     <if test="orderByClause != null" >
+     	 ORDER BY ${orderByClause} ${sort}
+     </if>
+     <if test="offset != null and offset >= 0 ">  
+               LIMIT  #{offset},
+           </if>    
+            <if test="pageSize != null and pageSize > 0 and offset >= 0">                
+                 #{pageSize}                           
+            </if>
+  </select>
+  <select id="count" resultType="int" >
+    SELECT count(*) FROM ad AS a 
+      <include refid="T_WHERE_QUERY" />
+  </select>
+  <sql id="T_WHERE_QUERY" >
+    <trim prefix="WHERE" prefixOverrides="AND " >
+      <if test="keyWord != null and '' != keyWord" >
+        AND (
+        	(a.title  like '%' || #{keyWord} || '%') 
+        )	
+      </if>
+    </trim>
+  </sql>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

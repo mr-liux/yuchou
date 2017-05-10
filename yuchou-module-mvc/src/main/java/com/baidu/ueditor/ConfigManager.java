@@ -177,14 +177,37 @@ public final class ConfigManager {
 	private String configJsonPath;
 
 //	new ClassPathResource("config/config.json")
-	private String getConfigPath () {
+/*	private String getConfigPath () {
 //		Resource rs = new ClassPathResource("config/config.json");
 //		String filePath = ConfigManager.class.getClassLoader().getResource("/resources/config/"+ ConfigManager.configFileName).getPath();
 //		return this.parentPath + File.separator + ConfigManager.configFileName;
 		return "D:\\nginx\\shangcheng\\nginx\\html\\data\\html\\static\\js\\ueditor\\jsp" + File.separator + ConfigManager.configFileName;
 //		return filePath;
+	}*/
+	public static String getConfigPath () {
+		String currentClassPath =ConfigManager.class.getResource("/config/config.json").getPath();
+		try {
+            String encoding="UTF-8";
+            File file=new File(currentClassPath);
+            if(file.isFile() && file.exists()){ //判断文件是否存在
+                InputStreamReader read = new InputStreamReader(
+                new FileInputStream(file),encoding);//考虑到编码格式
+                BufferedReader bufferedReader = new BufferedReader(read);
+                String lineTxt = null;
+                while((lineTxt = bufferedReader.readLine()) != null){
+                    System.out.println(lineTxt);
+                }
+                read.close();
+		    }else{
+		        System.out.println("找不到指定的文件");
+		    }
+		    } catch (Exception e) {
+		        System.out.println("读取文件内容出错");
+		        e.printStackTrace();
+		    }
+		
+		return currentClassPath;
 	}
-
 	private String[] getArray ( String key ) {
 		
 		JSONArray jsonArray = this.jsonConfig.getJSONArray( key );

@@ -49,9 +49,9 @@ public class BankRepository {
 	 * 根据主键查询
 	 * @author 背包
 	 * @param bank
-	 * @ Cacheable(value = "bank", key = "#id") 是将对象为id的数据存入缓存中
+	 * @ Cacheable(value = "bank", key = "#id", unless = "#result == null") 是将对象为id的数据存入缓存中
 	 */
-	@Cacheable(value = "bank", key = "#id", unless = "#result == null")
+	@Cacheable(value = "bank", key = "#id")
 	public Bank selectByPrimaryKey(Integer id) {
 		return bankMapper.selectByPrimaryKey(id);
 	}

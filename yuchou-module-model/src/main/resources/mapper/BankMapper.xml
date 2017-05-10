@@ -15,7 +15,7 @@
     SELECT
     <include refid="Base_Column_List" />
      FROM bank a  
-     <include refid="T_CMS_AD_QUERY" />
+     <include refid="T_WHERE_QUERY" />
      <if test="orderByClause != null" >
      	 ORDER BY ${orderByClause} ${sort}
      </if>
@@ -29,7 +29,7 @@
   
   <select id="count" resultType="int" >
     SELECT count(*) FROM bank a 
-      <include refid="T_CMS_AD_QUERY" />
+      <include refid="T_WHERE_QUERY" />
   </select>
   
   <select id="querylimit" resultMap="BaseResultMap" >
@@ -43,8 +43,17 @@
      	 LIMIT ${limit}
     </if>
   </select>
-  
-  <sql id="T_CMS_AD_QUERY" >
+   <select id="querylistAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bank AS a
+    <trim prefix="WHERE" prefixOverrides="AND " >
+      <if test="type != null and '' != type" >
+        AND a.type =  #{type}	
+      </if>
+    </trim>
+  </select>
+  <sql id="T_WHERE_QUERY" >
     <trim prefix="WHERE" prefixOverrides="AND " >
       <if test="keyWord != null and '' != keyWord" >
         AND (

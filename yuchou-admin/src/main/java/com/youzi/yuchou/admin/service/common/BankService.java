@@ -85,6 +85,21 @@ public class BankService extends BaseService {
 		page.addExtData("pageInfo", pageInfo);
 		return page;
 	}
+	/**
+	 * 查询全部
+	 * @author 背包
+	 */
+	public RestResponse<Object> querylistAll(String type) {
+		RestResponse<Object> page = new RestResponse<Object>();
+		Map<String, Object> conditionMap = new HashMap<String, Object>();
+		if(type!=null && type!=""){
+			conditionMap.put("type", type);
+		}
+		List<Bank> list = bankMapper.querylistAll(conditionMap);
+		page.setSuccess(true);
+		page.setData(list);
+		return page;
+	}
 	
 	
 }
