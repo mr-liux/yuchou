@@ -82,7 +82,9 @@ public class SysUserController extends BaseController {
 	@GetMapping("/{id}")
 	public SysUsers findById(@PathVariable Integer id) {
 		SysUsers u = userService.findById(id);
-		u.setPassword(null);
+		if(u!=null){
+			u.setPassword(null);
+		}
 		return u;
 	}
 
@@ -95,6 +97,7 @@ public class SysUserController extends BaseController {
 			@ApiImplicitParam(name = "name", value="姓名",required = false, dataType = "String", paramType = "query"),
 			@ApiImplicitParam(name = "userId", value="用户名",required = false, dataType = "String", paramType = "query"),
 			@ApiImplicitParam(name = "companyKy",value="公司ID",required = false, dataType = "int", paramType = "query"),
+			@ApiImplicitParam(name = "status",value="用户状态，1正常 0删除",required = false, dataType = "int", paramType = "query"),
 			@ApiImplicitParam(name = "X-AUTH-TOKEN",value="权限token",required = true, dataType = "Sting", paramType = "header")})
 	@Auth 
 	@GetMapping("/list")

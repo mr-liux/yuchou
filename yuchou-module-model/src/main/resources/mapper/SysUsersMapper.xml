@@ -30,13 +30,16 @@
   <sql id="T_CMS_AD_QUERY" >
     <trim prefix="WHERE" prefixOverrides="AND " >
       <if test="userId != null and '' != userId" >
-        AND userId = #{userId}
+        AND (user_id like '%${userId}%')
       </if>
       <if test="name != null and '' != name" >
         AND (name like '%${name}%') 
       </if>
       <if test="companyKy != null and '' != companyKy" >
-        AND companyKy = #{companyKy} 
+        AND company_ky = #{companyKy} 
+      </if>
+      <if test="status != null and '' != status" >
+        AND status = #{status} 
       </if>
       
     </trim>
@@ -64,7 +67,7 @@
   </select>
   
   <sql id="Base_Column_List">
-    user_ky, user_id,  name, company_ky, org_ky, job_ky, mobile_phone, phone, 
+    user_ky, user_id,  name, company_ky,companyName, org_ky,orgName, job_ky,jobName, mobile_phone, phone, 
     email, service_num, manage_flag, manage_parents, status, add_time, upd_time, last_login_ip, 
     last_login_num, reserve1, reserve2
   </sql>

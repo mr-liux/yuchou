@@ -88,8 +88,8 @@ public class SysCompanyController extends BaseController {
 	
 	@ApiOperation(value = "分页条件查找公司信息",notes="分页条件查找公司信息", httpMethod = "GET", response = RestResponse.class)
 	@ApiImplicitParams({
-			@ApiImplicitParam(name = "cpage", value="当前页",required = true, dataType = "int", paramType = "query"),
-			@ApiImplicitParam(name = "pagesize", value="每页显示几条",required = true, dataType = "int", paramType = "query"),
+			@ApiImplicitParam(name = "cpage", value="当前页",required = false, dataType = "int", paramType = "query"),
+			@ApiImplicitParam(name = "pagesize", value="每页显示几条,如果将此参数设置为-1，则查询全部",required = true, dataType = "int", paramType = "query"),
 			@ApiImplicitParam(name = "name", value="公司名",required = false, dataType = "String", paramType = "query"),
 			@ApiImplicitParam(name = "X-AUTH-TOKEN",value="权限token",required = true, dataType = "Sting", paramType = "header")})
 	@Auth 

@@ -78,11 +78,15 @@ public class PageInfo implements Serializable {
 				if(this.paramsMap.get(PageInfo.PAGE_SIZE_KEY)!=null&&this.paramsMap.get(PageInfo.CURRENT_PAGE_KEY)!=null){
 					this.paramsMap.remove(PageInfo.PAGE_SIZE_KEY);
 					this.paramsMap.remove(PageInfo.CURRENT_PAGE_KEY);
-					this.paramsMap.put("currentPage", currentPage);
-					this.paramsMap.put("startRow", getStartRow());
-					this.paramsMap.put("endRow", getEndRow());
-					this.paramsMap.put("offset", getStartRow()-1);
-					this.paramsMap.put("pageSize", getPageSize());
+					if(this.pageSize == -1){
+						
+					}else{
+						this.paramsMap.put("currentPage", currentPage);
+						this.paramsMap.put("startRow", getStartRow());
+						this.paramsMap.put("endRow", getEndRow());
+						this.paramsMap.put("offset", getStartRow()-1);
+						this.paramsMap.put("pageSize", getPageSize());
+					}
 				}
 			} catch (Exception e) {
 				throw new ServiceException(ExceptionStaticEnum.ERROR_PARAMS.getCode(),ExceptionStaticEnum.ERROR_PARAMS.getMessage());
