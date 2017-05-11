@@ -3,6 +3,7 @@ package com.youzi.yuchou.admin.web.system;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +29,7 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("/admin/system/user")
 public class SysUserController extends AdminBaseController {
-	
+	@Autowired
 	private SysUserService userService;
 	
 	@ApiOperation(value = "新增用户信息",notes="通过body传入新增用户信息", httpMethod = "POST", response = RestResponse.class)
