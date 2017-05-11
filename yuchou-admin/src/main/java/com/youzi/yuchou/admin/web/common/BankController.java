@@ -31,7 +31,7 @@ import com.youzi.yuchou.module.mvc.web.BaseController;
 @Api(value = "API - BankController", description = "后台用户银行卡字典管理")
 @RequestMapping("/admin")
 @RestController
-public class BankController extends BaseController {
+public class BankController extends AdminBaseController {
 
 	@Autowired
 	BankService bankService;

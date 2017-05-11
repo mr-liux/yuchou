@@ -3,7 +3,6 @@ package com.youzi.yuchou.admin.web.system;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.youzi.yuchou.admin.service.system.SysUserService;
+import com.youzi.yuchou.admin.web.common.AdminBaseController;
 import com.youzi.yuchou.module.model.model.SysUsers;
 import com.youzi.yuchou.module.mvc.annotation.Auth;
 import com.youzi.yuchou.module.mvc.dto.RestResponse;
 import com.youzi.yuchou.module.mvc.form.PageInfo;
-import com.youzi.yuchou.module.mvc.web.BaseController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -28,17 +27,15 @@ import io.swagger.annotations.ApiOperation;
 @Api(value = "API - SysUserController", description = "后台用户信息处理")
 @RestController
 @RequestMapping("/admin/system/user")
-public class SysUserController extends BaseController {
-
-	@Autowired
-	private SysUserService userService;
+public class SysUserController extends AdminBaseController {
 	
+	private SysUserService userService;
 	
 	@ApiOperation(value = "新增用户信息",notes="通过body传入新增用户信息", httpMethod = "POST", response = RestResponse.class)
 	@ApiImplicitParam(name = "X-AUTH-TOKEN",value="权限token",required = true, dataType = "Sting", paramType = "header")
 	@Auth 
 	@PostMapping("/")
-	public RestResponse<String> add(@RequestBody SysUsers users){
+	public RestResponse<String> add(@RequestBody SysUsers users,HttpServletRequest request){
 		userService.add(users);
 		return buildDefaultSuccessed("新增成功");
 	}

@@ -5,13 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.youzi.yuchou.admin.service.common.AdminBaseService;
 import com.youzi.yuchou.module.model.mapper.SysOrgMapper;
 import com.youzi.yuchou.module.model.model.SysOrg;
 import com.youzi.yuchou.module.mvc.dto.RestResponse;
 import com.youzi.yuchou.module.mvc.form.PageInfo;
 
 @Service
-public class SysOrgService   {
+public class SysOrgService  extends AdminBaseService  {
 	@Autowired
 	private SysOrgMapper  orgMapper;
 	

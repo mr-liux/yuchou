@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.youzi.yuchou.admin.service.cms.AdService;
 import com.youzi.yuchou.admin.service.common.BankService;
+import com.youzi.yuchou.admin.web.common.AdminBaseController;
 import com.youzi.yuchou.module.model.condition.CommonKeyWordCondition;
 import com.youzi.yuchou.module.model.model.Ad;
 import com.youzi.yuchou.module.model.model.Bank;
@@ -33,7 +34,7 @@ import com.youzi.yuchou.module.mvc.web.BaseController;
 @Api(value = "API - AdController", description = "后台广告")
 @RequestMapping("/admin")
 @RestController
-public class AdController extends BaseController {
+public class AdController extends AdminBaseController {
 
 	@Autowired
 	AdService adService;
@@ -42,7 +43,8 @@ public class AdController extends BaseController {
 	@ApiOperation(value = "新增广告信息",notes="通过body传入新增信息", httpMethod = "POST", response = RestResponse.class)
 	@ApiImplicitParam(name = "X-AUTH-TOKEN",value="权限token",required = true, dataType = "Sting", paramType = "header")
 	@PostMapping("/ad/insert")
-	public RestResponse<String> add(@RequestBody Ad ad){
+	public RestResponse<String> add(@RequestBody Ad ad,HttpServletRequest request){
+		ad.setUserKy(super.getLoginUid(request));
 		adService.add(ad);
 		return buildDefaultSuccessed("新增成功");
 	}

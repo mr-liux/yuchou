@@ -1,29 +1,18 @@
 
 package com.youzi.yuchou.admin.service.cms;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import javax.swing.text.Utilities;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.youzi.yuchou.admin.repository.BankRepository;
-import com.youzi.yuchou.module.model.condition.CommonKeyWordCondition;
+import com.youzi.yuchou.admin.service.common.AdminBaseService;
 import com.youzi.yuchou.module.model.mapper.AdMapper;
-import com.youzi.yuchou.module.model.mapper.BankMapper;
 import com.youzi.yuchou.module.model.model.Ad;
-import com.youzi.yuchou.module.model.model.Bank;
 import com.youzi.yuchou.module.mvc.dto.RestResponse;
 import com.youzi.yuchou.module.mvc.form.PageInfo;
-import com.youzi.yuchou.module.mvc.service.BaseService;
 import com.youzi.yuchou.module.mvc.utils.CommonUtils;
-import com.youzi.yuchou.module.mvc.utils.StringUtil;
 
 /**
  * 广告表
@@ -31,7 +20,7 @@ import com.youzi.yuchou.module.mvc.utils.StringUtil;
  * @date 创建时间：2017年5月10日 下午12:16:31
  */
 @Service
-public class AdService extends BaseService {
+public class AdService extends AdminBaseService {
 
 	@Autowired
 	private AdMapper adMapper;

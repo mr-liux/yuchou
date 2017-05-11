@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.youzi.yuchou.admin.service.system.SysMenuService;
+import com.youzi.yuchou.admin.web.common.AdminBaseController;
 import com.youzi.yuchou.module.model.model.SysMenu;
 import com.youzi.yuchou.module.mvc.annotation.Auth;
 import com.youzi.yuchou.module.mvc.dto.RestResponse;
 import com.youzi.yuchou.module.mvc.form.PageInfo;
-import com.youzi.yuchou.module.mvc.web.BaseController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -28,7 +28,7 @@ import io.swagger.annotations.ApiOperation;
 @Api(value = "API - SysMenuController", description = "后台菜单信息处理")
 @RestController
 @RequestMapping("/admin/system/menu")
-public class SysMenuController extends BaseController {
+public class SysMenuController extends AdminBaseController {
 
 	@Autowired
 	private SysMenuService menuService;

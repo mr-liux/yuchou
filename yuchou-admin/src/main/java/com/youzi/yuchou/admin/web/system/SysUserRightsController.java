@@ -2,22 +2,23 @@ package com.youzi.yuchou.admin.web.system;
 
 
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.youzi.yuchou.admin.web.common.AdminBaseController;
 import com.youzi.yuchou.admin.web.system.domain.request.UserRightsRequest;
 import com.youzi.yuchou.admin.web.system.domain.response.TreeEntityResponse;
 import com.youzi.yuchou.admin.service.system.SysUserRightsService;
 import com.youzi.yuchou.module.model.model.SysMenu;
 import com.youzi.yuchou.module.mvc.annotation.Auth;
 import com.youzi.yuchou.module.mvc.dto.RestResponse;
-import com.youzi.yuchou.module.mvc.web.BaseController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -27,7 +28,7 @@ import io.swagger.annotations.ApiOperation;
 @Api(value = "API - SysUserRightsController", description = "后台权限处理接口")
 @RestController
 @RequestMapping("/admin/system/right")
-public class SysUserRightsController extends BaseController {
+public class SysUserRightsController extends AdminBaseController {
 
 	@Autowired
 	private SysUserRightsService rightsService;

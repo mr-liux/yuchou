@@ -1,6 +1,5 @@
 package com.youzi.yuchou.admin.web;
 
-import com.youzi.yuchou.module.redis.config.CacheAutoConfig;
 import com.youzi.yuchou.module.redis.config.RedisKey;
 import com.youzi.yuchou.module.redis.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,13 +53,12 @@ public class UserController extends BaseController {
 	}
 
 	@GetMapping("/setRedis")
-	public RestResponse setRedis(){
+	public void setRedis(){
 		try {
 			redisService.put(RedisKey.TEST_AAAA, "aaaaaa");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
 	}
 
 	@GetMapping("/getRedis")

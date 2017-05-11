@@ -26,7 +26,9 @@ public class UserTokenManager {
 	public  static int errorCountLimit = 3;	//连续登录错误次数超过设置值则锁定账号
 	public  static int sessionTimeOut =600;   //session超时时间   单位秒
 	
-
+	public static TokenInfo getToken(String token){
+		return userTokenMap.get(token);
+	}
 	
 	/**
 	 * 判断Token是否有效

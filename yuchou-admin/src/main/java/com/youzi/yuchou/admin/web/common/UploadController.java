@@ -17,7 +17,7 @@ import com.youzi.yuchou.module.mvc.img.UploadImage;
 
 @RestController
 @RequestMapping("/upload")
-public class UploadController {
+public class UploadController extends AdminBaseController {
 
 protected Logger logger = LoggerFactory.getLogger(getClass());
 	

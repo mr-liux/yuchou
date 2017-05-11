@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.youzi.yuchou.admin.service.system.SysOrgService;
+import com.youzi.yuchou.admin.web.common.AdminBaseController;
 import com.youzi.yuchou.module.model.model.SysOrg;
 import com.youzi.yuchou.module.mvc.annotation.Auth;
 import com.youzi.yuchou.module.mvc.dto.RestResponse;
 import com.youzi.yuchou.module.mvc.form.PageInfo;
-import com.youzi.yuchou.module.mvc.web.BaseController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -28,7 +28,7 @@ import io.swagger.annotations.ApiOperation;
 @Api(value = "API - SysOrgController", description = "后台部门信息处理")
 @RestController
 @RequestMapping("/admin/system/org")
-public class SysOrgController extends BaseController {
+public class SysOrgController extends AdminBaseController {
 
 	@Autowired
 	private SysOrgService orgService;

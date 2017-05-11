@@ -2,10 +2,8 @@ package com.youzi.yuchou.admin.web.common;
 
 import com.youzi.yuchou.admin.service.common.ProvCityAreaStreetService;
 import com.youzi.yuchou.module.model.model.ProvCityAreaStreet;
-import com.youzi.yuchou.module.model.model.SysUsers;
 import com.youzi.yuchou.module.mvc.annotation.Auth;
 import com.youzi.yuchou.module.mvc.dto.RestResponse;
-import com.youzi.yuchou.module.mvc.web.BaseController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,14 +13,13 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
-import javax.servlet.http.HttpServletRequest;
 
 import java.util.List;
 
 @Api(value = "API - ProvCityAreaStreetController", description = "后台查询省市4级联动")
 @RequestMapping("/admin")
 @RestController
-public class ProvCityAreaStreetController extends BaseController {
+public class ProvCityAreaStreetController extends AdminBaseController {
 
 	@Autowired
 	ProvCityAreaStreetService provCityAreaStreetService;

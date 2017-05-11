@@ -4,24 +4,20 @@ package com.youzi.yuchou.admin.service.order;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.youzi.yuchou.admin.repository.OrderSalerRepository;
+import com.youzi.yuchou.admin.service.common.AdminBaseService;
 import com.youzi.yuchou.core.enums.CommonStatusEnum;
 import com.youzi.yuchou.module.model.mapper.OrderSalerMapper;
 import com.youzi.yuchou.module.model.model.OrderSaler;
-import com.youzi.yuchou.module.model.model.SysUsers;
 import com.youzi.yuchou.module.mvc.dto.RestResponse;
 import com.youzi.yuchou.module.mvc.form.PageInfo;
-import com.youzi.yuchou.module.mvc.service.BaseService;
-import com.youzi.yuchou.module.mvc.utils.CommonUtils;
 
 @Service
 @Transactional
-public class OrderSalerService extends BaseService {
+public class OrderSalerService extends AdminBaseService {
 
 	@Autowired
 	private OrderSalerMapper orderSalerMapper;

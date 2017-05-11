@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import com.youzi.yuchou.module.mvc.dto.RestResponse;
 
-public class BaseService {
+public abstract class BaseService {
 	protected Logger logger = LoggerFactory.getLogger(getClass());
 
 //	@Autowired

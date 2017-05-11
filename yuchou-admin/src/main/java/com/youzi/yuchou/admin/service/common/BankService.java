@@ -10,12 +10,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.youzi.yuchou.admin.repository.BankRepository;
-import com.youzi.yuchou.module.model.condition.CommonKeyWordCondition;
 import com.youzi.yuchou.module.model.mapper.BankMapper;
 import com.youzi.yuchou.module.model.model.Bank;
 import com.youzi.yuchou.module.mvc.dto.RestResponse;
 import com.youzi.yuchou.module.mvc.form.PageInfo;
-import com.youzi.yuchou.module.mvc.service.BaseService;
 
 /**
  * 银行卡字典
@@ -24,7 +22,7 @@ import com.youzi.yuchou.module.mvc.service.BaseService;
  */
 @Service
 @Transactional
-public class BankService extends BaseService {
+public class BankService extends AdminBaseService {
 
 	@Autowired
 	private BankMapper bankMapper;

@@ -3,7 +3,6 @@ package com.youzi.yuchou.admin.service.common;
 
 import com.youzi.yuchou.module.model.mapper.ProvCityAreaStreetMapper;
 import com.youzi.yuchou.module.model.model.ProvCityAreaStreet;
-import com.youzi.yuchou.module.mvc.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -16,7 +15,7 @@ import java.util.List;
  * @date 创建时间：2017年4月26日 下午4:03:34
  */
 @Service
-public class ProvCityAreaStreetService extends BaseService {
+public class ProvCityAreaStreetService extends AdminBaseService {
 
 	@Autowired
 	private ProvCityAreaStreetMapper provCityAreaStreetMapper;

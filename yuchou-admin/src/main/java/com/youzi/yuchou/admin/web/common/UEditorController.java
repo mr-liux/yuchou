@@ -16,7 +16,7 @@ import com.baidu.ueditor.ActionEnter;
 
 @RestController
 @RequestMapping("/ued")
-public class UEditorController {
+public class UEditorController extends AdminBaseController {
 
 	protected Logger logger = LoggerFactory.getLogger(getClass());
 	

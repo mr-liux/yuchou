@@ -7,13 +7,14 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import com.youzi.yuchou.admin.service.common.AdminBaseService;
 import com.youzi.yuchou.module.model.mapper.SysMenuMapper;
 import com.youzi.yuchou.module.model.model.SysMenu;
 import com.youzi.yuchou.module.mvc.dto.RestResponse;
 import com.youzi.yuchou.module.mvc.form.PageInfo;
 
 @Service
-public class SysMenuService   {
+public class SysMenuService extends AdminBaseService   {
 	@Autowired
 	private SysMenuMapper  menuMapper;
 	

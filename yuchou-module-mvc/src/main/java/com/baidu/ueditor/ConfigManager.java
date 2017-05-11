@@ -13,8 +13,6 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 
 import com.baidu.ueditor.define.ActionMap;
 
@@ -172,42 +170,17 @@ public final class ConfigManager {
 		}
 		
 	}
-//	@Value("${spring.redis.host:a}")
+	
 	@Value("${com.config.json:a}")
 	private String configJsonPath;
 
-//	new ClassPathResource("config/config.json")
-/*	private String getConfigPath () {
-//		Resource rs = new ClassPathResource("config/config.json");
-//		String filePath = ConfigManager.class.getClassLoader().getResource("/resources/config/"+ ConfigManager.configFileName).getPath();
-//		return this.parentPath + File.separator + ConfigManager.configFileName;
-		return "D:\\nginx\\shangcheng\\nginx\\html\\data\\html\\static\\js\\ueditor\\jsp" + File.separator + ConfigManager.configFileName;
-//		return filePath;
-	}*/
+
 	public static String getConfigPath () {
-		String currentClassPath =ConfigManager.class.getResource("/config/config.json").getPath();
-		try {
-            String encoding="UTF-8";
-            File file=new File(currentClassPath);
-            if(file.isFile() && file.exists()){ //判断文件是否存在
-                InputStreamReader read = new InputStreamReader(
-                new FileInputStream(file),encoding);//考虑到编码格式
-                BufferedReader bufferedReader = new BufferedReader(read);
-                String lineTxt = null;
-                while((lineTxt = bufferedReader.readLine()) != null){
-                    System.out.println(lineTxt);
-                }
-                read.close();
-		    }else{
-		        System.out.println("找不到指定的文件");
-		    }
-		    } catch (Exception e) {
-		        System.out.println("读取文件内容出错");
-		        e.printStackTrace();
-		    }
-		
-		return currentClassPath;
+		//return this.parentPath + File.separator + ConfigManager.configFileName;
+		 
+		return ConfigManager.class.getResource("/config/"+configFileName).getPath();
 	}
+	
 	private String[] getArray ( String key ) {
 		
 		JSONArray jsonArray = this.jsonConfig.getJSONArray( key );
