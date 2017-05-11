@@ -3,8 +3,6 @@ package com.youzi.yuchou.admin.service.system;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.youzi.yuchou.admin.service.common.AdminBaseService;
@@ -24,21 +22,18 @@ public class SysMenuService extends AdminBaseService   {
 		}
 		return false;
 	}
-	@CacheEvict(value = "sys_menus", key = "#id")
 	public boolean delete(Integer id) {
 		if(menuMapper.updateByStatus(id)>0){
 			return true;
 		}
 		return false;
 	}
-	@CacheEvict(value = "sys_menus", key = "#menu.userKy")
 	public boolean update(SysMenu menu) {
 		if(menuMapper.updateByPrimaryKey(menu)>0){
 			return true;
 		}
 		return false;
 	}
-	@Cacheable(value = "sys_menus", key = "#id")
 	public SysMenu findById(Integer id) {
 		SysMenu menu= menuMapper.selectByPrimaryKey(id);
 		 return menu;

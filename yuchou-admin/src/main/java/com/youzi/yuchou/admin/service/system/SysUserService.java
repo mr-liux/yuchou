@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.youzi.yuchou.admin.common.login.domain.User;
@@ -29,7 +27,6 @@ public class SysUserService  extends AdminBaseService  implements TokenUserServi
 		return false;
 	}
 
-	@CacheEvict(value = "sys_users", key = "#id")
 	public boolean delete(Integer id) {
 		if(userMapper.deleteByPrimaryKey(id)>0){
 			return true;
@@ -37,7 +34,6 @@ public class SysUserService  extends AdminBaseService  implements TokenUserServi
 		return false;
 	}
 
-	@CacheEvict(value = "sys_users", key = "#users.userKy")
 	public boolean update(SysUsers users) {
 		if(userMapper.updateByPrimaryKey(users)>0){
 			return true;
@@ -45,7 +41,6 @@ public class SysUserService  extends AdminBaseService  implements TokenUserServi
 		return false;
 	}
 
-	@Cacheable(value = "sys_users", key = "#id")
 	public SysUsers findById(Integer id) {
 		return userMapper.selectByPrimaryKey(id);
 	}
