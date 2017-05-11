@@ -5,13 +5,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.youzi.yuchou.admin.common.login.UserTokenManager;
+import com.youzi.yuchou.admin.common.login.domain.TokenInfo;
 import com.youzi.yuchou.admin.service.system.SysUserService;
 import com.youzi.yuchou.core.exception.AuthException;
 import com.youzi.yuchou.core.exception.ExceptionStaticEnum;
 import com.youzi.yuchou.module.model.model.SysUsers;
 import com.youzi.yuchou.module.mvc.common.LocalStaticValue;
-import com.youzi.yuchou.module.mvc.login.UserTokenManager;
-import com.youzi.yuchou.module.mvc.login.domain.TokenInfo;
 @Service
 public class BaseUserService extends AdminBaseService {
 	@Autowired

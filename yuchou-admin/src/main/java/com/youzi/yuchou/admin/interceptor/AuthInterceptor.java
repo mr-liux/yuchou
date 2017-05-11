@@ -7,12 +7,12 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.youzi.yuchou.admin.common.login.UserTokenManager;
+import com.youzi.yuchou.admin.common.login.domain.TokenInfo;
 import com.youzi.yuchou.core.exception.AuthException;
 import com.youzi.yuchou.core.exception.ExceptionStaticEnum;
 import com.youzi.yuchou.module.mvc.annotation.Auth;
 import com.youzi.yuchou.module.mvc.common.LocalStaticValue;
-import com.youzi.yuchou.module.mvc.login.UserTokenManager;
-import com.youzi.yuchou.module.mvc.login.domain.TokenInfo;
 import com.youzi.yuchou.module.mvc.utils.NetworkUtils;
 
 import lombok.extern.slf4j.Slf4j;

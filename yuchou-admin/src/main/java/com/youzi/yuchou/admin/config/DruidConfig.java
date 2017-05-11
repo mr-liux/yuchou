@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
-import com.youzi.yuchou.module.mvc.login.UserTokenManager;
+import com.youzi.yuchou.admin.common.login.UserTokenManager;
 
 @Configuration
 public class DruidConfig {

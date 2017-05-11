@@ -1,4 +1,4 @@
-package com.youzi.yuchou.module.mvc.login.service.intf;
+package com.youzi.yuchou.admin.common.login.service.intf;
 
 import java.util.List;
 

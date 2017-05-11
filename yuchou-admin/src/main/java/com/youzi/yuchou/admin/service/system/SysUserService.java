@@ -8,13 +8,13 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import com.youzi.yuchou.admin.common.login.domain.User;
+import com.youzi.yuchou.admin.common.login.service.intf.TokenUserServiceIntf;
 import com.youzi.yuchou.admin.service.common.AdminBaseService;
 import com.youzi.yuchou.module.model.mapper.SysUsersMapper;
 import com.youzi.yuchou.module.model.model.SysUsers;
 import com.youzi.yuchou.module.mvc.dto.RestResponse;
 import com.youzi.yuchou.module.mvc.form.PageInfo;
-import com.youzi.yuchou.module.mvc.login.domain.User;
-import com.youzi.yuchou.module.mvc.login.service.intf.TokenUserServiceIntf;
 
 @Service
 public class SysUserService  extends AdminBaseService  implements TokenUserServiceIntf {

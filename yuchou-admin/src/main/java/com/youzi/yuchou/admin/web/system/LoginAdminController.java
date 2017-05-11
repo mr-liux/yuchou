@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.youzi.yuchou.admin.common.login.domain.LoginCommand;
+import com.youzi.yuchou.admin.common.login.domain.TokenResponse;
+import com.youzi.yuchou.admin.common.login.service.TokenService;
 import com.youzi.yuchou.admin.web.common.AdminBaseController;
 import com.youzi.yuchou.module.mvc.common.LocalStaticValue;
-import com.youzi.yuchou.module.mvc.login.domain.LoginCommand;
-import com.youzi.yuchou.module.mvc.login.domain.TokenResponse;
-import com.youzi.yuchou.module.mvc.login.service.TokenService;
 import com.youzi.yuchou.module.mvc.utils.NetworkUtils;
 
 import io.swagger.annotations.Api;

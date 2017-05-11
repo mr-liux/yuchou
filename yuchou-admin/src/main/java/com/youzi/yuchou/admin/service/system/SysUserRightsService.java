@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.youzi.yuchou.admin.common.login.service.intf.TokenRightServiceIntf;
 import com.youzi.yuchou.admin.service.common.AdminBaseService;
 import com.youzi.yuchou.admin.web.system.domain.response.TreeEntityResponse;
 import com.youzi.yuchou.module.model.mapper.SysMenuMapper;
 import com.youzi.yuchou.module.model.mapper.SysUserMenuMapper;
 import com.youzi.yuchou.module.model.model.SysMenu;
 import com.youzi.yuchou.module.model.model.SysUserMenu;
-import com.youzi.yuchou.module.mvc.login.service.intf.TokenRightServiceIntf;
 
 @Service
 @Transactional

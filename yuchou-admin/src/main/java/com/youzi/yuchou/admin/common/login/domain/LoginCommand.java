@@ -1,4 +1,4 @@
-package com.youzi.yuchou.module.mvc.login.domain;
+package com.youzi.yuchou.admin.common.login.domain;
 
 
 import java.io.Serializable;
