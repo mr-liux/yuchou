@@ -19,11 +19,9 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class AuthInterceptor implements HandlerInterceptor {
-	
-	
+
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws Exception {
+	public boolean preHandle(HttpServletRequest request,HttpServletResponse response, Object handler) throws Exception {
 		if (handler instanceof HandlerMethod) {
 			HandlerMethod method = (HandlerMethod) handler;
 			Auth auth = method.getMethodAnnotation(Auth.class);
@@ -32,52 +30,63 @@ public class AuthInterceptor implements HandlerInterceptor {
 				log.info("start auth ...");
 				String token = request.getHeader(LocalStaticValue.AUTH_TOKEN);
 				String ip = NetworkUtils.getIpAddress(request);
-				if(token==null){
+				if (token == null) {
 					throw new AuthException(
 							ExceptionStaticEnum.ERROR_NO_LOGIN.getCode(),
 							ExceptionStaticEnum.ERROR_NO_LOGIN.getMessage());
-				}else{
-					TokenInfo tokenInfo = UserTokenManager.userTokenMap.get(token);
-					if(tokenInfo!=null){
+				} else {
+					TokenInfo tokenInfo = UserTokenManager.userTokenMap
+							.get(token);
+					if (tokenInfo != null) {
 						long curTime = System.currentTimeMillis();
-						if((int)(curTime - tokenInfo.getLastVisitTime())>UserTokenManager.sessionTimeOut*1000){
+						if ((int) (curTime - tokenInfo.getLastVisitTime()) > UserTokenManager.sessionTimeOut * 1000) {
 							UserTokenManager.removeToken(token);
 							throw new AuthException(
 									ExceptionStaticEnum.ERROR_TIMEOUT.getCode(),
-									ExceptionStaticEnum.ERROR_TIMEOUT.getMessage());
-						}else{
-							if(ip!=null){
-								if(!ip.equals(tokenInfo.getSid())){
+									ExceptionStaticEnum.ERROR_TIMEOUT
+											.getMessage());
+						} else {
+							if (ip != null) {
+								if (!ip.equals(tokenInfo.getSid())) {
 									UserTokenManager.removeToken(token);
 									throw new AuthException(
-											ExceptionStaticEnum.ERROR_INVALID_SID.getCode(),
-											ExceptionStaticEnum.ERROR_INVALID_SID.getMessage());
+											ExceptionStaticEnum.ERROR_INVALID_SID
+													.getCode(),
+											ExceptionStaticEnum.ERROR_INVALID_SID
+													.getMessage());
 								}
 							}
-							//更新最后一次访问时间
-							UserTokenManager.userTokenMap.get(token).setLastVisitTime(System.currentTimeMillis());
-							request.setAttribute(LocalStaticValue.UID, tokenInfo.getUid());
+							// 更新最后一次访问时间
+							UserTokenManager.userTokenMap.get(token)
+									.setLastVisitTime(
+											System.currentTimeMillis());
+							request.setAttribute(LocalStaticValue.UID,
+									tokenInfo.getUid());
 						}
-					}else{
+					} else {
 						throw new AuthException(
-								ExceptionStaticEnum.ERROR_NO_INVALID_TOKEN.getCode(),
-								ExceptionStaticEnum.ERROR_NO_INVALID_TOKEN.getMessage());
+								ExceptionStaticEnum.ERROR_NO_INVALID_TOKEN
+										.getCode(),
+								ExceptionStaticEnum.ERROR_NO_INVALID_TOKEN
+										.getMessage());
 					}
 				}
-				
+
 			}
 		}
 		return true;
 	}
 
 	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+	public void postHandle(HttpServletRequest request,
+			HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 
 	}
 
 	@Override
-	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+	public void afterCompletion(HttpServletRequest request,
+			HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
 
 	}
