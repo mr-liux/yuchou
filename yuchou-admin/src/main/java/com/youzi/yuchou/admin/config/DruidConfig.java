@@ -1,5 +1,7 @@
 package com.youzi.yuchou.admin.config;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
@@ -8,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
+import com.youzi.yuchou.admin.common.login.UserTokenManager;
 
 @Configuration
 public class DruidConfig {
@@ -18,15 +21,28 @@ public class DruidConfig {
 
 	@Value("${druid.loginPassword:admin}")
 	private String loginPassword;
-
+ 
 	@Value("${druid.resetEnable:true}")
 	private String resetEnable;
-
+	
+	@Value("${login.admin.startErrorLocked:false}")
+	public  boolean startErrorLocked;
+	
+	@Value("${login.admin.errorLoginLockedTime:10}")
+	public  Integer errorLoginLockedTime;
+	
+	
+	@Value("${login.admin.errorCountLimit:3}")
+	public  Integer errorCountLimit;
+	
+	@Value("${login.admin.sessionTimeOut:600}")
+	public  Integer sessionTimeOut;
 	@Bean
 	public FilterRegistrationBean webStatFilter() {
 		FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
 		filterRegistrationBean.setFilter(new WebStatFilter());
 		filterRegistrationBean.addUrlPatterns("/*");
+		//测试
 		filterRegistrationBean.addInitParameter("exclusions", "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*");
 		return filterRegistrationBean;
 	}
@@ -41,5 +57,12 @@ public class DruidConfig {
 		registrationBean.addInitParameter("loginPassword", loginPassword);
 		return registrationBean;
 	}
-
+	
+	@PostConstruct
+	public void run(){
+		UserTokenManager.startErrorLocked=startErrorLocked;
+		UserTokenManager.errorLoginLockedTime=errorLoginLockedTime;
+		UserTokenManager.errorCountLimit=errorCountLimit;
+		UserTokenManager.sessionTimeOut=sessionTimeOut;
+	}
 }

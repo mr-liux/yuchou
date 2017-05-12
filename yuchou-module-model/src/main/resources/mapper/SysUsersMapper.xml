@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.youzi.yuchou.module.model.mapper.SysUsersMapper">
+  <resultMap id="BaseResultMap" type="com.youzi.yuchou.module.model.model.SysUsers">
+    <id column="user_ky" jdbcType="INTEGER" property="userKy" />
+    <result column="user_id" jdbcType="CHAR" property="userId" />
+    <result column="password" jdbcType="CHAR" property="password" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="company_ky" jdbcType="INTEGER" property="companyKy" />
+    <result column="companyName" jdbcType="VARCHAR" property="companyName" />
+    <result column="org_ky" jdbcType="INTEGER" property="orgKy" />
+    <result column="orgName" jdbcType="VARCHAR" property="orgName" />
+    <result column="job_ky" jdbcType="INTEGER" property="jobKy" />
+    <result column="jobName" jdbcType="VARCHAR" property="jobName" />
+    <result column="mobile_phone" jdbcType="CHAR" property="mobilePhone" />
+    <result column="phone" jdbcType="CHAR" property="phone" />
+    <result column="email" jdbcType="CHAR" property="email" />
+    <result column="service_num" jdbcType="CHAR" property="serviceNum" />
+    <result column="manage_flag" jdbcType="INTEGER" property="manageFlag" />
+    <result column="manage_parents" jdbcType="INTEGER" property="manageParents" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="upd_time" jdbcType="TIMESTAMP" property="updTime" />
+    <result column="last_login_ip" jdbcType="CHAR" property="lastLoginIp" />
+    <result column="last_login_num" jdbcType="INTEGER" property="lastLoginNum" />
+    <result column="reserve1" jdbcType="INTEGER" property="reserve1" />
+    <result column="reserve2" jdbcType="VARCHAR" property="reserve2" />
+  </resultMap>
+  
+  <sql id="T_CMS_AD_QUERY" >
+    <trim prefix="WHERE" prefixOverrides="AND " >
+      <if test="userId != null and '' != userId" >
+        AND (user_id like '%${userId}%')
+      </if>
+      <if test="name != null and '' != name" >
+        AND (name like '%${name}%') 
+      </if>
+      <if test="companyKy != null and '' != companyKy" >
+        AND company_ky = #{companyKy} 
+      </if>
+      <if test="status != null and '' != status" >
+        AND status = #{status} 
+      </if>
+      
+    </trim>
+  </sql>
+  
+   <select id="query" resultMap="BaseResultMap" >
+    SELECT
+    <include refid="Base_Column_List" />
+     FROM v_sys_users   
+     <include refid="T_CMS_AD_QUERY" />
+     <if test="orderByClause != null" >
+     	 ORDER BY ${orderByClause} ${sort}
+    </if>
+     <if test="offset != null and offset >= 0 ">  
+               LIMIT  #{offset},
+           </if>    
+            <if test="pageSize != null and pageSize > 0 and offset >= 0">                
+                 #{pageSize}                           
+            </if>
+  </select>
+  
+  <select id="count" resultType="int" >
+    SELECT count(*) FROM v_sys_users 
+      <include refid="T_CMS_AD_QUERY" />
+  </select>
+  
+  <sql id="Base_Column_List">
+    user_ky, user_id,  name, company_ky,companyName, org_ky,orgName, job_ky,jobName, mobile_phone, phone, 
+    email, service_num, manage_flag, manage_parents, status, add_time, upd_time, last_login_ip, 
+    last_login_num, reserve1, reserve2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    user_ky, user_id, password, name, company_ky, org_ky, job_ky, mobile_phone, phone, 
+    email, service_num, manage_flag, manage_parents, status, add_time, upd_time, last_login_ip, 
+    last_login_num, reserve1, reserve2
+    from sys_users
+    where user_ky = #{userKy,jdbcType=INTEGER}
+  </select>
+  
+  <select id="queryByUserCode" parameterType="string" resultMap="BaseResultMap">
+    select 
+    user_ky, user_id, password, name, company_ky, org_ky, job_ky, mobile_phone, phone, 
+    email, service_num, manage_flag, manage_parents, status, add_time, upd_time, last_login_ip, 
+    last_login_num, reserve1, reserve2
+    from sys_users
+    where user_id = #{code,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_users
+    where user_ky = #{userKy,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.youzi.yuchou.module.model.model.SysUsers">
+    insert into sys_users (user_ky, user_id, password, 
+      name, company_ky, org_ky, 
+      job_ky, mobile_phone, phone, 
+      email, service_num, manage_flag, 
+      manage_parents, status, add_time, 
+      upd_time, last_login_ip, last_login_num, 
+      reserve1, reserve2)
+    values (#{userKy,jdbcType=INTEGER}, #{userId,jdbcType=CHAR}, #{password,jdbcType=CHAR}, 
+      #{name,jdbcType=VARCHAR}, #{companyKy,jdbcType=INTEGER}, #{orgKy,jdbcType=INTEGER}, 
+      #{jobKy,jdbcType=INTEGER}, #{mobilePhone,jdbcType=CHAR}, #{phone,jdbcType=CHAR}, 
+      #{email,jdbcType=CHAR}, #{serviceNum,jdbcType=CHAR}, #{manageFlag,jdbcType=INTEGER}, 
+      #{manageParents,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{updTime,jdbcType=TIMESTAMP}, #{lastLoginIp,jdbcType=CHAR}, #{lastLoginNum,jdbcType=INTEGER}, 
+      #{reserve1,jdbcType=INTEGER}, #{reserve2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.youzi.yuchou.module.model.model.SysUsers">
+    insert into sys_users
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userKy != null">
+        user_ky,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="companyKy != null">
+        company_ky,
+      </if>
+      <if test="orgKy != null">
+        org_ky,
+      </if>
+      <if test="jobKy != null">
+        job_ky,
+      </if>
+      <if test="mobilePhone != null">
+        mobile_phone,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="serviceNum != null">
+        service_num,
+      </if>
+      <if test="manageFlag != null">
+        manage_flag,
+      </if>
+      <if test="manageParents != null">
+        manage_parents,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="updTime != null">
+        upd_time,
+      </if>
+      <if test="lastLoginIp != null">
+        last_login_ip,
+      </if>
+      <if test="lastLoginNum != null">
+        last_login_num,
+      </if>
+      <if test="reserve1 != null">
+        reserve1,
+      </if>
+      <if test="reserve2 != null">
+        reserve2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userKy != null">
+        #{userKy,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=CHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=CHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="companyKy != null">
+        #{companyKy,jdbcType=INTEGER},
+      </if>
+      <if test="orgKy != null">
+        #{orgKy,jdbcType=INTEGER},
+      </if>
+      <if test="jobKy != null">
+        #{jobKy,jdbcType=INTEGER},
+      </if>
+      <if test="mobilePhone != null">
+        #{mobilePhone,jdbcType=CHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=CHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=CHAR},
+      </if>
+      <if test="serviceNum != null">
+        #{serviceNum,jdbcType=CHAR},
+      </if>
+      <if test="manageFlag != null">
+        #{manageFlag,jdbcType=INTEGER},
+      </if>
+      <if test="manageParents != null">
+        #{manageParents,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updTime != null">
+        #{updTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginIp != null">
+        #{lastLoginIp,jdbcType=CHAR},
+      </if>
+      <if test="lastLoginNum != null">
+        #{lastLoginNum,jdbcType=INTEGER},
+      </if>
+      <if test="reserve1 != null">
+        #{reserve1,jdbcType=INTEGER},
+      </if>
+      <if test="reserve2 != null">
+        #{reserve2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youzi.yuchou.module.model.model.SysUsers">
+    update sys_users
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=CHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=CHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="companyKy != null">
+        company_ky = #{companyKy,jdbcType=INTEGER},
+      </if>
+      <if test="orgKy != null">
+        org_ky = #{orgKy,jdbcType=INTEGER},
+      </if>
+      <if test="jobKy != null">
+        job_ky = #{jobKy,jdbcType=INTEGER},
+      </if>
+      <if test="mobilePhone != null">
+        mobile_phone = #{mobilePhone,jdbcType=CHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=CHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=CHAR},
+      </if>
+      <if test="serviceNum != null">
+        service_num = #{serviceNum,jdbcType=CHAR},
+      </if>
+      <if test="manageFlag != null">
+        manage_flag = #{manageFlag,jdbcType=INTEGER},
+      </if>
+      <if test="manageParents != null">
+        manage_parents = #{manageParents,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updTime != null">
+        upd_time = #{updTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginIp != null">
+        last_login_ip = #{lastLoginIp,jdbcType=CHAR},
+      </if>
+      <if test="lastLoginNum != null">
+        last_login_num = #{lastLoginNum,jdbcType=INTEGER},
+      </if>
+      <if test="reserve1 != null">
+        reserve1 = #{reserve1,jdbcType=INTEGER},
+      </if>
+      <if test="reserve2 != null">
+        reserve2 = #{reserve2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_ky = #{userKy,jdbcType=INTEGER}
+  </update>
+  
+   <update id="updateByStatus" parameterType="java.lang.Integer">
+    update sys_users
+    set 
+      status = 0
+    where user_ky = #{userKy,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.youzi.yuchou.module.model.model.SysUsers">
+    update sys_users
+    set user_id = #{userId,jdbcType=CHAR},
+      name = #{name,jdbcType=VARCHAR},
+      company_ky = #{companyKy,jdbcType=INTEGER},
+      org_ky = #{orgKy,jdbcType=INTEGER},
+      job_ky = #{jobKy,jdbcType=INTEGER},
+      mobile_phone = #{mobilePhone,jdbcType=CHAR},
+      phone = #{phone,jdbcType=CHAR},
+      email = #{email,jdbcType=CHAR},
+      service_num = #{serviceNum,jdbcType=CHAR},
+      manage_flag = #{manageFlag,jdbcType=INTEGER},
+      manage_parents = #{manageParents,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      upd_time = #{updTime,jdbcType=TIMESTAMP},
+      last_login_ip = #{lastLoginIp,jdbcType=CHAR},
+      last_login_num = #{lastLoginNum,jdbcType=INTEGER},
+      reserve1 = #{reserve1,jdbcType=INTEGER},
+      reserve2 = #{reserve2,jdbcType=VARCHAR}
+    where user_ky = #{userKy,jdbcType=INTEGER}
+  </update>
+</mapper>

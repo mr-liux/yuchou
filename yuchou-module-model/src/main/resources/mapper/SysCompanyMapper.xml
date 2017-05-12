@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.youzi.yuchou.module.model.mapper.SysCompanyMapper">
+  <resultMap id="BaseResultMap" type="com.youzi.yuchou.module.model.model.SysCompany">
+    <id column="company_ky" jdbcType="INTEGER" property="companyKy" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="pid" jdbcType="INTEGER" property="pid" />
+    <result column="pname" jdbcType="VARCHAR" property="pname" />
+    <result column="prov_id" jdbcType="INTEGER" property="provId" />
+    <result column="provName" jdbcType="VARCHAR" property="provName" />
+    <result column="city_id" jdbcType="INTEGER" property="cityId" />
+    <result column="cityName" jdbcType="VARCHAR" property="cityName" />
+    <result column="area_id" jdbcType="INTEGER" property="areaId" />
+    <result column="areaName" jdbcType="VARCHAR" property="areaName" />
+    <result column="street_id" jdbcType="INTEGER" property="streetId" />
+    <result column="streetName" jdbcType="VARCHAR" property="streetName" />
+    <result column="detail_address" jdbcType="VARCHAR" property="detailAddress" />
+    <result column="full_address" jdbcType="VARCHAR" property="fullAddress" />
+    <result column="service_phone" jdbcType="VARCHAR" property="servicePhone" />
+    <result column="qq" jdbcType="VARCHAR" property="qq" />
+    <result column="weixin" jdbcType="VARCHAR" property="weixin" />
+    <result column="sub_domain" jdbcType="VARCHAR" property="subDomain" />
+    <result column="sub_name" jdbcType="VARCHAR" property="subName" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="cash_deposit" jdbcType="DECIMAL" property="cashDeposit" />
+    <result column="manage_id" jdbcType="INTEGER" property="manageId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="upd_time" jdbcType="TIMESTAMP" property="updTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.youzi.yuchou.module.model.model.SysCompany">
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    company_ky, name, pid,pname, prov_id,provName, city_id,cityName, area_id,areaName, street_id,streetName, detail_address, full_address, 
+    service_phone, qq, weixin, sub_domain, sub_name, cash_deposit, manage_id, status, 
+    add_time, upd_time
+  </sql>
+  <sql id="Blob_Column_List">
+    description
+  </sql>
+  
+  <select id="query" resultMap="BaseResultMap" >
+    SELECT
+    <include refid="Base_Column_List" />
+     FROM v_sys_company   
+     <include refid="T_CMS_AD_QUERY" />
+     <if test="orderByClause != null" >
+     	 ORDER BY ${orderByClause} ${sort}
+    </if>
+     <if test="offset != null and offset >= 0 ">  
+               LIMIT  #{offset},
+           </if>    
+            <if test="pageSize != null and pageSize > 0 and offset >= 0">                
+                 #{pageSize}                           
+            </if>
+  </select>
+  
+  <select id="count" resultType="int" >
+    SELECT count(*) FROM v_sys_company 
+      <include refid="T_CMS_AD_QUERY" />
+  </select>
+  
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from v_sys_company
+    where company_ky = #{companyKy,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_company
+    where company_ky = #{companyKy,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.youzi.yuchou.module.model.model.SysCompany">
+    insert into sys_company (company_ky, name, pid, 
+      prov_id, city_id, area_id, 
+      street_id, detail_address, full_address, 
+      service_phone, qq, weixin, 
+      sub_domain, sub_name, cash_deposit, 
+      manage_id, status, add_time, 
+      upd_time, description)
+    values (#{companyKy,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{pid,jdbcType=INTEGER}, 
+      #{provId,jdbcType=INTEGER}, #{cityId,jdbcType=INTEGER}, #{areaId,jdbcType=INTEGER}, 
+      #{streetId,jdbcType=INTEGER}, #{detailAddress,jdbcType=VARCHAR}, #{fullAddress,jdbcType=VARCHAR}, 
+      #{servicePhone,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{weixin,jdbcType=VARCHAR}, 
+      #{subDomain,jdbcType=VARCHAR}, #{subName,jdbcType=VARCHAR}, #{cashDeposit,jdbcType=DECIMAL}, 
+      #{manageId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{updTime,jdbcType=TIMESTAMP}, #{description,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.youzi.yuchou.module.model.model.SysCompany">
+    insert into sys_company
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyKy != null">
+        company_ky,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="provId != null">
+        prov_id,
+      </if>
+      <if test="cityId != null">
+        city_id,
+      </if>
+      <if test="areaId != null">
+        area_id,
+      </if>
+      <if test="streetId != null">
+        street_id,
+      </if>
+      <if test="detailAddress != null">
+        detail_address,
+      </if>
+      <if test="fullAddress != null">
+        full_address,
+      </if>
+      <if test="servicePhone != null">
+        service_phone,
+      </if>
+      <if test="qq != null">
+        qq,
+      </if>
+      <if test="weixin != null">
+        weixin,
+      </if>
+      <if test="subDomain != null">
+        sub_domain,
+      </if>
+      <if test="subName != null">
+        sub_name,
+      </if>
+      <if test="cashDeposit != null">
+        cash_deposit,
+      </if>
+      <if test="manageId != null">
+        manage_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="updTime != null">
+        upd_time,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyKy != null">
+        #{companyKy,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="provId != null">
+        #{provId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null">
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null">
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="streetId != null">
+        #{streetId,jdbcType=INTEGER},
+      </if>
+      <if test="detailAddress != null">
+        #{detailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="fullAddress != null">
+        #{fullAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="servicePhone != null">
+        #{servicePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="weixin != null">
+        #{weixin,jdbcType=VARCHAR},
+      </if>
+      <if test="subDomain != null">
+        #{subDomain,jdbcType=VARCHAR},
+      </if>
+      <if test="subName != null">
+        #{subName,jdbcType=VARCHAR},
+      </if>
+      <if test="cashDeposit != null">
+        #{cashDeposit,jdbcType=DECIMAL},
+      </if>
+      <if test="manageId != null">
+        #{manageId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updTime != null">
+        #{updTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youzi.yuchou.module.model.model.SysCompany">
+    update sys_company
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="provId != null">
+        prov_id = #{provId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null">
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null">
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="streetId != null">
+        street_id = #{streetId,jdbcType=INTEGER},
+      </if>
+      <if test="detailAddress != null">
+        detail_address = #{detailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="fullAddress != null">
+        full_address = #{fullAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="servicePhone != null">
+        service_phone = #{servicePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="weixin != null">
+        weixin = #{weixin,jdbcType=VARCHAR},
+      </if>
+      <if test="subDomain != null">
+        sub_domain = #{subDomain,jdbcType=VARCHAR},
+      </if>
+      <if test="subName != null">
+        sub_name = #{subName,jdbcType=VARCHAR},
+      </if>
+      <if test="cashDeposit != null">
+        cash_deposit = #{cashDeposit,jdbcType=DECIMAL},
+      </if>
+      <if test="manageId != null">
+        manage_id = #{manageId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updTime != null">
+        upd_time = #{updTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where company_ky = #{companyKy,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.youzi.yuchou.module.model.model.SysCompany">
+    update sys_company
+    set name = #{name,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=INTEGER},
+      prov_id = #{provId,jdbcType=INTEGER},
+      city_id = #{cityId,jdbcType=INTEGER},
+      area_id = #{areaId,jdbcType=INTEGER},
+      street_id = #{streetId,jdbcType=INTEGER},
+      detail_address = #{detailAddress,jdbcType=VARCHAR},
+      full_address = #{fullAddress,jdbcType=VARCHAR},
+      service_phone = #{servicePhone,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      weixin = #{weixin,jdbcType=VARCHAR},
+      sub_domain = #{subDomain,jdbcType=VARCHAR},
+      sub_name = #{subName,jdbcType=VARCHAR},
+      cash_deposit = #{cashDeposit,jdbcType=DECIMAL},
+      manage_id = #{manageId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      upd_time = #{updTime,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=LONGVARCHAR}
+    where company_ky = #{companyKy,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youzi.yuchou.module.model.model.SysCompany">
+    update sys_company
+    set name = #{name,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=INTEGER},
+      prov_id = #{provId,jdbcType=INTEGER},
+      city_id = #{cityId,jdbcType=INTEGER},
+      area_id = #{areaId,jdbcType=INTEGER},
+      street_id = #{streetId,jdbcType=INTEGER},
+      detail_address = #{detailAddress,jdbcType=VARCHAR},
+      full_address = #{fullAddress,jdbcType=VARCHAR},
+      service_phone = #{servicePhone,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      weixin = #{weixin,jdbcType=VARCHAR},
+      sub_domain = #{subDomain,jdbcType=VARCHAR},
+      sub_name = #{subName,jdbcType=VARCHAR},
+      cash_deposit = #{cashDeposit,jdbcType=DECIMAL},
+      manage_id = #{manageId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      upd_time = #{updTime,jdbcType=TIMESTAMP}
+    where company_ky = #{companyKy,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateByStatus" parameterType="java.lang.Integer">
+    update sys_company
+    set 
+      status = 0
+    where company_ky = #{companyKy,jdbcType=INTEGER}
+  </update>
+  
+  <sql id="T_CMS_AD_QUERY" >
+    <trim prefix="WHERE" prefixOverrides="AND " >
+    	status = 1
+      <if test="name != null and '' != name" >
+        AND (name like '%${name}%') 
+      </if>
+    </trim>
+  </sql>
+  
+</mapper>

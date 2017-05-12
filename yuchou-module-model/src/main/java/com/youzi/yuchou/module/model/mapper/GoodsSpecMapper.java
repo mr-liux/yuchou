@@ -1,0 +1,17 @@
+package com.youzi.yuchou.module.model.mapper;
+
+import com.youzi.yuchou.module.model.model.GoodsSpec;
+
+public interface GoodsSpecMapper {
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(GoodsSpec record);
+
+    int insertSelective(GoodsSpec record);
+
+    GoodsSpec selectByPrimaryKey(Integer id);
+
+    int updateByPrimaryKeySelective(GoodsSpec record);
+
+    int updateByPrimaryKey(GoodsSpec record);
+}

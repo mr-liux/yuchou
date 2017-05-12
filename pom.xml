@@ -19,10 +19,11 @@
 		<module>yuchou-admin</module>
 		<module>yuchou-module-redis</module>
 		<module>yuchou-portal</module>
+		<module>yuchou-wechat</module>
 	</modules>
 
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>1.7</java.version>
 	</properties>
 
 	<dependencies>

@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.youzi.yuchou.module.model.mapper.GoodsMapper">
+  <resultMap id="BaseResultMap" type="com.youzi.yuchou.module.model.model.Goods">
+    <id column="gid" jdbcType="INTEGER" property="gid" />
+    <result column="sid" jdbcType="INTEGER" property="sid" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="selling_point" jdbcType="VARCHAR" property="sellingPoint" />
+    <result column="wshrink" jdbcType="VARCHAR" property="wshrink" />
+    <result column="wsquare" jdbcType="VARCHAR" property="wsquare" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="price_primary" jdbcType="DECIMAL" property="pricePrimary" />
+    <result column="price_buying" jdbcType="DECIMAL" property="priceBuying" />
+    <result column="item_catgrade" jdbcType="INTEGER" property="itemCatgrade" />
+    <result column="item_catId" jdbcType="INTEGER" property="itemCatid" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="upd_time" jdbcType="TIMESTAMP" property="updTime" />
+    <result column="upper_time" jdbcType="TIMESTAMP" property="upperTime" />
+    <result column="down_time" jdbcType="TIMESTAMP" property="downTime" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="mode_type" jdbcType="INTEGER" property="modeType" />
+    <result column="reserve1" jdbcType="INTEGER" property="reserve1" />
+    <result column="reserve2" jdbcType="VARCHAR" property="reserve2" />
+    <result column="reserve3" jdbcType="VARCHAR" property="reserve3" />
+    <result column="reserve4" jdbcType="VARCHAR" property="reserve4" />
+    <result column="reserve5" jdbcType="VARCHAR" property="reserve5" />
+    <result column="reserve6" jdbcType="VARCHAR" property="reserve6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    gid, sid, title, selling_point, wshrink, wsquare, price, price_primary, price_buying, 
+    item_catgrade, item_catId, add_time, upd_time, upper_time, down_time, type, status, 
+    code, mode_type, reserve1, reserve2, reserve3, reserve4, reserve5, reserve6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where gid = #{gid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from goods
+    where gid = #{gid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.youzi.yuchou.module.model.model.Goods">
+    insert into goods (gid, sid, title, 
+      selling_point, wshrink, wsquare, 
+      price, price_primary, price_buying, 
+      item_catgrade, item_catId, add_time, 
+      upd_time, upper_time, down_time, 
+      type, status, code, 
+      mode_type, reserve1, reserve2, 
+      reserve3, reserve4, reserve5, 
+      reserve6)
+    values (#{gid,jdbcType=INTEGER}, #{sid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{sellingPoint,jdbcType=VARCHAR}, #{wshrink,jdbcType=VARCHAR}, #{wsquare,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{pricePrimary,jdbcType=DECIMAL}, #{priceBuying,jdbcType=DECIMAL}, 
+      #{itemCatgrade,jdbcType=INTEGER}, #{itemCatid,jdbcType=INTEGER}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{updTime,jdbcType=TIMESTAMP}, #{upperTime,jdbcType=TIMESTAMP}, #{downTime,jdbcType=TIMESTAMP}, 
+      #{type,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, 
+      #{modeType,jdbcType=INTEGER}, #{reserve1,jdbcType=INTEGER}, #{reserve2,jdbcType=VARCHAR}, 
+      #{reserve3,jdbcType=VARCHAR}, #{reserve4,jdbcType=VARCHAR}, #{reserve5,jdbcType=VARCHAR}, 
+      #{reserve6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.youzi.yuchou.module.model.model.Goods">
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gid != null">
+        gid,
+      </if>
+      <if test="sid != null">
+        sid,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="sellingPoint != null">
+        selling_point,
+      </if>
+      <if test="wshrink != null">
+        wshrink,
+      </if>
+      <if test="wsquare != null">
+        wsquare,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="pricePrimary != null">
+        price_primary,
+      </if>
+      <if test="priceBuying != null">
+        price_buying,
+      </if>
+      <if test="itemCatgrade != null">
+        item_catgrade,
+      </if>
+      <if test="itemCatid != null">
+        item_catId,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="updTime != null">
+        upd_time,
+      </if>
+      <if test="upperTime != null">
+        upper_time,
+      </if>
+      <if test="downTime != null">
+        down_time,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="modeType != null">
+        mode_type,
+      </if>
+      <if test="reserve1 != null">
+        reserve1,
+      </if>
+      <if test="reserve2 != null">
+        reserve2,
+      </if>
+      <if test="reserve3 != null">
+        reserve3,
+      </if>
+      <if test="reserve4 != null">
+        reserve4,
+      </if>
+      <if test="reserve5 != null">
+        reserve5,
+      </if>
+      <if test="reserve6 != null">
+        reserve6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gid != null">
+        #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="sid != null">
+        #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="sellingPoint != null">
+        #{sellingPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="wshrink != null">
+        #{wshrink,jdbcType=VARCHAR},
+      </if>
+      <if test="wsquare != null">
+        #{wsquare,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="pricePrimary != null">
+        #{pricePrimary,jdbcType=DECIMAL},
+      </if>
+      <if test="priceBuying != null">
+        #{priceBuying,jdbcType=DECIMAL},
+      </if>
+      <if test="itemCatgrade != null">
+        #{itemCatgrade,jdbcType=INTEGER},
+      </if>
+      <if test="itemCatid != null">
+        #{itemCatid,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updTime != null">
+        #{updTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="upperTime != null">
+        #{upperTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downTime != null">
+        #{downTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="modeType != null">
+        #{modeType,jdbcType=INTEGER},
+      </if>
+      <if test="reserve1 != null">
+        #{reserve1,jdbcType=INTEGER},
+      </if>
+      <if test="reserve2 != null">
+        #{reserve2,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve3 != null">
+        #{reserve3,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve4 != null">
+        #{reserve4,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve5 != null">
+        #{reserve5,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve6 != null">
+        #{reserve6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youzi.yuchou.module.model.model.Goods">
+    update goods
+    <set>
+      <if test="sid != null">
+        sid = #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="sellingPoint != null">
+        selling_point = #{sellingPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="wshrink != null">
+        wshrink = #{wshrink,jdbcType=VARCHAR},
+      </if>
+      <if test="wsquare != null">
+        wsquare = #{wsquare,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="pricePrimary != null">
+        price_primary = #{pricePrimary,jdbcType=DECIMAL},
+      </if>
+      <if test="priceBuying != null">
+        price_buying = #{priceBuying,jdbcType=DECIMAL},
+      </if>
+      <if test="itemCatgrade != null">
+        item_catgrade = #{itemCatgrade,jdbcType=INTEGER},
+      </if>
+      <if test="itemCatid != null">
+        item_catId = #{itemCatid,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updTime != null">
+        upd_time = #{updTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="upperTime != null">
+        upper_time = #{upperTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downTime != null">
+        down_time = #{downTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="modeType != null">
+        mode_type = #{modeType,jdbcType=INTEGER},
+      </if>
+      <if test="reserve1 != null">
+        reserve1 = #{reserve1,jdbcType=INTEGER},
+      </if>
+      <if test="reserve2 != null">
+        reserve2 = #{reserve2,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve3 != null">
+        reserve3 = #{reserve3,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve4 != null">
+        reserve4 = #{reserve4,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve5 != null">
+        reserve5 = #{reserve5,jdbcType=VARCHAR},
+      </if>
+      <if test="reserve6 != null">
+        reserve6 = #{reserve6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where gid = #{gid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youzi.yuchou.module.model.model.Goods">
+    update goods
+    set sid = #{sid,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      selling_point = #{sellingPoint,jdbcType=VARCHAR},
+      wshrink = #{wshrink,jdbcType=VARCHAR},
+      wsquare = #{wsquare,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      price_primary = #{pricePrimary,jdbcType=DECIMAL},
+      price_buying = #{priceBuying,jdbcType=DECIMAL},
+      item_catgrade = #{itemCatgrade,jdbcType=INTEGER},
+      item_catId = #{itemCatid,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      upd_time = #{updTime,jdbcType=TIMESTAMP},
+      upper_time = #{upperTime,jdbcType=TIMESTAMP},
+      down_time = #{downTime,jdbcType=TIMESTAMP},
+      type = #{type,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      code = #{code,jdbcType=VARCHAR},
+      mode_type = #{modeType,jdbcType=INTEGER},
+      reserve1 = #{reserve1,jdbcType=INTEGER},
+      reserve2 = #{reserve2,jdbcType=VARCHAR},
+      reserve3 = #{reserve3,jdbcType=VARCHAR},
+      reserve4 = #{reserve4,jdbcType=VARCHAR},
+      reserve5 = #{reserve5,jdbcType=VARCHAR},
+      reserve6 = #{reserve6,jdbcType=VARCHAR}
+    where gid = #{gid,jdbcType=INTEGER}
+  </update>
+</mapper>

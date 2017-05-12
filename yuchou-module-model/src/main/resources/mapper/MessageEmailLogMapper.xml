@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.youzi.yuchou.module.model.mapper.MessageEmailLogMapper">
+  <resultMap id="BaseResultMap" type="com.youzi.yuchou.module.model.model.MessageEmailLog">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="email" jdbcType="CHAR" property="email" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="code" jdbcType="CHAR" property="code" />
+    <result column="results" jdbcType="INTEGER" property="results" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="user_ky" jdbcType="INTEGER" property="userKy" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.youzi.yuchou.module.model.model.MessageEmailLog">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uid, type, email, title, code, results, add_time, user_ky
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from message_email_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from message_email_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.youzi.yuchou.module.model.model.MessageEmailLog">
+    insert into message_email_log (id, uid, type, 
+      email, title, code, results, 
+      add_time, user_ky, content
+      )
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{email,jdbcType=CHAR}, #{title,jdbcType=VARCHAR}, #{code,jdbcType=CHAR}, #{results,jdbcType=INTEGER}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{userKy,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.youzi.yuchou.module.model.model.MessageEmailLog">
+    insert into message_email_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="results != null">
+        results,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="userKy != null">
+        user_ky,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=CHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=CHAR},
+      </if>
+      <if test="results != null">
+        #{results,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userKy != null">
+        #{userKy,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youzi.yuchou.module.model.model.MessageEmailLog">
+    update message_email_log
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=CHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=CHAR},
+      </if>
+      <if test="results != null">
+        results = #{results,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userKy != null">
+        user_ky = #{userKy,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.youzi.yuchou.module.model.model.MessageEmailLog">
+    update message_email_log
+    set uid = #{uid,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      email = #{email,jdbcType=CHAR},
+      title = #{title,jdbcType=VARCHAR},
+      code = #{code,jdbcType=CHAR},
+      results = #{results,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      user_ky = #{userKy,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youzi.yuchou.module.model.model.MessageEmailLog">
+    update message_email_log
+    set uid = #{uid,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      email = #{email,jdbcType=CHAR},
+      title = #{title,jdbcType=VARCHAR},
+      code = #{code,jdbcType=CHAR},
+      results = #{results,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      user_ky = #{userKy,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

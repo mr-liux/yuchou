@@ -1,13 +1,9 @@
 package com.youzi.yuchou.admin.web;
 
+import com.youzi.yuchou.module.redis.config.RedisKey;
+import com.youzi.yuchou.module.redis.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.github.pagehelper.PageInfo;
 import com.youzi.yuchou.admin.service.UserService;
@@ -21,6 +17,9 @@ public class UserController extends BaseController {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private RedisService redisService;
 
 	@PostMapping("/user")
 	public RestResponse<String> add(@RequestBody TbUser user) {
@@ -49,7 +48,22 @@ public class UserController extends BaseController {
 	@GetMapping("/user")
 	public RestResponse<PageInfo<TbUser>> findById(PageSearchForm searchForm) {
 		PageInfo<TbUser> page = userService.findAll(searchForm);
+		
 		return buildSuccessed(page);
+	}
+
+	@GetMapping("/setRedis")
+	public void setRedis(){
+		try {
+			redisService.put(RedisKey.TEST_AAAA, "aaaaaa");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@GetMapping("/getRedis")
+	public void getRedis(){
+		logger.info(redisService.findByKey(RedisKey.TEST_AAAA).toString());
 	}
 
 }

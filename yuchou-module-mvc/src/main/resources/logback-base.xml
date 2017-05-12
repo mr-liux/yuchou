@@ -10,7 +10,7 @@
 		<rollingPolicy
 			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
 			<FileNamePattern>
-				${LOG_HOME:-logs}/${APP_NAME}/info/%d{yyyy-MM}/%d{dd}.%i.log
+				${LOG_HOME:-logs}/${APP_NAME}/info/%d{yyyy-MM-dd}.%i.log
 			</FileNamePattern>
 			<maxFileSize>100MB</maxFileSize>
 		</rollingPolicy>
@@ -24,7 +24,7 @@
 		<rollingPolicy
 			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
 			<FileNamePattern>
-				${LOG_HOME:-logs}/${APP_NAME}/gate/%d{yyyy-MM}/%d{dd}.%i.log
+				${LOG_HOME:-logs}/${APP_NAME}/gate/%d{yyyy-MM-dd}.%i.log
 			</FileNamePattern>
 			<maxFileSize>100MB</maxFileSize>
 		</rollingPolicy>
@@ -38,7 +38,7 @@
 		<rollingPolicy
 			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
 			<FileNamePattern>
-				${LOG_HOME:-logs}/${APP_NAME}/ex/%d{yyyy-MM}/%d{dd}.%i.log
+				${LOG_HOME:-logs}/${APP_NAME}/ex/%d{yyyy-MM-dd}.%i.log
 			</FileNamePattern>
 			<maxFileSize>100MB</maxFileSize>
 		</rollingPolicy>
@@ -62,14 +62,14 @@
 	</logger>
 
 	<springProfile name="dev">
-		<logger name="com.sto" level="DEBUG" additivity="false">
+		<logger name="com.youzi" level="DEBUG" additivity="false">
 			<appender-ref ref="CONSOLE" />
 			<appender-ref ref="FILE" />
 		</logger>
 	</springProfile>
 
 	<springProfile name="test,pro">
-		<logger name="com.sto" level="INFO" additivity="false">
+		<logger name="com.youzi" level="INFO" additivity="false">
 			<appender-ref ref="FILE" />
 		</logger>
 	</springProfile>

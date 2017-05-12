@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.youzi.yuchou.module.model.mapper.AdMapper">
+  <resultMap id="BaseResultMap" type="com.youzi.yuchou.module.model.model.Ad">
+    <id column="ad_id" jdbcType="INTEGER" property="adId" />
+    <result column="ad_locat_id" jdbcType="INTEGER" property="adLocatId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="color" jdbcType="VARCHAR" property="color" />
+    <result column="pic" jdbcType="VARCHAR" property="pic" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="user_ky" jdbcType="INTEGER" property="userKy" />
+    <result column="is_user_ky" jdbcType="INTEGER" property="isUserKy" />
+    <result column="upd_user_ky" jdbcType="INTEGER" property="updUserKy" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="upd_time" jdbcType="TIMESTAMP" property="updTime" />
+    <result column="release_time" jdbcType="TIMESTAMP" property="releaseTime" />
+    <result column="reserve1" jdbcType="VARCHAR" property="reserve1" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ad_id, ad_locat_id, title, description, color, pic, url, sort, user_ky, is_user_ky, 
+    upd_user_ky, status, add_time, upd_time, release_time, reserve1
+  </sql>
+  
+  <select id="query" resultMap="BaseResultMap" >
+    SELECT
+    <include refid="Base_Column_List" />
+     FROM ad AS a  
+     <include refid="T_WHERE_QUERY" />
+     <if test="orderByClause != null" >
+     	 ORDER BY ${orderByClause} ${sort}
+     </if>
+     <if test="offset != null and offset >= 0 ">  
+               LIMIT  #{offset},
+           </if>    
+            <if test="pageSize != null and pageSize > 0 and offset >= 0">                
+                 #{pageSize}                           
+            </if>
+  </select>
+  <select id="count" resultType="int" >
+    SELECT count(*) FROM ad AS a 
+      <include refid="T_WHERE_QUERY" />
+  </select>
+  <sql id="T_WHERE_QUERY" >
+    <trim prefix="WHERE" prefixOverrides="AND " >
+      <if test="keyWord != null and '' != keyWord" >
+        AND (
+        	(a.title  like '%' || #{keyWord} || '%') 
+        )	
+      </if>
+    </trim>
+  </sql>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ad
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ad
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.youzi.yuchou.module.model.model.Ad">
+    insert into ad (ad_id, ad_locat_id, title, 
+      description, color, pic, 
+      url, sort, user_ky, 
+      is_user_ky, upd_user_ky, status, 
+      add_time, upd_time, release_time, 
+      reserve1)
+    values (#{adId,jdbcType=INTEGER}, #{adLocatId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{color,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{userKy,jdbcType=INTEGER}, 
+      #{isUserKy,jdbcType=INTEGER}, #{updUserKy,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{updTime,jdbcType=TIMESTAMP}, #{releaseTime,jdbcType=TIMESTAMP}, 
+      #{reserve1,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.youzi.yuchou.module.model.model.Ad">
+    insert into ad
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adId != null">
+        ad_id,
+      </if>
+      <if test="adLocatId != null">
+        ad_locat_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="color != null">
+        color,
+      </if>
+      <if test="pic != null">
+        pic,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="userKy != null">
+        user_ky,
+      </if>
+      <if test="isUserKy != null">
+        is_user_ky,
+      </if>
+      <if test="updUserKy != null">
+        upd_user_ky,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="updTime != null">
+        upd_time,
+      </if>
+      <if test="releaseTime != null">
+        release_time,
+      </if>
+      <if test="reserve1 != null">
+        reserve1,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="adId != null">
+        #{adId,jdbcType=INTEGER},
+      </if>
+      <if test="adLocatId != null">
+        #{adLocatId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null">
+        #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null">
+        #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="userKy != null">
+        #{userKy,jdbcType=INTEGER},
+      </if>
+      <if test="isUserKy != null">
+        #{isUserKy,jdbcType=INTEGER},
+      </if>
+      <if test="updUserKy != null">
+        #{updUserKy,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updTime != null">
+        #{updTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="releaseTime != null">
+        #{releaseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reserve1 != null">
+        #{reserve1,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youzi.yuchou.module.model.model.Ad">
+    update ad
+    <set>
+      <if test="adLocatId != null">
+        ad_locat_id = #{adLocatId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null">
+        color = #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null">
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="userKy != null">
+        user_ky = #{userKy,jdbcType=INTEGER},
+      </if>
+      <if test="isUserKy != null">
+        is_user_ky = #{isUserKy,jdbcType=INTEGER},
+      </if>
+      <if test="updUserKy != null">
+        upd_user_ky = #{updUserKy,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updTime != null">
+        upd_time = #{updTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="releaseTime != null">
+        release_time = #{releaseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reserve1 != null">
+        reserve1 = #{reserve1,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youzi.yuchou.module.model.model.Ad">
+    update ad
+    set ad_locat_id = #{adLocatId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      color = #{color,jdbcType=VARCHAR},
+      pic = #{pic,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      user_ky = #{userKy,jdbcType=INTEGER},
+      is_user_ky = #{isUserKy,jdbcType=INTEGER},
+      upd_user_ky = #{updUserKy,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      upd_time = #{updTime,jdbcType=TIMESTAMP},
+      release_time = #{releaseTime,jdbcType=TIMESTAMP},
+      reserve1 = #{reserve1,jdbcType=VARCHAR}
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </update>
+</mapper>

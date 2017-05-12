@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.youzi.yuchou.module.model.mapper.GoodsCreditMapper">
+  <resultMap id="BaseResultMap" type="com.youzi.yuchou.module.model.model.GoodsCredit">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="gid" jdbcType="INTEGER" property="gid" />
+    <result column="des_total" jdbcType="DOUBLE" property="desTotal" />
+    <result column="des_ave_score" jdbcType="DOUBLE" property="desAveScore" />
+    <result column="des_num_scores" jdbcType="INTEGER" property="desNumScores" />
+    <result column="price_total" jdbcType="DOUBLE" property="priceTotal" />
+    <result column="price_ave_score" jdbcType="DOUBLE" property="priceAveScore" />
+    <result column="price_num_scores" jdbcType="INTEGER" property="priceNumScores" />
+    <result column="goods_total" jdbcType="DOUBLE" property="goodsTotal" />
+    <result column="goods_ave_score" jdbcType="DOUBLE" property="goodsAveScore" />
+    <result column="goods_num_scores" jdbcType="INTEGER" property="goodsNumScores" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, gid, des_total, des_ave_score, des_num_scores, price_total, price_ave_score, 
+    price_num_scores, goods_total, goods_ave_score, goods_num_scores
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_credit
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from goods_credit
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.youzi.yuchou.module.model.model.GoodsCredit">
+    insert into goods_credit (id, gid, des_total, 
+      des_ave_score, des_num_scores, price_total, 
+      price_ave_score, price_num_scores, goods_total, 
+      goods_ave_score, goods_num_scores)
+    values (#{id,jdbcType=INTEGER}, #{gid,jdbcType=INTEGER}, #{desTotal,jdbcType=DOUBLE}, 
+      #{desAveScore,jdbcType=DOUBLE}, #{desNumScores,jdbcType=INTEGER}, #{priceTotal,jdbcType=DOUBLE}, 
+      #{priceAveScore,jdbcType=DOUBLE}, #{priceNumScores,jdbcType=INTEGER}, #{goodsTotal,jdbcType=DOUBLE}, 
+      #{goodsAveScore,jdbcType=DOUBLE}, #{goodsNumScores,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.youzi.yuchou.module.model.model.GoodsCredit">
+    insert into goods_credit
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="gid != null">
+        gid,
+      </if>
+      <if test="desTotal != null">
+        des_total,
+      </if>
+      <if test="desAveScore != null">
+        des_ave_score,
+      </if>
+      <if test="desNumScores != null">
+        des_num_scores,
+      </if>
+      <if test="priceTotal != null">
+        price_total,
+      </if>
+      <if test="priceAveScore != null">
+        price_ave_score,
+      </if>
+      <if test="priceNumScores != null">
+        price_num_scores,
+      </if>
+      <if test="goodsTotal != null">
+        goods_total,
+      </if>
+      <if test="goodsAveScore != null">
+        goods_ave_score,
+      </if>
+      <if test="goodsNumScores != null">
+        goods_num_scores,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="gid != null">
+        #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="desTotal != null">
+        #{desTotal,jdbcType=DOUBLE},
+      </if>
+      <if test="desAveScore != null">
+        #{desAveScore,jdbcType=DOUBLE},
+      </if>
+      <if test="desNumScores != null">
+        #{desNumScores,jdbcType=INTEGER},
+      </if>
+      <if test="priceTotal != null">
+        #{priceTotal,jdbcType=DOUBLE},
+      </if>
+      <if test="priceAveScore != null">
+        #{priceAveScore,jdbcType=DOUBLE},
+      </if>
+      <if test="priceNumScores != null">
+        #{priceNumScores,jdbcType=INTEGER},
+      </if>
+      <if test="goodsTotal != null">
+        #{goodsTotal,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsAveScore != null">
+        #{goodsAveScore,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsNumScores != null">
+        #{goodsNumScores,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youzi.yuchou.module.model.model.GoodsCredit">
+    update goods_credit
+    <set>
+      <if test="gid != null">
+        gid = #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="desTotal != null">
+        des_total = #{desTotal,jdbcType=DOUBLE},
+      </if>
+      <if test="desAveScore != null">
+        des_ave_score = #{desAveScore,jdbcType=DOUBLE},
+      </if>
+      <if test="desNumScores != null">
+        des_num_scores = #{desNumScores,jdbcType=INTEGER},
+      </if>
+      <if test="priceTotal != null">
+        price_total = #{priceTotal,jdbcType=DOUBLE},
+      </if>
+      <if test="priceAveScore != null">
+        price_ave_score = #{priceAveScore,jdbcType=DOUBLE},
+      </if>
+      <if test="priceNumScores != null">
+        price_num_scores = #{priceNumScores,jdbcType=INTEGER},
+      </if>
+      <if test="goodsTotal != null">
+        goods_total = #{goodsTotal,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsAveScore != null">
+        goods_ave_score = #{goodsAveScore,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsNumScores != null">
+        goods_num_scores = #{goodsNumScores,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youzi.yuchou.module.model.model.GoodsCredit">
+    update goods_credit
+    set gid = #{gid,jdbcType=INTEGER},
+      des_total = #{desTotal,jdbcType=DOUBLE},
+      des_ave_score = #{desAveScore,jdbcType=DOUBLE},
+      des_num_scores = #{desNumScores,jdbcType=INTEGER},
+      price_total = #{priceTotal,jdbcType=DOUBLE},
+      price_ave_score = #{priceAveScore,jdbcType=DOUBLE},
+      price_num_scores = #{priceNumScores,jdbcType=INTEGER},
+      goods_total = #{goodsTotal,jdbcType=DOUBLE},
+      goods_ave_score = #{goodsAveScore,jdbcType=DOUBLE},
+      goods_num_scores = #{goodsNumScores,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

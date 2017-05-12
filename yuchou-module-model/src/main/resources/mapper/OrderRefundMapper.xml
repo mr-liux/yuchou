@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.youzi.yuchou.module.model.mapper.OrderRefundMapper">
+  <resultMap id="BaseResultMap" type="com.youzi.yuchou.module.model.model.OrderRefund">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="refund_no" jdbcType="VARCHAR" property="refundNo" />
+    <result column="refund_amount" jdbcType="DECIMAL" property="refundAmount" />
+    <result column="cause" jdbcType="VARCHAR" property="cause" />
+    <result column="explain" jdbcType="VARCHAR" property="explain" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="dispose_time" jdbcType="TIMESTAMP" property="disposeTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, order_id, uid, refund_no, refund_amount, cause, explain, status, add_time, dispose_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_refund
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from order_refund
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.youzi.yuchou.module.model.model.OrderRefund">
+    insert into order_refund (id, order_id, uid, 
+      refund_no, refund_amount, cause, 
+      explain, status, add_time, 
+      dispose_time)
+    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, 
+      #{refundNo,jdbcType=VARCHAR}, #{refundAmount,jdbcType=DECIMAL}, #{cause,jdbcType=VARCHAR}, 
+      #{explain,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{disposeTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.youzi.yuchou.module.model.model.OrderRefund">
+    insert into order_refund
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="refundNo != null">
+        refund_no,
+      </if>
+      <if test="refundAmount != null">
+        refund_amount,
+      </if>
+      <if test="cause != null">
+        cause,
+      </if>
+      <if test="explain != null">
+        explain,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="disposeTime != null">
+        dispose_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="refundNo != null">
+        #{refundNo,jdbcType=VARCHAR},
+      </if>
+      <if test="refundAmount != null">
+        #{refundAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="cause != null">
+        #{cause,jdbcType=VARCHAR},
+      </if>
+      <if test="explain != null">
+        #{explain,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="disposeTime != null">
+        #{disposeTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youzi.yuchou.module.model.model.OrderRefund">
+    update order_refund
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="refundNo != null">
+        refund_no = #{refundNo,jdbcType=VARCHAR},
+      </if>
+      <if test="refundAmount != null">
+        refund_amount = #{refundAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="cause != null">
+        cause = #{cause,jdbcType=VARCHAR},
+      </if>
+      <if test="explain != null">
+        explain = #{explain,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="disposeTime != null">
+        dispose_time = #{disposeTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youzi.yuchou.module.model.model.OrderRefund">
+    update order_refund
+    set order_id = #{orderId,jdbcType=INTEGER},
+      uid = #{uid,jdbcType=INTEGER},
+      refund_no = #{refundNo,jdbcType=VARCHAR},
+      refund_amount = #{refundAmount,jdbcType=DECIMAL},
+      cause = #{cause,jdbcType=VARCHAR},
+      explain = #{explain,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      dispose_time = #{disposeTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.youzi.yuchou.module.model.mapper.GoodsCountMapper">
+  <resultMap id="BaseResultMap" type="com.youzi.yuchou.module.model.model.GoodsCount">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="gid" jdbcType="INTEGER" property="gid" />
+    <result column="sid" jdbcType="INTEGER" property="sid" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="the_browse_count" jdbcType="INTEGER" property="theBrowseCount" />
+    <result column="total_browse_count" jdbcType="INTEGER" property="totalBrowseCount" />
+    <result column="app_message" jdbcType="INTEGER" property="appMessage" />
+    <result column="timeline" jdbcType="INTEGER" property="timeline" />
+    <result column="qq" jdbcType="INTEGER" property="qq" />
+    <result column="qq_weibo" jdbcType="INTEGER" property="qqWeibo" />
+    <result column="qq_zone" jdbcType="INTEGER" property="qqZone" />
+    <result column="xl_weibo" jdbcType="INTEGER" property="xlWeibo" />
+    <result column="reserve1" jdbcType="INTEGER" property="reserve1" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, gid, sid, uid, the_browse_count, total_browse_count, app_message, timeline, qq, 
+    qq_weibo, qq_zone, xl_weibo, reserve1
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_count
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from goods_count
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.youzi.yuchou.module.model.model.GoodsCount">
+    insert into goods_count (id, gid, sid, 
+      uid, the_browse_count, total_browse_count, 
+      app_message, timeline, qq, 
+      qq_weibo, qq_zone, xl_weibo, 
+      reserve1)
+    values (#{id,jdbcType=INTEGER}, #{gid,jdbcType=INTEGER}, #{sid,jdbcType=INTEGER}, 
+      #{uid,jdbcType=INTEGER}, #{theBrowseCount,jdbcType=INTEGER}, #{totalBrowseCount,jdbcType=INTEGER}, 
+      #{appMessage,jdbcType=INTEGER}, #{timeline,jdbcType=INTEGER}, #{qq,jdbcType=INTEGER}, 
+      #{qqWeibo,jdbcType=INTEGER}, #{qqZone,jdbcType=INTEGER}, #{xlWeibo,jdbcType=INTEGER}, 
+      #{reserve1,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.youzi.yuchou.module.model.model.GoodsCount">
+    insert into goods_count
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="gid != null">
+        gid,
+      </if>
+      <if test="sid != null">
+        sid,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="theBrowseCount != null">
+        the_browse_count,
+      </if>
+      <if test="totalBrowseCount != null">
+        total_browse_count,
+      </if>
+      <if test="appMessage != null">
+        app_message,
+      </if>
+      <if test="timeline != null">
+        timeline,
+      </if>
+      <if test="qq != null">
+        qq,
+      </if>
+      <if test="qqWeibo != null">
+        qq_weibo,
+      </if>
+      <if test="qqZone != null">
+        qq_zone,
+      </if>
+      <if test="xlWeibo != null">
+        xl_weibo,
+      </if>
+      <if test="reserve1 != null">
+        reserve1,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="gid != null">
+        #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="sid != null">
+        #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="theBrowseCount != null">
+        #{theBrowseCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalBrowseCount != null">
+        #{totalBrowseCount,jdbcType=INTEGER},
+      </if>
+      <if test="appMessage != null">
+        #{appMessage,jdbcType=INTEGER},
+      </if>
+      <if test="timeline != null">
+        #{timeline,jdbcType=INTEGER},
+      </if>
+      <if test="qq != null">
+        #{qq,jdbcType=INTEGER},
+      </if>
+      <if test="qqWeibo != null">
+        #{qqWeibo,jdbcType=INTEGER},
+      </if>
+      <if test="qqZone != null">
+        #{qqZone,jdbcType=INTEGER},
+      </if>
+      <if test="xlWeibo != null">
+        #{xlWeibo,jdbcType=INTEGER},
+      </if>
+      <if test="reserve1 != null">
+        #{reserve1,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youzi.yuchou.module.model.model.GoodsCount">
+    update goods_count
+    <set>
+      <if test="gid != null">
+        gid = #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="sid != null">
+        sid = #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="theBrowseCount != null">
+        the_browse_count = #{theBrowseCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalBrowseCount != null">
+        total_browse_count = #{totalBrowseCount,jdbcType=INTEGER},
+      </if>
+      <if test="appMessage != null">
+        app_message = #{appMessage,jdbcType=INTEGER},
+      </if>
+      <if test="timeline != null">
+        timeline = #{timeline,jdbcType=INTEGER},
+      </if>
+      <if test="qq != null">
+        qq = #{qq,jdbcType=INTEGER},
+      </if>
+      <if test="qqWeibo != null">
+        qq_weibo = #{qqWeibo,jdbcType=INTEGER},
+      </if>
+      <if test="qqZone != null">
+        qq_zone = #{qqZone,jdbcType=INTEGER},
+      </if>
+      <if test="xlWeibo != null">
+        xl_weibo = #{xlWeibo,jdbcType=INTEGER},
+      </if>
+      <if test="reserve1 != null">
+        reserve1 = #{reserve1,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youzi.yuchou.module.model.model.GoodsCount">
+    update goods_count
+    set gid = #{gid,jdbcType=INTEGER},
+      sid = #{sid,jdbcType=INTEGER},
+      uid = #{uid,jdbcType=INTEGER},
+      the_browse_count = #{theBrowseCount,jdbcType=INTEGER},
+      total_browse_count = #{totalBrowseCount,jdbcType=INTEGER},
+      app_message = #{appMessage,jdbcType=INTEGER},
+      timeline = #{timeline,jdbcType=INTEGER},
+      qq = #{qq,jdbcType=INTEGER},
+      qq_weibo = #{qqWeibo,jdbcType=INTEGER},
+      qq_zone = #{qqZone,jdbcType=INTEGER},
+      xl_weibo = #{xlWeibo,jdbcType=INTEGER},
+      reserve1 = #{reserve1,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

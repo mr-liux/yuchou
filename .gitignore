@@ -1,10 +1,13 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### Maven template
 target/
+logs/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
 pom.xml.next
+application.properties
+application-dev.properties
 release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
@@ -162,3 +165,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+/pom.xml
