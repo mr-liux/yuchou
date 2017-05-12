@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.youzi.yuchou.admin.repository.BankRepository;
 import com.youzi.yuchou.module.model.mapper.BankMapper;
 import com.youzi.yuchou.module.model.model.Bank;
-import com.youzi.yuchou.module.mvc.common.StaticCode;
+import com.youzi.yuchou.module.mvc.common.LocalStaticValue;
 import com.youzi.yuchou.module.mvc.dto.RestResponse;
 import com.youzi.yuchou.module.mvc.form.PageInfo;
 
@@ -63,7 +63,7 @@ public class BankService extends AdminBaseService {
 	public RestResponse<Object> findById(Integer id) {
 		RestResponse<Object> page = new RestResponse<Object>();
 		Bank bank = bankRepository.selectByPrimaryKey(id);
-		page.setCode(StaticCode.SUCCESS);
+		page.setCode(LocalStaticValue.SUCCESS);
 		page.setData(bank);
 		return page;
 	}
