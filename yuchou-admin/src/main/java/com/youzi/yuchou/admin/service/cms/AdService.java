@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.youzi.yuchou.admin.service.common.AdminBaseService;
 import com.youzi.yuchou.module.model.mapper.AdMapper;
 import com.youzi.yuchou.module.model.model.Ad;
+import com.youzi.yuchou.module.mvc.common.StaticCode;
 import com.youzi.yuchou.module.mvc.dto.RestResponse;
 import com.youzi.yuchou.module.mvc.form.PageInfo;
 import com.youzi.yuchou.module.mvc.utils.CommonUtils;
@@ -59,7 +60,7 @@ public class AdService extends AdminBaseService {
 	public boolean updDelete(Integer id) {
 		Ad ad = new Ad();
 		ad.setAdId(id);
-		ad.setStatus(0);
+		ad.setStatus(StaticCode.SUCCESS);
 		//修改用户ID，外键   upd_user_ky
 		int result = adMapper.updateByPrimaryKeySelective(ad);
 		return (result == 1);
@@ -76,7 +77,7 @@ public class AdService extends AdminBaseService {
 			//修改用户ID，外键   upd_user_ky
 			int result = adMapper.updateByPrimaryKeySelective(ad);
 			page.setSuccess(true);
-			page.setCode(0);
+			page.setCode(StaticCode.SUCCESS);
 			page.setMessage("成功");
 		}else{
 			page.setSuccess(false);
@@ -94,7 +95,7 @@ public class AdService extends AdminBaseService {
 		Ad ad = adMapper.selectByPrimaryKey(id);
 		RestResponse<Object> page=new RestResponse<Object>(); 
 		page.setSuccess(true);
-		page.setCode(0);
+		page.setCode(StaticCode.SUCCESS);
 		page.setData(ad);
 		return page;
 	}
@@ -111,6 +112,7 @@ public class AdService extends AdminBaseService {
 		}
 		pageInfo.setTotalCount(totalCount);
 		page.setSuccess(true);
+		page.setCode(StaticCode.SUCCESS);
 		page.setData(list);
 		page.addExtData("pageInfo", pageInfo);
 		return page;

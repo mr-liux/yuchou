@@ -3,6 +3,8 @@ package com.youzi.yuchou.module.mvc.dto;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.youzi.yuchou.module.mvc.common.StaticCode;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +20,7 @@ public class RestResponse<T> {
      */
     protected boolean   success   = false;
     
-	private Integer code = 0; // 0：成功;其他:失败
+	private Integer code = StaticCode.SUCCESS; // 0：成功;其他:失败
 
 	private String message; // 消息
 
@@ -45,18 +47,18 @@ public class RestResponse<T> {
 	}
 	
 	public static <T> RestResponse<T> buildSuccessed( T data) {
-		return new RestResponse<T>(true, 0, null, data ,null);
+		return new RestResponse<T>(true, StaticCode.SUCCESS, null, data ,null);
 	}
 	public static <T> RestResponse<T> buildSuccessed(String resMessage, T data, Map<String, Object> ext) {
-		return new RestResponse<T>(true, 0, resMessage, data ,ext);
+		return new RestResponse<T>(true, StaticCode.SUCCESS, resMessage, data ,ext);
 	}
 
 	public static <T> RestResponse<T> buildSuccessed(T data, Map<String, Object> ext) {
-		return new RestResponse<T>(true, 0, null, data ,ext);
+		return new RestResponse<T>(true, StaticCode.SUCCESS, null, data ,ext);
 	}
 
 	public static <T> RestResponse<T> buildDefaultSuccessed(String resMessage) {
-		return new RestResponse<T>(true, 0, resMessage, null,null);
+		return new RestResponse<T>(true, StaticCode.SUCCESS, resMessage, null,null);
 	}
 
 	public static <T> RestResponse<T> buildFailed(Integer code, String message) {

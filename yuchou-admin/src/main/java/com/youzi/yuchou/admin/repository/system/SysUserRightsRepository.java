@@ -24,43 +24,43 @@ import com.youzi.yuchou.module.mvc.response.menu.SysUserMenuResponse;
 @Service
 public class SysUserRightsRepository {
 	@Autowired
-	private SysUserMenuMapper  userMenuMapper;
+	private SysUserMenuMapper  sysUserMenuMapper;
 	@Autowired
 	private SysMenuMapper  menuMapper;
 	
 	public boolean add(SysUserMenu users) {
-		if(userMenuMapper.insert(users)>0){
+		if(sysUserMenuMapper.insert(users)>0){
 			return true;
 		}
 		return false;
 	}
 
 	public boolean delete(Integer id) {
-		if(userMenuMapper.updateByStatus(id)>0){
+		if(sysUserMenuMapper.updateByStatus(id)>0){
 			return true;
 		}
 		return false;
 	}
 
 	public boolean update(SysUserMenu users) {
-		if(userMenuMapper.updateByPrimaryKey(users)>0){
+		if(sysUserMenuMapper.updateByPrimaryKey(users)>0){
 			return true;
 		}
 		return false;
 	}
 	
 	public boolean insertUserMenu(List<SysUserMenu> menus) {
-		int result = userMenuMapper.insertUserMenu(menus);
+		int result = sysUserMenuMapper.insertUserMenu(menus);
 		return (result == 1);
 	}
 	
 	@CacheEvict(value = "sysUserMenu_userKy", key = "#userKy")
 	public void deleteByUserKey(Integer userKy) {
-		userMenuMapper.deleteByUserKey(userKy);
+		sysUserMenuMapper.deleteByUserKey(userKy);
 	}
 
 	public SysUserMenu findById(Integer id) {
-		return userMenuMapper.selectByPrimaryKey(id);
+		return sysUserMenuMapper.selectByPrimaryKey(id);
 	}
 	
 

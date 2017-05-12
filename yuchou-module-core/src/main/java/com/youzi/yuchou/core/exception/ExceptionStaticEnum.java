@@ -13,6 +13,7 @@ public enum ExceptionStaticEnum  {
     ERROR_PARAMS(501, "参数错误"),
     ERROR(1000, "未知错误"),
     USER_MENU_NULL(1001, "此用户没有任何权限"),
+    AUTH_USER_MENU_STATUS(1002, "您没有此权限，请联系管理员"),
     ERROR_DB(100010, "数据库执行失败。"),
     ERROR_NO_INVALID_USER(100011, "用户名或者密码错误，请重新输入。"),
     ERROR_NO_LOGIN(100012, "对不起，您没有登录。"),

@@ -28,16 +28,16 @@ import com.youzi.yuchou.module.mvc.utils.CommonUtils;
 @Service
 public class SysUserRightsService  extends AdminBaseService implements TokenRightServiceIntf {
 	@Autowired
-	private SysUserMenuMapper  userMenuMapper;
+	private SysUserMenuMapper  sysUserMenuMapper;
 	@Autowired
-	private SysMenuMapper  menuMapper;
+	private SysMenuMapper  sysMenuMapper;
 	@Autowired
 	private SysUserMenuLogMapper sysUserMenuLogMapper;
 	@Autowired
 	private SysUserRightsRepository  sysUserRightsRepository;
 	
 	public boolean add(SysUserMenu users) {
-		if(userMenuMapper.insert(users)>0){
+		if(sysUserMenuMapper.insert(users)>0){
 			return true;
 		}
 		return false;
@@ -45,7 +45,7 @@ public class SysUserRightsService  extends AdminBaseService implements TokenRigh
 
 	@Transactional
 	public boolean delete(Integer id) {
-		if(userMenuMapper.updateByStatus(id)>0){
+		if(sysUserMenuMapper.updateByStatus(id)>0){
 			return true;
 		}
 		return false;
@@ -53,14 +53,14 @@ public class SysUserRightsService  extends AdminBaseService implements TokenRigh
 
 	@Transactional
 	public boolean update(SysUserMenu users) {
-		if(userMenuMapper.updateByPrimaryKey(users)>0){
+		if(sysUserMenuMapper.updateByPrimaryKey(users)>0){
 			return true;
 		}
 		return false;
 	}
 
 	public SysUserMenu findById(Integer id) {
-		return userMenuMapper.selectByPrimaryKey(id);
+		return sysUserMenuMapper.selectByPrimaryKey(id);
 	}
 	
 	/**
@@ -69,7 +69,7 @@ public class SysUserRightsService  extends AdminBaseService implements TokenRigh
 	@Override
 	public List<Integer> queryUserRights(Integer userKy) {
 		
-		return userMenuMapper.queryByUserKy(userKy);
+		return sysUserMenuMapper.queryByUserKy(userKy);
 	}
 
 	/**
@@ -79,8 +79,8 @@ public class SysUserRightsService  extends AdminBaseService implements TokenRigh
 	 */
 	public List<TreeEntityResponse> queryMyRightsTreeMenu(Integer userKy){
 		List<TreeEntityResponse> entities=new ArrayList<TreeEntityResponse>();
-		List<SysMenu> myMenuInfos = menuMapper.getMyMenu(userKy);
-		List<SysMenu> infos = menuMapper.getAllMenu(null);
+		List<SysMenu> myMenuInfos = sysMenuMapper.getMyMenu(userKy);
+		List<SysMenu> infos = sysMenuMapper.getAllMenu(null);
 		for (SysMenu m : infos) {
 			TreeEntityResponse entity=new TreeEntityResponse();
 			entity.setId(m.getMenuKy());
@@ -137,10 +137,8 @@ public class SysUserRightsService  extends AdminBaseService implements TokenRigh
 	 * @return
 	 */
 	public RestResponse<Object> getMyMenu(Integer userKy) {
-		StringBuffer buffer = new StringBuffer();
 		RestResponse<Object> page = new RestResponse<Object>();
 		List<SysMenu> list = sysUserRightsRepository.queryMyMenu(userKy);
-//		Map<String, Object> map = new HashMap<String, Object>();
 		List<Object> listArr = new ArrayList<Object>();
 		if(list.size()>0){
 			for (SysMenu m : list) {
