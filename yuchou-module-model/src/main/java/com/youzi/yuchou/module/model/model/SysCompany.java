@@ -53,8 +53,20 @@ public class SysCompany implements Serializable {
     private Date updTime;
 
     private String description;
+    
+    private Boolean parent;
+    
+    
 
-    public String getPname() {
+    public Boolean getParent() {
+		return parent==null?false:parent;
+	}
+
+	public void setParent(Boolean parent) {
+		this.parent = parent;
+	}
+
+	public String getPname() {
 		return pname==null?"":pname;
 	}
 

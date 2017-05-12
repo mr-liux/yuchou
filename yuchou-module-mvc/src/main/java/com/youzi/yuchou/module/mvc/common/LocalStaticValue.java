@@ -9,4 +9,6 @@ public class LocalStaticValue {
 	 * 系统默认返回成功值
 	 */
 	public static final int SUCCESS = 0;
+	//树状设计根菜单
+	public static final int TREE_ROOT_NODE = 0;  
 }

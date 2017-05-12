@@ -1,6 +1,8 @@
 package com.youzi.yuchou.admin.web.system;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,7 @@ import com.youzi.yuchou.admin.web.common.AdminBaseController;
 import com.youzi.yuchou.module.model.model.SysCompany;
 import com.youzi.yuchou.module.mvc.annotation.Auth;
 import com.youzi.yuchou.module.mvc.dto.RestResponse;
+import com.youzi.yuchou.module.mvc.dto.TreeNode;
 import com.youzi.yuchou.module.mvc.form.PageInfo;
 
 import io.swagger.annotations.Api;
@@ -97,5 +100,17 @@ public class SysCompanyController extends AdminBaseController {
 	public RestResponse<Object> findAll(HttpServletRequest request) throws Exception{
 		RestResponse<Object> page = companyService.findAll(new PageInfo(request.getParameterMap()));
 		return page;
+	}
+	
+	
+	@ApiOperation(value = "获取公司树状菜单",notes="获取公司树状菜单", httpMethod = "GET", response = List.class)
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "cpage", value="当前页",required = false, dataType = "int", paramType = "query"),
+		@ApiImplicitParam(name = "pagesize", value="每页显示几条,如果将此参数设置为-1，则查询全部",required = true, dataType = "int", paramType = "query"),
+		@ApiImplicitParam(name = "X-AUTH-TOKEN",value="权限token",required = true, dataType = "Sting", paramType = "header")})
+	@Auth 
+	@GetMapping("/treeList")
+	public List<TreeNode> treeList(HttpServletRequest request) throws Exception{
+		return companyService.getTreeNode(new PageInfo(request.getParameterMap()));
 	}
 }
