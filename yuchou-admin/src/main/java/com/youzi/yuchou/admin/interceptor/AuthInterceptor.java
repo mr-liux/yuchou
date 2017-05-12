@@ -60,8 +60,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 							UserTokenManager.userTokenMap.get(token)
 									.setLastVisitTime(
 											System.currentTimeMillis());
-							request.setAttribute(LocalStaticValue.UID,
-									tokenInfo.getUid());
+							//request.setAttribute(LocalStaticValue.UID,tokenInfo.getUid());
 						}
 					} else {
 						throw new AuthException(

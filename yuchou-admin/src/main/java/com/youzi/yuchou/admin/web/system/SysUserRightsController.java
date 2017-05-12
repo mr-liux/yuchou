@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import com.youzi.yuchou.admin.web.common.AdminBaseController;
 import com.youzi.yuchou.admin.web.system.domain.request.UserRightsRequest;
 import com.youzi.yuchou.admin.web.system.domain.response.TreeEntityResponse;
 import com.youzi.yuchou.admin.service.system.SysUserRightsService;
+import com.youzi.yuchou.module.model.model.ProvCityAreaStreet;
 import com.youzi.yuchou.module.model.model.SysMenu;
 import com.youzi.yuchou.module.mvc.annotation.Auth;
 import com.youzi.yuchou.module.mvc.dto.RestResponse;
@@ -38,8 +40,8 @@ public class SysUserRightsController extends AdminBaseController {
 	@ApiImplicitParam(name = "X-AUTH-TOKEN",value="权限token",required = true, dataType = "Sting", paramType = "header")
 	@Auth 
 	@PostMapping("/")
-	public RestResponse<String> add(@RequestBody UserRightsRequest rightsRequest){
-		rightsService.update(rightsRequest.getUserKy(),rightsRequest.getMenuIds());
+	public RestResponse<String> add(@RequestBody UserRightsRequest rightsRequest ,HttpServletRequest request){
+		rightsService.update(rightsRequest.getUserKy(),rightsRequest.getMenuIds(),super.getLoginUid(request));
 		return buildDefaultSuccessed("权限分配成功");
 	}
 
@@ -57,16 +59,14 @@ public class SysUserRightsController extends AdminBaseController {
 		return RestResponse.buildSuccessed(rightsService.queryMyRightsTreeMenu(super.getLoginUid(request)));
 	}
 	
-	
 	@ApiOperation(value = "获取我的菜单列表",notes="获取我的菜单列表", httpMethod = "GET", response = RestResponse.class)
 	@ApiImplicitParam(name = "X-AUTH-TOKEN",value="权限token",required = true, dataType = "Sting", paramType = "header")
 	@Auth 
 	@GetMapping("/myMenu")
-	public RestResponse<List<SysMenu>> findAll( HttpServletRequest request) throws Exception{
-		return RestResponse.buildSuccessed(rightsService.queryMyMenu(super.getLoginUid(request)));
+	public RestResponse<Object> findAll(HttpServletRequest request){
+		RestResponse<Object> page = rightsService.getMyMenu(super.getLoginUid(request));
+		return buildSuccessed(page);
 	}
-
-	
 	
 
 }

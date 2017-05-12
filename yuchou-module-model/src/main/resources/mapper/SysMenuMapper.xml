@@ -44,7 +44,11 @@
   </select>
   
   <select id="getMyMenu" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-		SELECT m.* FROM  sys_user_menu r LEFT JOIN sys_menu m ON r.`menu_ky`= m.`menu_ky`  
+		SELECT 
+			m.menu_ky, m.pid, m.url, m.htmlUrl, m.name, m.image, m.request, 
+			m.attribute, m.level, m.sort
+		 
+		FROM  sys_user_menu r LEFT JOIN sys_menu m ON r.`menu_ky`= m.`menu_ky`  
 		<where>
 			m.`status`=1 
 			<if test="userKy != null and userKy != '' ">

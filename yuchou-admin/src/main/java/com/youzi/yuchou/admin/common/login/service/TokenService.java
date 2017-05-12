@@ -133,14 +133,12 @@ public class TokenService {
 		tokenInfo.setLastVisitTime(currTime);
 		UserTokenManager.userTokenMap.put(token, tokenInfo);
 		// 获取用户的权限，保存到内存中
-		if (UserTokenManager.userRightMap.get(user.getUserKy()) == null) {
-			
-		}
-		List<Integer> rights = UserTokenManager.userRightMap.get(user.getUserKy());
+		/*List<Integer> rights = UserTokenManager.userRightMap.get(user.getUserKy());
 		if (rights == null) {
 			rights = rightServiceIntf.queryUserRights(user.getUserKy());
 			UserTokenManager.userRightMap.put(user.getUserKy(), rights);
-		}
+		}*/
+		
 		/*LoginResponse response = new LoginResponse();
 		response.setLoginResult(0);
 		response.setUserCode(user.getUserId());

@@ -39,12 +39,19 @@
 		</javaClientGenerator>
 		<!-- 要生成哪些表 -->
 		
+		<!-- 
 		 <table tableName="tb_test" domainObjectName="TbTest"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table> 
+			 -->
+		
 		<!--	
-		 <table tableName="ad" domainObjectName="Ad"
+		<table tableName="sys_user_menu_log" domainObjectName="SysUserMenuLog"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table> 
+		<table tableName="ad" domainObjectName="Ad"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table> 

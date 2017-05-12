@@ -43,6 +43,32 @@ public class BaseUserService extends AdminBaseService {
 		return users;
 		
 	}
+	
+	/**
+	 * 获取用户userKy
+	 * @param request
+	 * @return
+	 */
+	public Integer getTokenUserKy(HttpServletRequest request){
+		Integer userKy = null;
+		String token = request.getHeader(LocalStaticValue.AUTH_TOKEN);
+		if(token==null){
+			throw new AuthException(
+					ExceptionStaticEnum.ERROR_NO_LOGIN.getCode(),
+					ExceptionStaticEnum.ERROR_NO_LOGIN.getMessage());
+		}else{
+			TokenInfo tokenInfo = UserTokenManager.userTokenMap.get(token);
+			if(tokenInfo==null){
+				throw new AuthException(
+						ExceptionStaticEnum.ERROR_NO_INVALID_TOKEN.getCode(),
+						ExceptionStaticEnum.ERROR_NO_INVALID_TOKEN.getMessage());
+			}else{
+				userKy = tokenInfo.getUid().intValue();
+			}
+		}
+		return userKy;
+		
+	}
 
 
 }

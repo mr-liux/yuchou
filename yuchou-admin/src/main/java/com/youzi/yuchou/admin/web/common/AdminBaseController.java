@@ -14,13 +14,24 @@ public class AdminBaseController extends BaseController {
 	
 	@Autowired
 	private BaseUserService userTokenService;
-	
+	/**
+	 * 获取token user对象
+	 * @author 背包
+	 * @param request
+	 * @return
+	 */
 	public SysUsers getUser(HttpServletRequest request){
 		return userTokenService.getUser(request);
 	}
 	
+	/**
+	 * 获取token userKy
+	 * @author 背包
+	 * @param request
+	 * @return
+	 */
 	public Integer getLoginUid(HttpServletRequest request){
-		return getUser(request).getUserKy();
+		return userTokenService.getTokenUserKy(request);
 	}
 
 }

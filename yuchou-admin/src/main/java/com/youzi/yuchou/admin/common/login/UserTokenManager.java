@@ -17,7 +17,7 @@ public class UserTokenManager {
 	// 保存token和用户id的字典数据
 	public static Map<String, TokenInfo> userTokenMap = new HashMap<String, TokenInfo>();
 	//保存角色的权限数据
-	public static Map<Integer, List<Integer>> userRightMap = new HashMap<Integer, List<Integer>>();
+//	public static Map<Integer, List<Integer>> userRightMap = new HashMap<Integer, List<Integer>>();
 
 	public  static boolean startErrorLocked=false; //是否启用登录失败超过设置的次数则限制登录
 	public  static int errorLoginLockedTime = 5;  //连续登录错误次数超过设置次数则锁定，锁定时间
