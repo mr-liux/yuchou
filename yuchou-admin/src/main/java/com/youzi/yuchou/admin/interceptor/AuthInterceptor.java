@@ -75,7 +75,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 							//request.setAttribute(LocalStaticValue.UID,tokenInfo.getUid());
 							
 							// TODO ... 权限验证
-							boolean authMenuStrues = authUserMenu(request ,Integer.parseInt(tokenInfo.getUid().toString()));
+							boolean authMenuStrues = authUserMenu(request ,tokenInfo.getUid().intValue());
 							log.info("权限验证  ... 结束 ... userKy:"+tokenInfo.getUid()+",authMenuStrues:"+authMenuStrues);
 							if(!authMenuStrues){
 								throw new AuthException(
@@ -118,23 +118,21 @@ public class AuthInterceptor implements HandlerInterceptor {
 	 * 权限验证
 	 */
 	public boolean authUserMenu(HttpServletRequest request ,Integer tokenUserKy){
-		log.info("================authUserMenu=====================");
 		// 得到用户请求的URI
-		log.info("权限验证 ...");
+		log.info("权限验证开始...");
 		String request_url = request.getRequestURI();
-		log.info(request_url);
+		log.info("全路径："+request_url);
 		// 得到web应用程序的上下文路径
 		String ctxPath = request.getContextPath();
-		log.info(ctxPath);
 		// 去除上下文路径，得到剩余部分的路径
 		String url = request_url.substring(ctxPath.length());
-		log.info(url);
+		log.info("截取后路径："+url);
 		
 		//获取当前登录用户的权限集合
 		List<SysMenu> menulist = sysUserRightsRepository.queryMyMenu(tokenUserKy);
-		for (SysMenu sysMenu : menulist) {
+/*		for (SysMenu sysMenu : menulist) {
 			log.info(sysMenu.getName());
-		}
+		}*/
 		
 		String[] urlArr = url.split("/");
 		boolean ret = false;
@@ -175,12 +173,12 @@ public class AuthInterceptor implements HandlerInterceptor {
 		for (SysMenu sysMenu : menulist) {
 			
 			String m_url = sysMenu.getUrl();
-			log.info("旧的url:"+m_url);
+			log.info("界面传入的 url:"+m_url);
 			int a=m_url.indexOf("/{");
 			if(a>0){
 				m_url = m_url.substring(0 , a);
 			}
-			log.info("新的url:"+m_url+"  url:"+url);
+			log.info("数据库查询的url:"+m_url+" 界面传入处理后的 url:"+url);
 			if(m_url.equals(url)){
 				return true;
 			}

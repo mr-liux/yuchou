@@ -37,7 +37,7 @@ public class SysJobController extends AdminBaseController {
 	@ApiOperation(value = "新增岗位信息",notes="通过body传入新增岗位信息", httpMethod = "POST", response = RestResponse.class)
 	@ApiImplicitParam(name = "X-AUTH-TOKEN",value="权限token",required = true, dataType = "Sting", paramType = "header")
 	@Auth 
-	@PostMapping("/")
+	@PostMapping("")
 	public RestResponse<String> add(@RequestBody SysJob company){
 		jobService.add(company);
 		return buildDefaultSuccessed("新增成功");
@@ -64,7 +64,7 @@ public class SysJobController extends AdminBaseController {
 	@ApiOperation(value = "修改岗位信息",notes="根据表单传入的User对象来修改岗位信息", httpMethod = "PUT", response = RestResponse.class)
 	@ApiImplicitParam(name = "X-AUTH-TOKEN",value="权限token",required = true, dataType = "Sting", paramType = "header")
 	@Auth 
-	@PutMapping("/")
+	@PutMapping("")
 	public RestResponse<String> update( @RequestBody SysJob users) {
 		jobService.update(users);
 		return buildDefaultSuccessed("修改成功");

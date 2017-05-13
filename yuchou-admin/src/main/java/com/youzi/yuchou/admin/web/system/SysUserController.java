@@ -35,7 +35,7 @@ public class SysUserController extends AdminBaseController {
 	@ApiOperation(value = "新增用户信息",notes="通过body传入新增用户信息", httpMethod = "POST", response = RestResponse.class)
 	@ApiImplicitParam(name = "X-AUTH-TOKEN",value="权限token",required = true, dataType = "Sting", paramType = "header")
 	@Auth 
-	@PostMapping("/")
+	@PostMapping("")
 	public RestResponse<String> add(@RequestBody SysUsers users,HttpServletRequest request){
 		userService.add(users);
 		return buildDefaultSuccessed("新增成功");
@@ -62,7 +62,7 @@ public class SysUserController extends AdminBaseController {
 	@ApiOperation(value = "修改用户信息",notes="根据表单传入的User对象来修改用户信息", httpMethod = "PUT", response = RestResponse.class)
 	@ApiImplicitParam(name = "X-AUTH-TOKEN",value="权限token",required = true, dataType = "Sting", paramType = "header")
 	@Auth 
-	@PutMapping("/")
+	@PutMapping("")
 	public RestResponse<String> update( @RequestBody SysUsers users) {
 		userService.update(users);
 		return buildDefaultSuccessed("修改成功");

@@ -39,7 +39,7 @@ public class SysUserRightsController extends AdminBaseController {
 	@ApiOperation(value = "分配用户权限信息",notes="通过body传入给用户分配权限", httpMethod = "POST", response = RestResponse.class)
 	@ApiImplicitParam(name = "X-AUTH-TOKEN",value="权限token",required = true, dataType = "Sting", paramType = "header")
 	@Auth 
-	@PostMapping("/")
+	@PostMapping("")
 	public RestResponse<String> add(@RequestBody UserRightsRequest rightsRequest ,HttpServletRequest request){
 		rightsService.update(rightsRequest.getUserKy(),rightsRequest.getMenuIds(),super.getLoginUid(request));
 		return buildDefaultSuccessed("权限分配成功");

@@ -1,5 +1,6 @@
 package com.youzi.yuchou.admin.service.system;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,14 +8,20 @@ import org.springframework.stereotype.Service;
 
 import com.youzi.yuchou.admin.service.common.AdminBaseService;
 import com.youzi.yuchou.module.model.mapper.SysMenuMapper;
+import com.youzi.yuchou.module.model.model.SysCompany;
 import com.youzi.yuchou.module.model.model.SysMenu;
 import com.youzi.yuchou.module.mvc.dto.RestResponse;
+import com.youzi.yuchou.module.mvc.dto.TreeNode;
+import com.youzi.yuchou.module.mvc.dto.system.SysMenuResponse;
 import com.youzi.yuchou.module.mvc.form.PageInfo;
+import com.youzi.yuchou.module.mvc.utils.TreeNodeUtil;
 
 @Service
 public class SysMenuService extends AdminBaseService   {
 	@Autowired
 	private SysMenuMapper  menuMapper;
+	@Autowired 
+	private TreeNodeUtil treeNodeUtil;
 	
 	public boolean add(SysMenu menu) {
 		if(menuMapper.insert(menu)>0){
@@ -53,7 +60,52 @@ public class SysMenuService extends AdminBaseService   {
 		return page;
 	}
 
+	public List<TreeNode> findAllByTreeNode(PageInfo pageInfo) {
+		List<SysMenu> list = null;
+		int totalCount = menuMapper.count(pageInfo.getParamsMap());
+		List<TreeNode> treeNode= new ArrayList<TreeNode>();
+		if(totalCount>0){
+			list = menuMapper.query(pageInfo.getParamsMap());
+			List<TreeNode> rootNodeList = new ArrayList<TreeNode>();
+			List<TreeNode> childNodeList = new ArrayList<TreeNode>();
+			List<SysMenu> newList=new ArrayList<SysMenu>(list);
+			for (SysMenu sysMenu : list) {
+				this.checkIsParent(sysMenu, newList);
+				SysMenuResponse node = new SysMenuResponse();
+				node.setId(sysMenu.getMenuKy());
+				node.setPid(sysMenu.getPid());
+				node.setName(sysMenu.getName());
+				node.setParent(sysMenu.getParent());
+				node.setHtmlUrl(sysMenu.getHtmlUrl());
+				node.setAddTime(sysMenu.getAddTime());
+				node.setUrl(sysMenu.getUrl());
+				if(sysMenu.getPid()==0){
+					rootNodeList.add(node);
+				}else{
+					childNodeList.add(node);
+				}
+			}
+			treeNodeUtil.setRootNodeList(rootNodeList);
+			treeNodeUtil.setChildNodeList(childNodeList);
+			treeNode = treeNodeUtil.getTreeNodes();
+		}
+		return treeNode;
+	}
 
+
+	/**
+	 * 验证单个对象是否是父节点
+	 * @param company
+	 * @param list
+	 */
+	private void checkIsParent(SysMenu sysMenu,List<SysMenu> list){
+		for (SysMenu menu : list) {
+			if(menu.getPid() ==sysMenu.getMenuKy()){
+				sysMenu.setParent(true);
+				break;
+			}
+		}
+	}
 
 
 }

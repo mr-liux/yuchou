@@ -35,7 +35,15 @@ public class SysMenu implements Serializable {
 
     private Date updTime;
 
+    private Boolean parent;
     
+    public Boolean getParent() {
+ 		return parent==null?false:parent;
+ 	}
+
+ 	public void setParent(Boolean parent) {
+ 		this.parent = parent;
+ 	}
     public String getHtmlUrl() {
 		return htmlUrl;
 	}

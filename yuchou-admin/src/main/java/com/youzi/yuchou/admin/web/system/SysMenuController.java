@@ -1,6 +1,8 @@
 package com.youzi.yuchou.admin.web.system;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,7 @@ import com.youzi.yuchou.admin.web.common.AdminBaseController;
 import com.youzi.yuchou.module.model.model.SysMenu;
 import com.youzi.yuchou.module.mvc.annotation.Auth;
 import com.youzi.yuchou.module.mvc.dto.RestResponse;
+import com.youzi.yuchou.module.mvc.dto.TreeNode;
 import com.youzi.yuchou.module.mvc.form.PageInfo;
 
 import io.swagger.annotations.Api;
@@ -37,7 +40,7 @@ public class SysMenuController extends AdminBaseController {
 	@ApiOperation(value = "新增菜单信息",notes="通过body传入新增菜单信息", httpMethod = "POST", response = RestResponse.class)
 	@ApiImplicitParam(name = "X-AUTH-TOKEN",value="权限token",required = true, dataType = "Sting", paramType = "header")
 	@Auth 
-	@PostMapping("/")
+	@PostMapping("")
 	public RestResponse<String> add(@RequestBody SysMenu company){
 		menuService.add(company);
 		return buildDefaultSuccessed("新增成功");
@@ -64,7 +67,7 @@ public class SysMenuController extends AdminBaseController {
 	@ApiOperation(value = "修改菜单信息",notes="根据表单传入的User对象来修改菜单信息", httpMethod = "PUT", response = RestResponse.class)
 	@ApiImplicitParam(name = "X-AUTH-TOKEN",value="权限token",required = true, dataType = "Sting", paramType = "header")
 	@Auth 
-	@PutMapping("/")
+	@PutMapping("")
 	public RestResponse<String> update( @RequestBody SysMenu users) {
 		menuService.update(users);
 		return buildDefaultSuccessed("修改成功");
@@ -84,21 +87,32 @@ public class SysMenuController extends AdminBaseController {
 		return menuService.findById(id);
 	}
 
-	
-	
 	@ApiOperation(value = "分页条件查找菜单信息",notes="分页条件查找菜单信息", httpMethod = "GET", response = RestResponse.class)
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "cpage", value="当前页",required = true, dataType = "int", paramType = "query"),
 			@ApiImplicitParam(name = "pagesize", value="每页显示几条",required = true, dataType = "int", paramType = "query"),
 			@ApiImplicitParam(name = "name", value="菜单名称",required = false, dataType = "String", paramType = "query"),
-			@ApiImplicitParam(name = "X-AUTH-TOKEN",value="权限token",required = true, dataType = "Sting", paramType = "header")})
+			@ApiImplicitParam(name = "X-AUTH-TOKEN",value="权限token",required = true, dataType = "String", paramType = "header")})
 	@Auth 
 	@GetMapping("/list")
 	public RestResponse<Object> findAll(HttpServletRequest request) throws Exception{
 		PageInfo pageInfo = new PageInfo(request.getParameterMap());
-		pageInfo.getParamsMap().put("orderByClause", "order");
+		pageInfo.getParamsMap().put("orderByClause", "sort");
 		pageInfo.getParamsMap().put("sort", "asc");
 		RestResponse<Object> page = menuService.findAll(pageInfo);
 		return page;
+	}
+	
+	@ApiOperation(value = "获取树状菜单信息",notes="获取树状菜单信息", httpMethod = "GET", response = List.class)
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "X-AUTH-TOKEN",value="权限token",required = true, dataType = "String", paramType = "header")})
+	@Auth 
+	@GetMapping("/treeList")
+	public List<TreeNode> findAllByTreeNode(HttpServletRequest request) throws Exception{
+		PageInfo pageInfo = new PageInfo(request.getParameterMap());
+		pageInfo.getParamsMap().put("orderByClause", "sort");
+		pageInfo.getParamsMap().put("sort", "asc");
+		pageInfo.getParamsMap().put(PageInfo.PAGE_SIZE_KEY, -1);
+		return menuService.findAllByTreeNode(pageInfo);
 	}
 }
